@@ -2,9 +2,8 @@
 
 [ext_resource type="Script" uid="uid://dcpka2yohlos6" path="res://gameplay/card/card.gd" id="1_8mlfh"]
 [ext_resource type="Shader" uid="uid://dlh64ehprmkm7" path="res://shaders/2d_perspective.gdshader" id="2_8o45e"]
-[ext_resource type="Texture2D" uid="uid://cvjswjjyld6rc" path="res://assets/textures/tarot/back.png" id="3_2csm4"]
-[ext_resource type="Texture2D" uid="uid://cljngxm14hkso" path="res://assets/textures/tarot/front/tarot_1.png" id="3_8o45e"]
-[ext_resource type="Texture2D" uid="uid://7xbw03vhxpkd" path="res://assets/textures/tarot/front/tarot_back.png" id="3_ltiga"]
+[ext_resource type="Texture2D" uid="uid://cljngxm14hkso" path="res://assets/textures/cards/front/tarot_1.png" id="3_8o45e"]
+[ext_resource type="Texture2D" uid="uid://7xbw03vhxpkd" path="res://assets/textures/cards/front/tarot_back.png" id="3_ltiga"]
 [ext_resource type="Texture2D" uid="uid://br5ym2xemb2ra" path="res://assets/textures/effects/whirl.png" id="5_2csm4"]
 [ext_resource type="PackedScene" uid="uid://clwi6xerpkdr3" path="res://gameplay/card/panel_glow.tscn" id="5_8o45e"]
 [ext_resource type="Script" uid="uid://bcvw3mjepgimq" path="res://gameplay/card/whirl_effect.gd" id="6_ltiga"]
@@ -118,7 +117,7 @@ offset_bottom = 160.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("3_2csm4")
+texture = ExtResource("3_ltiga")
 
 [node name="WhirlEffect" type="Sprite2D" parent="." unique_id=1919798607]
 unique_name_in_owner = true

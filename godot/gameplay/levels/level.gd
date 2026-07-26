@@ -6,7 +6,9 @@ extends Node2D
 @onready var interface: = %Interface
 @onready var message_display: = %MessageDisplay
 
-@export var is_user_turn : bool = true : set = set_is_user_turn
+@export var opponent_data : OpponentData
+
+var is_user_turn : bool = true : set = set_is_user_turn
 
 func _ready() -> void:
 	card_grid.lockout_changed.connect(_on_card_grid_lockout_changed)
@@ -14,6 +16,12 @@ func _ready() -> void:
 	card_grid.match_finished.connect(_on_card_grid_match_finished)
 	is_user_turn = true
 	GameManager.reset_scores()
+	sync_with_opponent_data()
+
+# SETUP ------------------------------------------------------------------------
+func sync_with_opponent_data() -> void:
+	opponent.max_memory_size = opponent_data.memory_capacity
+	interface.sync_opponent_info_with_data(opponent_data)
 
 
 # SCORING HANDLING -------------------------------------------------------------
@@ -41,6 +49,7 @@ func _on_card_grid_matched_correct() -> void:
 
 func _on_card_grid_match_finished(_correct : bool) -> void:
 	next_turn()
+
 
 # SETTERS ----------------------------------------------------------------------
 func set_is_user_turn(val) -> void:

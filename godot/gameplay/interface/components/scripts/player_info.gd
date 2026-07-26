@@ -7,7 +7,7 @@ var score : int = 0 : set = set_score
 var darkened : bool = false : set = set_darkened
 var darken_tween : Tween = null
 
-@onready var portrait: AtlasTextureRect = %Portrait
+@onready var portrait: TextureRect = %Portrait
 @onready var portrait_back: TextureRect = %PortraitBack
 @onready var name_label: Label = %NameLabel
 @onready var score_label: Label = %ScoreLabel

@@ -2,9 +2,8 @@
 
 [ext_resource type="Script" uid="uid://cmj5d2pumvmbs" path="res://gameplay/interface/components/scripts/player_info.gd" id="1_2t1gg"]
 [ext_resource type="Shader" uid="uid://br2vxdpex88xf" path="res://shaders/noise_border.gdshader" id="2_bmcfc"]
-[ext_resource type="Texture2D" uid="uid://dogxsmpqnkiyu" path="res://assets/textures/portraits/Noir-portraits/36x36-bw-portraits-no-background.png" id="3_bmcfc"]
-[ext_resource type="Script" uid="uid://bkb8b00exo61c" path="res://gameplay/interface/components/atlas_texture_rect.gd" id="4_6nm0o"]
-[ext_resource type="Texture2D" uid="uid://bqrqp8xmviaqf" path="res://assets/textures/tarot/front/tarot_back_empty.png" id="5_m1k7l"]
+[ext_resource type="Texture2D" uid="uid://7cl8yjm5pfc5" path="res://assets/textures/portraits/noir_portrait1.png" id="3_gy1nr"]
+[ext_resource type="Texture2D" uid="uid://bqrqp8xmviaqf" path="res://assets/textures/cards/front/tarot_back_empty.png" id="5_m1k7l"]
 [ext_resource type="FontFile" uid="uid://galv8moamnrk" path="res://assets/fonts/Elsie/Elsie-Black.ttf" id="6_gy1nr"]
 [ext_resource type="PackedScene" uid="uid://clwi6xerpkdr3" path="res://gameplay/card/panel_glow.tscn" id="6_m1k7l"]
 
@@ -47,11 +46,6 @@ shader_parameter/outer_radius = 1.0
 width = 256
 height = 256
 noise = SubResource("FastNoiseLite_6nm0o")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_scvkp"]
-resource_local_to_scene = true
-atlas = ExtResource("3_bmcfc")
-region = Rect2(0, 0, 36, 36)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bvnae"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -127,17 +121,14 @@ layout_mode = 2
 texture = SubResource("NoiseTexture2D_bmcfc")
 expand_mode = 1
 
-[node name="Portrait" type="TextureRect" parent="VBoxContainer/PanelContainer/MarginContainer/MarginContainer" unique_id=278425359]
+[node name="Portrait" type="TextureRect" parent="VBoxContainer/PanelContainer/MarginContainer/MarginContainer" unique_id=1024957279]
 unique_name_in_owner = true
 texture_filter = 1
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
-texture = SubResource("AtlasTexture_scvkp")
+texture = ExtResource("3_gy1nr")
 expand_mode = 1
 stretch_mode = 5
-script = ExtResource("4_6nm0o")
-cols = 5
-rows = 3
 
 [node name="Frame" type="Panel" parent="VBoxContainer/PanelContainer/MarginContainer" unique_id=1203455745]
 layout_mode = 2

@@ -4,14 +4,14 @@
 [ext_resource type="PackedScene" uid="uid://bevgixiukmncn" path="res://gameplay/card_grid/card_grid.tscn" id="1_awt3i"]
 [ext_resource type="Texture2D" uid="uid://pne1dtcnmwev" path="res://assets/textures/particles/pixel_star_sheet.png" id="2_067t3"]
 [ext_resource type="PackedScene" uid="uid://bkw5jy7lmk3td" path="res://gameplay/opponent/opponent.tscn" id="2_pmgb3"]
+[ext_resource type="Resource" uid="uid://c0lhdus5bfv7l" path="res://resources/opponents/opponent_test.tres" id="2_xbsua"]
 [ext_resource type="Script" uid="uid://c515v3457u4xi" path="res://gameplay/levels/CPUParticlesGrid2D.gd" id="3_067t3"]
 [ext_resource type="PackedScene" uid="uid://d3g4l3c0fpus2" path="res://gameplay/interface/message_display.tscn" id="4_l3jmu"]
 [ext_resource type="PackedScene" uid="uid://ccle7011x2ap8" path="res://gameplay/interface/interface.tscn" id="4_t62bn"]
 [ext_resource type="Texture2D" uid="uid://bkwjvfq8y3mcg" path="res://assets/textures/palettes/bw_palette.png" id="7_x3pin"]
 [ext_resource type="Script" uid="uid://b2187jctll4mi" path="res://resources/_classes/card_data.gd" id="8_l3jmu"]
 [ext_resource type="Script" uid="uid://d4exmh2c4d8jw" path="res://gameplay/camera/camera.gd" id="8_scvkp"]
-[ext_resource type="Texture2D" uid="uid://cljngxm14hkso" path="res://assets/textures/tarot/front/tarot_1.png" id="8_u1phi"]
-[ext_resource type="Texture2D" uid="uid://bcqgrelbghla" path="res://assets/textures/tarot/front/00.png" id="9_c6mru"]
+[ext_resource type="Texture2D" uid="uid://cljngxm14hkso" path="res://assets/textures/cards/front/tarot_1.png" id="8_u1phi"]
 [ext_resource type="Shader" uid="uid://bf4fahpf537ou" path="res://shaders/palette_adapt.gdshader" id="9_x3pin"]
 [ext_resource type="Resource" uid="uid://b5gvw6uqjxfpe" path="res://resources/cards/0_fool.tres" id="9_xbsua"]
 [ext_resource type="Resource" uid="uid://dwoti70apphj8" path="res://resources/cards/2_high_priestess.tres" id="10_d105i"]
@@ -34,6 +34,7 @@ shader_parameter/palette = ExtResource("21_pmgb3")
 
 [node name="level" type="Node2D" unique_id=981335232]
 script = ExtResource("1_35olu")
+opponent_data = ExtResource("2_xbsua")
 
 [node name="Opponent" parent="." unique_id=473762862 node_paths=PackedStringArray("card_grid") instance=ExtResource("2_pmgb3")]
 unique_name_in_owner = true
@@ -171,12 +172,6 @@ position = Vector2(390.99976, 1527.0001)
 scale = Vector2(5.4589043, 5.4589043)
 texture = ExtResource("8_u1phi")
 
-[node name="Sprite2D3" type="Sprite2D" parent="ScreenEffects" unique_id=1837083958]
-texture_filter = 1
-position = Vector2(856.00006, 1871)
-scale = Vector2(5.4589043, 5.4589043)
-texture = ExtResource("9_c6mru")
-
 [node name="Palette2" type="Sprite2D" parent="ScreenEffects" unique_id=1508462157]
 texture_filter = 1
 position = Vector2(-660.74976, 1330)
@@ -188,12 +183,6 @@ texture_filter = 1
 position = Vector2(-1413.7502, 1527.0001)
 scale = Vector2(5.4589043, 5.4589043)
 texture = ExtResource("8_u1phi")
-
-[node name="Sprite2D4" type="Sprite2D" parent="ScreenEffects" unique_id=1291272622]
-texture_filter = 1
-position = Vector2(-948.74994, 1871)
-scale = Vector2(5.4589043, 5.4589043)
-texture = ExtResource("9_c6mru")
 
 [node name="PixelStarSheet" type="Sprite2D" parent="ScreenEffects" unique_id=1940112502]
 texture_filter = 1

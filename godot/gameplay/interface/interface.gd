@@ -29,3 +29,7 @@ func set_field_input_disabled(state) -> void:
 
 func _on_game_manager_score_changed(id : String, value : int) -> void:
 	player_ids[id].set_score(value)
+
+func sync_opponent_info_with_data(data : OpponentData) -> void:
+	opponent_info.set_name_text(data.display_name)
+	opponent_info.set_portrait_texture(data.portrait)

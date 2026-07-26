@@ -1,11 +1,11 @@
 class_name Opponent
 extends Node
 
-@export var display_name : String
-@export var portrait_texture : Texture
 @export var card_grid : CardGrid
-@export var max_memory_size : int = 4
-@export var memory_turn_lifetime: int = 2
+
+# ATTRIBUTES
+var max_memory_size : int = 3
+var memory_turn_lifetime: int = 2
 
 var can_play : bool = false
 var card_memory : Dictionary[Card, int] = {}
@@ -26,21 +26,21 @@ func play() -> void:
 	# Select Cards
 	selection = get_known_match()
 	if selection.is_empty():
-		print("-No match known in memory.")
+		print("No match known in memory.")
 		# Select an unknown card
 		selection.append(select_unknown_card())
 		# Check if it matches one in memory
 		var memory_match : Card = find_memory_match(selection[0])
 		if memory_match:
-			print("-Unknown card matches one in memory.")
+			print("Unknown card matches one in memory.")
 			selection.append(memory_match)
 		else:
-			print("-Unknown card doesn't match any in memory.")
+			print("Unknown card doesn't match any in memory.")
 			#print("--Selecting another unknown card.")
 			var c : Card = select_unknown_card()
 			if c: selection.append(c)
 	else:
-		print("-Match is known in memory.")
+		print("Match is known in memory.")
 	if selection:
 		for i : Card in selection:
 			await i.flip()
@@ -85,15 +85,24 @@ func find_memory_match(card : Card) -> Card:
 	return null
 
 func remember_card(card : Card) -> void:
-	print("Remember card: ", card.data.id)
-	card_memory[card] = memory_turn_lifetime
-	# Connect matched signal
-	if not card.just_matched.is_connected(_on_card_just_matched):
+	# Check if already known
+	if card_memory.has(card):
+		# Erase entry to refresh lifetime
+		card_memory.erase(card)
+		print("Already known: ", card.data.id, ". Memory lifetime refreshed.")
+	else:
+		# Connect match signal
 		card.just_matched.connect(_on_card_just_matched.bind(card))
+		print("+ Remembered card: ", card.data.id)
+	# Add to memory
+	card_memory[card] = memory_turn_lifetime
 
 func forget_card(card : Card) -> void:
-	print("Forget card: ", card.data.id)
+	print(" - Forgot card: ", card.data.id)
+	# Remove from memory
 	card_memory.erase(card)
+	# Disconnect match signal
+	card.just_matched.disconnect(_on_card_just_matched)
 
 func forget_least_recent_card() -> void:
 	# Only attempt to forget if there is a card to forget lol
@@ -111,13 +120,13 @@ func set_turns_till_forget(val) -> void:
 
 
 # SIGNALS ----------------------------------------------------------------------
+## Flip reaction
 func _on_card_grid_card_flipped(card : Card) -> void:
-	if card_memory.has(card):
-		forget_card(card)
 	remember_card(card)
 	if card_memory.size() > max_memory_size:
 		forget_least_recent_card()
 
-# Forget about cards that have matched
+## Match reaction
 func _on_card_just_matched(card : Card) -> void:
-	card_memory.erase(card)
+	print("Card just matched: ", card.data.id)
+	forget_card(card)
