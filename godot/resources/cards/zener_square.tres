@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://dsbxntiexqwdf"]
+
+[ext_resource type="Texture2D" uid="uid://cw7ppbpt1q1c1" path="res://assets/textures/tarot/front/zener4.png" id="1_0lksv"]
+[ext_resource type="Script" uid="uid://b2187jctll4mi" path="res://resources/_classes/card_data.gd" id="2_mxjir"]
+
+[resource]
+script = ExtResource("2_mxjir")
+id = "square"
+front = ExtResource("1_0lksv")
+metadata/_custom_type_script = "uid://b2187jctll4mi"

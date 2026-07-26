@@ -1,0 +1,154 @@
+[gd_scene format=3 uid="uid://jxj7xnxi08mm"]
+
+[ext_resource type="Script" uid="uid://dcpka2yohlos6" path="res://gameplay/card/card.gd" id="1_8mlfh"]
+[ext_resource type="Shader" uid="uid://dlh64ehprmkm7" path="res://shaders/2d_perspective.gdshader" id="2_8o45e"]
+[ext_resource type="Texture2D" uid="uid://cvjswjjyld6rc" path="res://assets/textures/tarot/back.png" id="3_2csm4"]
+[ext_resource type="Texture2D" uid="uid://cljngxm14hkso" path="res://assets/textures/tarot/front/tarot_1.png" id="3_8o45e"]
+[ext_resource type="Texture2D" uid="uid://7xbw03vhxpkd" path="res://assets/textures/tarot/front/tarot_back.png" id="3_ltiga"]
+[ext_resource type="Texture2D" uid="uid://br5ym2xemb2ra" path="res://assets/textures/effects/whirl.png" id="5_2csm4"]
+[ext_resource type="PackedScene" uid="uid://clwi6xerpkdr3" path="res://gameplay/card/panel_glow.tscn" id="5_8o45e"]
+[ext_resource type="Script" uid="uid://bcvw3mjepgimq" path="res://gameplay/card/whirl_effect.gd" id="6_ltiga"]
+[ext_resource type="AudioStream" uid="uid://bqvanso8584qv" path="res://assets/audio/sfx/match_effect.wav" id="9_y656l"]
+[ext_resource type="Script" uid="uid://dbiwe8njdj3hw" path="res://general/VariableStreamPlayer2D.gd" id="10_vpukq"]
+[ext_resource type="AudioStream" uid="uid://ccxgi2l1aqt1c" path="res://assets/audio/sfx/flip/flip-01.wav" id="11_tjj3e"]
+[ext_resource type="AudioStream" uid="uid://scddryykvxca" path="res://assets/audio/sfx/hover_effect.wav" id="11_vpukq"]
+[ext_resource type="AudioStream" uid="uid://dqf1ia3d73e23" path="res://assets/audio/sfx/flip/flip-02.wav" id="12_fassn"]
+[ext_resource type="AudioStream" uid="uid://vw5a3ttckq5h" path="res://assets/audio/sfx/flip/flip-03.wav" id="13_p5mqd"]
+[ext_resource type="AudioStream" uid="uid://ddepyaubv6dd6" path="res://assets/audio/sfx/flip/flip-04.wav" id="14_gm1pb"]
+[ext_resource type="AudioStream" uid="uid://n4i23kprxjs4" path="res://assets/audio/sfx/flip/flip-05.wav" id="15_4e8ym"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bvnae"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h4w2n"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c6mru"]
+shader = ExtResource("2_8o45e")
+shader_parameter/fov = 35.000001615
+shader_parameter/cull_back = false
+shader_parameter/y_rot = 0.0
+shader_parameter/x_rot = 0.0
+shader_parameter/inset = 0.0
+
+[node name="Card" type="Node2D" unique_id=38919468]
+script = ExtResource("1_8mlfh")
+back = ExtResource("3_ltiga")
+
+[node name="PressDetection" type="Button" parent="." unique_id=1850993434]
+unique_name_in_owner = true
+offset_left = -118.0
+offset_top = -179.0
+offset_right = 118.0
+offset_bottom = 179.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_bvnae")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_bvnae")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_bvnae")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_bvnae")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_bvnae")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_bvnae")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_bvnae")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_bvnae")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_bvnae")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_bvnae")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_bvnae")
+
+[node name="Visuals" type="Control" parent="." unique_id=779229860]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_transform_enabled = true
+mouse_filter = 2
+
+[node name="Panel" type="PanelContainer" parent="Visuals" unique_id=922087994]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -116.0
+offset_top = -179.0
+offset_right = 116.0
+offset_bottom = 179.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_h4w2n")
+
+[node name="Texture" type="TextureRect" parent="Visuals/Panel" unique_id=1437854727]
+unique_name_in_owner = true
+texture_filter = 5
+material = SubResource("ShaderMaterial_c6mru")
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("3_8o45e")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HintTexture" type="TextureRect" parent="Visuals/Panel" unique_id=1648944894]
+unique_name_in_owner = true
+visible = false
+texture_filter = 5
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("3_8o45e")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Glow" parent="Visuals/Panel" unique_id=1125906400 instance=ExtResource("5_8o45e")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Shadow" type="TextureRect" parent="Visuals" unique_id=1691805350]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 0.40392157)
+z_index = -1
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -101.0
+offset_top = -158.46552
+offset_right = 104.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_2csm4")
+
+[node name="WhirlEffect" type="Sprite2D" parent="." unique_id=1919798607]
+unique_name_in_owner = true
+show_behind_parent = true
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("5_2csm4")
+script = ExtResource("6_ltiga")
+
+[node name="MatchSFX" type="AudioStreamPlayer2D" parent="." unique_id=674065514]
+unique_name_in_owner = true
+stream = ExtResource("9_y656l")
+pitch_scale = 0.9206605
+bus = &"SFX"
+script = ExtResource("10_vpukq")
+pitch_variance = 0.1
+
+[node name="FlipSFX" type="AudioStreamPlayer2D" parent="." unique_id=468521303]
+unique_name_in_owner = true
+volume_db = 8.0
+bus = &"SFX"
+script = ExtResource("10_vpukq")
+audio_files = Array[AudioStream]([ExtResource("11_tjj3e"), ExtResource("12_fassn"), ExtResource("13_p5mqd"), ExtResource("14_gm1pb"), ExtResource("15_4e8ym")])
+pitch_variance = 0.03
+
+[node name="HoverSFX" type="AudioStreamPlayer2D" parent="." unique_id=204709190]
+unique_name_in_owner = true
+stream = ExtResource("11_vpukq")
+volume_db = -4.0
+max_distance = 4000.0
+max_polyphony = 4
+bus = &"SFX"
+script = ExtResource("10_vpukq")
+pitch_variance = 0.03

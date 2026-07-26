@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://dwoti70apphj8"]
+
+[ext_resource type="Texture2D" uid="uid://brcvlgg1084jq" path="res://assets/textures/tarot/front/tarot_3.png" id="1_ihfgk"]
+[ext_resource type="Script" uid="uid://b2187jctll4mi" path="res://resources/_classes/card_data.gd" id="2_7f5hg"]
+
+[resource]
+script = ExtResource("2_7f5hg")
+id = "high_priestess"
+front = ExtResource("1_ihfgk")
+action_name = "hint"
+metadata/_custom_type_script = "uid://b2187jctll4mi"

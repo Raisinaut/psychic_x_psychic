@@ -1,0 +1,188 @@
+[gd_scene format=3 uid="uid://bsy60aj35m02t"]
+
+[ext_resource type="Script" uid="uid://cmj5d2pumvmbs" path="res://gameplay/interface/components/scripts/player_info.gd" id="1_2t1gg"]
+[ext_resource type="Shader" uid="uid://br2vxdpex88xf" path="res://shaders/noise_border.gdshader" id="2_bmcfc"]
+[ext_resource type="Texture2D" uid="uid://dogxsmpqnkiyu" path="res://assets/textures/portraits/Noir-portraits/36x36-bw-portraits-no-background.png" id="3_bmcfc"]
+[ext_resource type="Script" uid="uid://bkb8b00exo61c" path="res://gameplay/interface/components/atlas_texture_rect.gd" id="4_6nm0o"]
+[ext_resource type="Texture2D" uid="uid://bqrqp8xmviaqf" path="res://assets/textures/tarot/front/tarot_back_empty.png" id="5_m1k7l"]
+[ext_resource type="FontFile" uid="uid://galv8moamnrk" path="res://assets/fonts/Elsie/Elsie-Black.ttf" id="6_gy1nr"]
+[ext_resource type="PackedScene" uid="uid://clwi6xerpkdr3" path="res://gameplay/card/panel_glow.tscn" id="6_m1k7l"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bjb5o"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_37yhw"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6nm0o"]
+seed = 1
+frequency = 0.02
+fractal_octaves = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6nm0o"]
+width = 256
+height = 256
+noise = SubResource("FastNoiseLite_6nm0o")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_m1k7l"]
+seed = 1
+frequency = 0.02
+offset = Vector3(-521.74, 369.57, 0)
+fractal_octaves = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_gy1nr"]
+width = 256
+height = 256
+noise = SubResource("FastNoiseLite_m1k7l")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bvnae"]
+resource_local_to_scene = true
+shader = ExtResource("2_bmcfc")
+shader_parameter/spin_speed = 0.2
+shader_parameter/offset1 = 0.0
+shader_parameter/noise1 = SubResource("NoiseTexture2D_6nm0o")
+shader_parameter/noise2 = SubResource("NoiseTexture2D_gy1nr")
+shader_parameter/inner_radius = 0.85
+shader_parameter/outer_radius = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bmcfc"]
+width = 256
+height = 256
+noise = SubResource("FastNoiseLite_6nm0o")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_scvkp"]
+resource_local_to_scene = true
+atlas = ExtResource("3_bmcfc")
+region = Rect2(0, 0, 36, 36)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bvnae"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 15
+border_width_top = 15
+border_width_right = 15
+border_width_bottom = 15
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ynhvx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bvnae"]
+font_size = 50
+outline_color = Color(0.26666668, 0.26666668, 0.26666668, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_37yhw"]
+content_margin_left = 10.0
+content_margin_top = 0.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
+bg_color = Color(1, 1, 1, 1)
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+expand_margin_top = 10.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_37yhw"]
+font = ExtResource("6_gy1nr")
+font_size = 24
+font_color = Color(0.23031491, 0.23031494, 0.23031494, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_82sw0"]
+bg_color = Color(0, 0, 0, 0.6431373)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+
+[node name="PlayerInfo" type="PanelContainer" unique_id=441934147]
+theme_override_styles/panel = SubResource("StyleBoxEmpty_bjb5o")
+script = ExtResource("1_2t1gg")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=435390322]
+layout_mode = 2
+theme_override_constants/separation = -4
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer" unique_id=1146553778]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_37yhw")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelContainer" unique_id=915873266]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelContainer/MarginContainer" unique_id=993362657]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="PortraitBack" type="TextureRect" parent="VBoxContainer/PanelContainer/MarginContainer/MarginContainer" unique_id=1700046648]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_bvnae")
+layout_mode = 2
+texture = SubResource("NoiseTexture2D_bmcfc")
+expand_mode = 1
+
+[node name="Portrait" type="TextureRect" parent="VBoxContainer/PanelContainer/MarginContainer/MarginContainer" unique_id=278425359]
+unique_name_in_owner = true
+texture_filter = 1
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+texture = SubResource("AtlasTexture_scvkp")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("4_6nm0o")
+cols = 5
+rows = 3
+
+[node name="Frame" type="Panel" parent="VBoxContainer/PanelContainer/MarginContainer" unique_id=1203455745]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bvnae")
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/PanelContainer" unique_id=744230521]
+custom_minimum_size = Vector2(60, 90)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ynhvx")
+
+[node name="CardTexture" type="TextureRect" parent="VBoxContainer/PanelContainer/PanelContainer" unique_id=1959899117]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("5_m1k7l")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ScoreLabel" type="Label" parent="VBoxContainer/PanelContainer/PanelContainer" unique_id=634692920]
+unique_name_in_owner = true
+layout_mode = 2
+text = "8"
+label_settings = SubResource("LabelSettings_bvnae")
+horizontal_alignment = 1
+
+[node name="NameContainer" type="PanelContainer" parent="VBoxContainer" unique_id=1467552991]
+show_behind_parent = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_37yhw")
+
+[node name="NameLabel" type="Label" parent="VBoxContainer/NameContainer" unique_id=1353557119]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Mx. Longname"
+label_settings = SubResource("LabelSettings_37yhw")
+horizontal_alignment = 1
+
+[node name="PanelGlow" parent="." unique_id=1125906400 instance=ExtResource("6_m1k7l")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="PanelDarken" type="Panel" parent="." unique_id=494573351]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_82sw0")

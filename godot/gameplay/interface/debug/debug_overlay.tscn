@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://c3qyqsesyrgju"]
+
+[ext_resource type="Script" uid="uid://dal1oawmia0yq" path="res://gameplay/levels/debug_overlay.gd" id="1_e32we"]
+[ext_resource type="FontFile" uid="uid://dt5duracmsa8h" path="res://assets/fonts/Sometype_Mono/static/SometypeMono-Medium.ttf" id="2_iuyul"]
+[ext_resource type="Texture2D" uid="uid://dxnlo803tu3fn" path="res://assets/textures/icons/volume_icon_on.png" id="3_e32we"]
+[ext_resource type="Texture2D" uid="uid://cpqbvoa51ojq1" path="res://assets/textures/icons/volume_icon_off.png" id="4_iuyul"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bvnae"]
+content_margin_left = 18.0
+content_margin_right = 18.0
+bg_color = Color(0.16924527, 0.16924533, 0.16924518, 0)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4bmxb"]
+content_margin_left = 18.0
+content_margin_right = 18.0
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 4
+border_width_right = 4
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e32we"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bvnae"]
+font = ExtResource("2_iuyul")
+font_size = 30
+
+[node name="DebugOverlay" type="CanvasLayer" unique_id=66341293]
+script = ExtResource("1_e32we")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1655266661]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="ResetButton" type="Button" parent="MarginContainer" unique_id=894900944]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_iuyul")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_bvnae")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_4bmxb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bvnae")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_4bmxb")
+theme_override_styles/focus = SubResource("StyleBoxFlat_bvnae")
+text = "Reset"
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer" unique_id=1559072553]
+modulate = Color(0.7121294, 0.7121294, 0.71212935, 1)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxEmpty_e32we")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer" unique_id=1131637452]
+layout_mode = 2
+theme_override_constants/separation = -10
+
+[node name="VolumeButton" type="TextureButton" parent="MarginContainer/PanelContainer/VBoxContainer" unique_id=407225280]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+toggle_mode = true
+texture_normal = ExtResource("3_e32we")
+texture_pressed = ExtResource("4_iuyul")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer" unique_id=24210726]
+layout_mode = 2
+text = "Music"
+label_settings = SubResource("LabelSettings_bvnae")
+horizontal_alignment = 1

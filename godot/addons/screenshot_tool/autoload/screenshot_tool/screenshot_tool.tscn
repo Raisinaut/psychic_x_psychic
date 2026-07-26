@@ -1,0 +1,253 @@
+[gd_scene format=3 uid="uid://kj6n63bix0me"]
+
+[ext_resource type="Script" uid="uid://b3aimoyun03km" path="res://addons/screenshot_tool/autoload/screenshot_tool/scripts/screenshot_tool.gd" id="1_1ag45"]
+[ext_resource type="Script" uid="uid://c33q6fh135y4t" path="res://addons/screenshot_tool/autoload/screenshot_tool/scripts/preview_overlay.gd" id="2_8h1pt"]
+[ext_resource type="FontFile" uid="uid://cvdocykeerkky" path="res://addons/screenshot_tool/autoload/screenshot_tool/assets/Mulish/static/Mulish-ExtraBold.ttf" id="3_dk0yf"]
+[ext_resource type="Script" uid="uid://bkg1vs3mnhbds" path="res://addons/screenshot_tool/autoload/screenshot_tool/scripts/confirmation_dialog.gd" id="4_dk0yf"]
+[ext_resource type="Script" uid="uid://ifgievf0ktmy" path="res://addons/screenshot_tool/autoload/screenshot_tool/scripts/timeline.gd" id="4_i6c2p"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_dk0yf"]
+device = -1
+keycode = 81
+unicode = 113
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dk0yf"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 8.0
+bg_color = Color(0.3491902, 0.3491902, 0.3491902, 0.75000006)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rrhcu"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 8.0
+bg_color = Color(0.20598418, 0.20598418, 0.20598418, 0.75000006)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i6c2p"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 8.0
+bg_color = Color(0.15170373, 0.15170373, 0.15170373, 0.75000006)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tx8xb"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 8.0
+bg_color = Color(0.10561416, 0.10561418, 0.10561413, 0.7490196)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="Theme" id="Theme_dhrj6"]
+Button/font_sizes/font_size = 30
+Button/fonts/font = ExtResource("3_dk0yf")
+Button/styles/disabled = SubResource("StyleBoxFlat_dk0yf")
+Button/styles/focus = SubResource("StyleBoxFlat_rrhcu")
+Button/styles/hover = SubResource("StyleBoxFlat_rrhcu")
+Button/styles/normal = SubResource("StyleBoxFlat_i6c2p")
+Button/styles/pressed = SubResource("StyleBoxFlat_tx8xb")
+Label/font_sizes/font_size = 30
+Label/fonts/font = ExtResource("3_dk0yf")
+
+[sub_resource type="Gradient" id="Gradient_1ag45"]
+offsets = PackedFloat32Array(0, 0.227273)
+colors = PackedColorArray(0, 0, 0, 0.266667, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hmft1"]
+gradient = SubResource("Gradient_1ag45")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="DPITexture" id="DPITexture_dk0yf"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><circle cx=\"8\" cy=\"8\" r=\"7\" fill=\"#fefefe\" fill-opacity=\".75\"/></svg>
+"
+base_scale = 3.0
+
+[sub_resource type="DPITexture" id="DPITexture_i6c2p"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><circle cx=\"8\" cy=\"8\" r=\"7\" fill=\"#fefefe\"/></svg>
+"
+base_scale = 3.0
+
+[sub_resource type="DPITexture" id="DPITexture_rrhcu"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><circle cx=\"8\" cy=\"8\" r=\"7\" fill=\"#fefefe\" fill-opacity=\".37\"/></svg>
+"
+base_scale = 3.0
+
+[sub_resource type="DPITexture" id="DPITexture_tx8xb"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"4\" height=\"8\"><path fill=\"#fff\" fill-opacity=\".25\" d=\"M1 0h2v16H1z\"/></svg>
+"
+base_scale = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x0bfn"]
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+corner_radius_top_left = 200
+corner_radius_top_right = 200
+corner_radius_bottom_right = 200
+corner_radius_bottom_left = 200
+expand_margin_top = 15.0
+expand_margin_bottom = 15.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ys0hp"]
+bg_color = Color(0.28301802, 0.28301802, 0.283018, 1)
+corner_radius_top_left = 200
+corner_radius_top_right = 200
+corner_radius_bottom_right = 200
+corner_radius_bottom_left = 200
+expand_margin_top = 15.0
+expand_margin_bottom = 15.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lha4k"]
+bg_color = Color(0.4955088, 0.4955092, 0.49550897, 1)
+corner_radius_top_left = 200
+corner_radius_top_right = 200
+corner_radius_bottom_right = 200
+corner_radius_bottom_left = 200
+expand_margin_top = 15.0
+expand_margin_bottom = 15.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i6c2p"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s6ddv"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0, 0, 0, 0.29803923)
+shadow_size = 10
+shadow_offset = Vector2(0, 6)
+
+[node name="ScreenshotTool" type="Node" unique_id=1790457711]
+process_mode = 3
+script = ExtResource("1_1ag45")
+action_input = SubResource("InputEventKey_dk0yf")
+
+[node name="SaveDialog" type="FileDialog" parent="." unique_id=1395332900]
+title = "Save a Screenshot"
+initial_position = 1
+size = Vector2i(1600, 1000)
+transient_to_focused = true
+force_native = true
+content_scale_factor = 2.0
+access = 2
+root_subfolder = "../"
+filters = PackedStringArray("*.png")
+
+[node name="PreviewInterface" type="CanvasLayer" parent="." unique_id=1649519328]
+layer = 1000
+script = ExtResource("2_8h1pt")
+
+[node name="Control" type="MarginContainer" parent="PreviewInterface" unique_id=338208813]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_dhrj6")
+
+[node name="Preview" type="TextureRect" parent="PreviewInterface/Control" unique_id=740295063]
+layout_mode = 2
+mouse_filter = 2
+expand_mode = 3
+
+[node name="Flash" type="ColorRect" parent="PreviewInterface/Control" unique_id=1805410077]
+layout_mode = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Shadow" type="TextureRect" parent="PreviewInterface/Control" unique_id=217971936]
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_hmft1")
+
+[node name="MarginContainer" type="MarginContainer" parent="PreviewInterface/Control" unique_id=1975383860]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PreviewInterface/Control/MarginContainer" unique_id=1286966521]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/separation = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PreviewInterface/Control/MarginContainer/VBoxContainer" unique_id=415841820]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PreviewInterface/Control/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1086927259]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="Timeline" type="HSlider" parent="PreviewInterface/Control/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer" unique_id=1608271464]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+theme_override_constants/center_grabber = 1
+theme_override_constants/tick_offset = -8
+theme_override_icons/grabber = SubResource("DPITexture_dk0yf")
+theme_override_icons/grabber_highlight = SubResource("DPITexture_i6c2p")
+theme_override_icons/grabber_disabled = SubResource("DPITexture_rrhcu")
+theme_override_icons/tick = SubResource("DPITexture_tx8xb")
+theme_override_styles/slider = SubResource("StyleBoxFlat_x0bfn")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_ys0hp")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_lha4k")
+max_value = 1.0
+step = 0.01
+script = ExtResource("4_i6c2p")
+
+[node name="ThumbnailContainer" type="PanelContainer" parent="PreviewInterface/Control/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/Timeline" unique_id=910216333]
+custom_minimum_size = Vector2(480, 270)
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 180.0
+focus_behavior_recursive = 1
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_i6c2p")
+
+[node name="Shadow" type="Panel" parent="PreviewInterface/Control/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/Timeline/ThumbnailContainer" unique_id=341499835]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_s6ddv")
+
+[node name="Thumbnail" type="TextureRect" parent="PreviewInterface/Control/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/Timeline/ThumbnailContainer" unique_id=1505089841]
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ConfirmationDialog" type="HBoxContainer" parent="PreviewInterface/Control/MarginContainer/VBoxContainer" unique_id=148045478]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/separation = 20
+script = ExtResource("4_dk0yf")
+
+[node name="Cancel" type="Button" parent="PreviewInterface/Control/MarginContainer/VBoxContainer/ConfirmationDialog" unique_id=1562090042]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cancel"
+
+[node name="Confirm" type="Button" parent="PreviewInterface/Control/MarginContainer/VBoxContainer/ConfirmationDialog" unique_id=765563511]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Keep Screenshot"
