@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="memory-game"
+config/name="psychic-x-psychic"
 run/main_scene="uid://nkx3pxwjthab"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
