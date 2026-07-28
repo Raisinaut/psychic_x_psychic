@@ -226,15 +226,5 @@ func check_grid_validity() -> void:
 func max_item_count() -> int:
 	return columns * rows
 
-func get_random_cards(qty: int) -> Array[Card]:
-	var card_array : Array[Card] = []
-	if qty > active_cards.size():
-		push_error("Not enough active cards to retrieve a quantity of ", qty)
-	else:
-		active_cards.shuffle()
-		for i in qty:
-			card_array.append(active_cards[i])
-	return card_array
-
 func is_empty() -> bool:
 	return active_cards.is_empty()

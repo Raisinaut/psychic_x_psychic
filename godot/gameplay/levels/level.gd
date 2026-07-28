@@ -20,7 +20,7 @@ func _ready() -> void:
 
 # SETUP ------------------------------------------------------------------------
 func sync_with_opponent_data() -> void:
-	opponent.memory_capacity = opponent_data.memory_capacity
+	opponent.data = opponent_data
 	interface.sync_opponent_info_with_data(opponent_data)
 
 

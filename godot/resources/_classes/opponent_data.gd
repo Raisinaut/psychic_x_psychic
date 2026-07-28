@@ -3,7 +3,9 @@ extends Resource
 
 @export var display_name : String = ""
 @export var portrait : Texture
-@export var memory_capacity : int
+@export_range(0, 1, 1, "or_greater") var memory_capacity : int
+@export_range(0, 1, 1, "or_greater") var memory_lifetime : int
+@export_range(0, 1, 0.01) var memory_accuracy : float =1.0
 
 @export_category("Reactions")
 @export_subgroup("Swap", "phrase")
