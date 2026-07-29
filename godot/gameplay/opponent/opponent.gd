@@ -4,7 +4,6 @@ extends Node
 @export var card_grid : CardGrid
 @export var print_logic : bool = true
 
-var data : OpponentData = null : set = set_data
 var can_play : bool = false
 var card_memory : Dictionary[Card, int] = {}
 var selection : Array[Card] = []
@@ -17,10 +16,10 @@ func _ready() -> void:
 ## an already known card and an unknown card. [br]
 ## Can make "mistakes" if accuracy is set lower than 1.0
 func play() -> void:
-	logic_print("\n-- Opponent turn started.")
+	logic_print("\n-- Opponent turn started")
 	_print_memory_contents()
 	if card_grid.active_cards.is_empty():
-		logic_print("No cards to choose from")
+		logic_print("No cards to choose from.")
 		return
 	logic_print("-- Selecting cards")
 	selection = get_known_match()
@@ -39,7 +38,7 @@ func play() -> void:
 	else:
 		logic_print("Match is known in memory: " + str(selection[0].data.id))
 	if selection:
-		logic_print("-- Flipping cards.")
+		logic_print("-- Flipping cards")
 		for i : int in selection.size():
 			if accuracy_check() == false:
 				logic_print("Accuracy check failed.")
@@ -97,7 +96,8 @@ func select_random_card(exclude_known: bool) -> Card:
 		push_error("Could not select unkown card. All active cards are known or selected.")
 	return selected_card
 
-## Searches memory for a card that would match
+## Searches memory for a match to the given card. [br]
+## If no match is found, null is returned.
 func find_memory_match(card : Card) -> Card:
 	if card == null: return null
 	for i : Card in get_cards_by_least_recent():
@@ -157,11 +157,6 @@ func degrade_memory() -> void:
 		if card_memory[c] <= 0:
 			logic_print(c.data.id + " reached memory lifetime end.")
 			forget_card(c)
-
-
-# SETTERS ----------------------------------------------------------------------
-func set_data(_data : OpponentData) -> void:
-	data = _data
 
 
 # SIGNALS ----------------------------------------------------------------------
