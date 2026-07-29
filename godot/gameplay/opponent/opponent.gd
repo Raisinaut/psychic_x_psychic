@@ -4,10 +4,8 @@ extends Node
 @export var card_grid : CardGrid
 @export var print_logic : bool = true
 
-<<<<<<< HEAD
 var data : OpponentData = null
-=======
->>>>>>> origin/main
+
 var can_play : bool = false
 var card_memory : Dictionary[Card, int] = {}
 var selection : Array[Card] = []

@@ -4,4 +4,3 @@
 
 [node name="Opponent" type="Node" unique_id=473762862]
 script = ExtResource("1_blnhc")
-print_logic = null
