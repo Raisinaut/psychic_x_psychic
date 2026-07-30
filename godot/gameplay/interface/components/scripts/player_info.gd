@@ -20,11 +20,15 @@ func _ready() -> void:
 	#score = 0
 	noise.material.set_shader_parameter("spin_speed", randf_range(0.2, 0.3))
 
-func fade_in() -> void:
+func fade_in(skip_to_end:= false) -> void:
 	$AnimationPlayer.play("fade_in")
+	if skip_to_end:
+		$AnimationPlayer.seek(1000, true)
 
-func fade_out() -> void:
+func fade_out(skip_to_end:= false) -> void:
 	$AnimationPlayer.play("fade_out")
+	if skip_to_end:
+		$AnimationPlayer.seek(1000, true)
 
 # SETTERS ----------------------------------------------------------------------
 func set_portrait_texture(val) -> void:

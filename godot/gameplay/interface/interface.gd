@@ -34,10 +34,14 @@ func sync_opponent_info_with_data(data : OpponentData) -> void:
 	opponent_info.set_name_text(data.display_name)
 	opponent_info.set_portrait_texture(data.portrait)
 
-func fade_in() -> void:
-	opponent_info.fade_in()
-	user_info.fade_in()
+func fade_in(skip_to_end:= false) -> void:
+	user_info.fade_in(skip_to_end)
+	if not skip_to_end:
+		await get_tree().create_timer(0.4).timeout
+	opponent_info.fade_in(skip_to_end)
 
-func fade_out() -> void:
-	opponent_info.fade_out()
-	user_info.fade_out()
+func fade_out(skip_to_end:= false) -> void:
+	user_info.fade_out(skip_to_end)
+	if not skip_to_end:
+		await get_tree().create_timer(0.4).timeout
+	opponent_info.fade_out(skip_to_end)

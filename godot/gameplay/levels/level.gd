@@ -17,6 +17,7 @@ func _ready() -> void:
 	is_user_turn = true
 	GameManager.reset_scores()
 	sync_with_opponent_data()
+	interface.fade_out(true)
 	interface.fade_in()
 
 
