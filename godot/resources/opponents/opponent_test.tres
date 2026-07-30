@@ -10,5 +10,5 @@ portrait = ExtResource("1_rb6p4")
 memory_capacity = 5
 memory_lifetime = 3
 phrase_swap_good = "Hah. Take that."
-phrase_swap_bad = "Nothin I can't track"
+phrase_swap_bad = "Nothin' I can't track."
 metadata/_custom_type_script = "uid://rcirnoqp7wpc"

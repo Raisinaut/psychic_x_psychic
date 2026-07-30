@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://c515v3457u4xi" path="res://gameplay/levels/CPUParticlesGrid2D.gd" id="3_067t3"]
 [ext_resource type="PackedScene" uid="uid://d3g4l3c0fpus2" path="res://gameplay/interface/message_display.tscn" id="4_l3jmu"]
 [ext_resource type="PackedScene" uid="uid://ccle7011x2ap8" path="res://gameplay/interface/interface.tscn" id="4_t62bn"]
+[ext_resource type="PackedScene" uid="uid://cxba66dvcwi1i" path="res://gameplay/interface/results.tscn" id="6_l3jmu"]
 [ext_resource type="Texture2D" uid="uid://bkwjvfq8y3mcg" path="res://assets/textures/palettes/bw_palette.png" id="7_x3pin"]
 [ext_resource type="Script" uid="uid://b2187jctll4mi" path="res://resources/_classes/card_data.gd" id="8_l3jmu"]
 [ext_resource type="Script" uid="uid://d4exmh2c4d8jw" path="res://gameplay/camera/camera.gd" id="8_scvkp"]
@@ -39,19 +40,6 @@ opponent_data = ExtResource("2_xbsua")
 [node name="Opponent" parent="." unique_id=473762862 node_paths=PackedStringArray("card_grid") instance=ExtResource("2_pmgb3")]
 unique_name_in_owner = true
 card_grid = NodePath("../CardGrid")
-
-[node name="UI" type="CanvasLayer" parent="." unique_id=1309715626]
-
-[node name="Interface" parent="UI" unique_id=1003739285 instance=ExtResource("4_t62bn")]
-unique_name_in_owner = true
-
-[node name="MessageDisplay" parent="UI" unique_id=1671877501 instance=ExtResource("4_l3jmu")]
-unique_name_in_owner = true
-
-[node name="Camera" type="Camera2D" parent="." unique_id=405246072]
-unique_name_in_owner = true
-position = Vector2(960, 540)
-script = ExtResource("8_scvkp")
 
 [node name="BackgrondEffects" type="Node2D" parent="." unique_id=595064873]
 
@@ -135,15 +123,35 @@ script = ExtResource("3_067t3")
 area_extents = Vector2(940, 500)
 point_spacing = 50
 
+[node name="Camera" type="Camera2D" parent="." unique_id=405246072]
+unique_name_in_owner = true
+position = Vector2(960, 540)
+script = ExtResource("8_scvkp")
+
 [node name="CardGrid" parent="." unique_id=1332015568 instance=ExtResource("1_awt3i")]
 unique_name_in_owner = true
 offset_left = 156.0
 offset_top = 145.0
 offset_right = 1567.0
 offset_bottom = 935.0
-columns = 6
+columns = 5
 rows = 2
 data_variants = Array[ExtResource("8_l3jmu")]([ExtResource("9_xbsua"), ExtResource("10_d105i"), ExtResource("11_2v4r7"), ExtResource("12_sfvc4"), ExtResource("13_swuu1"), ExtResource("15_ptk3l")])
+metadata/_edit_use_anchors_ = true
+
+[node name="Results" parent="." unique_id=1371556415 instance=ExtResource("6_l3jmu")]
+unique_name_in_owner = true
+visible = false
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1309715626]
+
+[node name="Interface" parent="UI" unique_id=1003739285 instance=ExtResource("4_t62bn")]
+unique_name_in_owner = true
+
+[node name="MessageDisplay" parent="UI" unique_id=1671877501 instance=ExtResource("4_l3jmu")]
+unique_name_in_owner = true
 
 [node name="BackgroundColor" type="CanvasLayer" parent="." unique_id=2094685529]
 layer = -10
@@ -156,41 +164,41 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="DebugOverlay" parent="." unique_id=66341293 instance=ExtResource("16_pmgb3")]
-
 [node name="ScreenEffects" type="CanvasLayer" parent="." unique_id=2044301948]
 
-[node name="Palette" type="Sprite2D" parent="ScreenEffects" unique_id=970806630]
+[node name="TestNodes" type="Node2D" parent="ScreenEffects" unique_id=746302618]
+
+[node name="Palette" type="Sprite2D" parent="ScreenEffects/TestNodes" unique_id=970806630]
 texture_filter = 1
 position = Vector2(1144, 1330)
 scale = Vector2(200, 200)
 texture = ExtResource("7_x3pin")
 
-[node name="Sprite2D" type="Sprite2D" parent="ScreenEffects" unique_id=852374010]
+[node name="Sprite2D" type="Sprite2D" parent="ScreenEffects/TestNodes" unique_id=852374010]
 texture_filter = 1
 position = Vector2(390.99976, 1527.0001)
 scale = Vector2(5.4589043, 5.4589043)
 texture = ExtResource("8_u1phi")
 
-[node name="Palette2" type="Sprite2D" parent="ScreenEffects" unique_id=1508462157]
+[node name="Palette2" type="Sprite2D" parent="ScreenEffects/TestNodes" unique_id=1508462157]
 texture_filter = 1
 position = Vector2(-660.74976, 1330)
 scale = Vector2(200, 200)
 texture = ExtResource("7_x3pin")
 
-[node name="Sprite2D2" type="Sprite2D" parent="ScreenEffects" unique_id=1430614981]
+[node name="Sprite2D2" type="Sprite2D" parent="ScreenEffects/TestNodes" unique_id=1430614981]
 texture_filter = 1
 position = Vector2(-1413.7502, 1527.0001)
 scale = Vector2(5.4589043, 5.4589043)
 texture = ExtResource("8_u1phi")
 
-[node name="PixelStarSheet" type="Sprite2D" parent="ScreenEffects" unique_id=1940112502]
+[node name="PixelStarSheet" type="Sprite2D" parent="ScreenEffects/TestNodes" unique_id=1940112502]
 texture_filter = 1
 position = Vector2(1432, 1625)
 scale = Vector2(8, 8)
 texture = ExtResource("2_067t3")
 
-[node name="PixelStarSheet2" type="Sprite2D" parent="ScreenEffects" unique_id=1729609559]
+[node name="PixelStarSheet2" type="Sprite2D" parent="ScreenEffects/TestNodes" unique_id=1729609559]
 texture_filter = 1
 position = Vector2(-359.99988, 1625)
 scale = Vector2(8, 8)
@@ -216,3 +224,5 @@ offset_bottom = 1526.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="DebugOverlay" parent="." unique_id=66341293 instance=ExtResource("16_pmgb3")]

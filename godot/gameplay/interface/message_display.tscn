@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d3g4l3c0fpus2"]
 
 [ext_resource type="Script" uid="uid://0ifmwxykkp23" path="res://gameplay/interface/message_display.gd" id="1_31i1t"]
-[ext_resource type="FontFile" uid="uid://dsdu7sueat7xm" path="res://assets/fonts/Aref_Ruqaa_Ink,Elsie/Aref_Ruqaa_Ink/ArefRuqaaInk-Bold.ttf" id="2_cuiyf"]
+[ext_resource type="LabelSettings" uid="uid://d32epvrdmgpnq" path="res://gameplay/interface/label_settings/header_1.tres" id="2_31i1t"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yyp1d"]
 content_margin_top = 0.0
@@ -10,14 +10,6 @@ bg_color = Color(0, 0, 0, 0.76862746)
 border_width_top = 10
 border_width_bottom = 10
 border_color = Color(0.7771769, 0.7771769, 0.7771768, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_q88dk"]
-font = ExtResource("2_cuiyf")
-font_size = 180
-outline_color = Color(0.3459457, 0.34594572, 0.3459457, 1)
-shadow_size = 20
-shadow_color = Color(0.2520276, 0.25202766, 0.25202763, 1)
-shadow_offset = Vector2(1, 10)
 
 [node name="MessageDisplay" type="Control" unique_id=1671877501]
 layout_mode = 3
@@ -45,5 +37,5 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_yyp1d")
 unique_name_in_owner = true
 layout_mode = 2
 text = "YOUR TURN"
-label_settings = SubResource("LabelSettings_q88dk")
+label_settings = ExtResource("2_31i1t")
 horizontal_alignment = 1

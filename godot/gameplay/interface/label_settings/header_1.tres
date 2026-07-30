@@ -1,0 +1,11 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://d32epvrdmgpnq"]
+
+[ext_resource type="FontFile" uid="uid://dsdu7sueat7xm" path="res://assets/fonts/Aref_Ruqaa_Ink,Elsie/Aref_Ruqaa_Ink/ArefRuqaaInk-Bold.ttf" id="1_k0hm5"]
+
+[resource]
+font = ExtResource("1_k0hm5")
+font_size = 180
+outline_color = Color(0.3459457, 0.34594572, 0.3459457, 1)
+shadow_size = 20
+shadow_color = Color(0.2520276, 0.25202766, 0.25202763, 1)
+shadow_offset = Vector2(1, 10)

@@ -1,5 +1,5 @@
 class_name PlayerInfo
-extends PanelContainer
+extends ControlFader
 
 var portrait_texture : Texture = null : set = set_portrait_texture
 var name_text : String = "" : set = set_name_text
@@ -8,7 +8,7 @@ var darkened : bool = false : set = set_darkened
 var darken_tween : Tween = null
 
 @onready var portrait: TextureRect = %Portrait
-@onready var portrait_back: TextureRect = %PortraitBack
+@onready var noise: TextureRect = %Noise
 @onready var name_label: Label = %NameLabel
 @onready var score_label: Label = %ScoreLabel
 @onready var panel_glow: = $PanelGlow
@@ -16,9 +16,15 @@ var darken_tween : Tween = null
 
 func _ready() -> void:
 	panel_darken.visible = true # override hide in editor
-	portrait_back.visible = true # hidden in editor to avoid rendering shader
+	noise.visible = true # hidden in editor to avoid rendering shader
 	#score = 0
-	portrait_back.material.set_shader_parameter("spin_speed", randf_range(0.2, 0.3))
+	noise.material.set_shader_parameter("spin_speed", randf_range(0.2, 0.3))
+
+func fade_in() -> void:
+	$AnimationPlayer.play("fade_in")
+
+func fade_out() -> void:
+	$AnimationPlayer.play("fade_out")
 
 # SETTERS ----------------------------------------------------------------------
 func set_portrait_texture(val) -> void:

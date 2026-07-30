@@ -20,7 +20,7 @@ func _ready() -> void:
 func play() -> void:
 	logic_print("\n-- Opponent turn started")
 	_print_memory_contents()
-	if card_grid.active_cards.is_empty():
+	if card_grid.is_empty():
 		logic_print("No cards to choose from.")
 		return
 	logic_print("-- Selecting cards")

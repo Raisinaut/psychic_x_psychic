@@ -1,4 +1,4 @@
-extends Control
+extends ControlFader
 
 @onready var opponent_info: PlayerInfo = %OpponentInfo
 @onready var user_info: PlayerInfo = %UserInfo
@@ -33,3 +33,11 @@ func _on_game_manager_score_changed(id : String, value : int) -> void:
 func sync_opponent_info_with_data(data : OpponentData) -> void:
 	opponent_info.set_name_text(data.display_name)
 	opponent_info.set_portrait_texture(data.portrait)
+
+func fade_in() -> void:
+	opponent_info.fade_in()
+	user_info.fade_in()
+
+func fade_out() -> void:
+	opponent_info.fade_out()
+	user_info.fade_out()

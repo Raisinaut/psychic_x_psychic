@@ -1,5 +1,11 @@
 extends Node
 
+enum GameResults {
+	P1_WIN,
+	P2_WIN,
+	TIE
+}
+
 signal score_changed(id, value)
 
 var user_score : int = 0:
@@ -14,3 +20,12 @@ var cpu_score : int = 0:
 func reset_scores() -> void:
 	user_score = 0
 	cpu_score = 0
+
+
+func get_game_results() -> int:
+	if user_score > cpu_score:
+		return GameResults.P1_WIN
+	elif user_score < cpu_score:
+		return GameResults.P2_WIN
+	else:
+		return GameResults.TIE

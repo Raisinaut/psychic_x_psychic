@@ -17,6 +17,8 @@ func _ready() -> void:
 	is_user_turn = true
 	GameManager.reset_scores()
 	sync_with_opponent_data()
+	interface.fade_in()
+
 
 # SETUP ------------------------------------------------------------------------
 func sync_with_opponent_data() -> void:
@@ -36,8 +38,11 @@ func increment_relevant_score() -> void:
 func next_turn() -> void:
 	if card_grid.is_empty():
 		print("Game Over")
-		print()
-	is_user_turn = not is_user_turn
+		interface.fade_out()
+		await get_tree().create_timer(0.5).timeout
+		%Results.display_results(GameManager.get_game_results(), opponent_data)
+	else:
+		is_user_turn = not is_user_turn
 
 
 # SIGNALS ----------------------------------------------------------------------

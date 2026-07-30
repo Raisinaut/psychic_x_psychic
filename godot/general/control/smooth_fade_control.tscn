@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://cyq8f3ccw7mj6"]
+
+[ext_resource type="Script" uid="uid://c55n616bgj7jm" path="res://general/control/control_fader.gd" id="1_3wt3c"]
+
+[node name="ControlFader" type="Control" unique_id=1173283546]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3wt3c")

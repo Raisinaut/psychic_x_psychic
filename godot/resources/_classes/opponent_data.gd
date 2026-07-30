@@ -8,9 +8,13 @@ extends Resource
 @export_range(0, 1, 0.01) var memory_accuracy : float =1.0
 
 @export_category("Reactions")
-@export_subgroup("Swap", "phrase")
+@export_subgroup("swap", "phrase")
 @export var phrase_swap_good : String = "Uh oh did you lose something?"
 @export var phrase_swap_bad : String = "Now which ones were those..."
-@export_subgroup("Hint", "phrase")
+@export_subgroup("hint", "phrase")
 @export var phrase_hint_good : String = "No, you can't read my poker face."
 @export var phrase_hint_bad : String = "Can I at least have a hint?"
+@export_subgroup("win_state", "phrase")
+@export var phrase_win : String = "Better luck in the next life."
+@export var phrase_lose : String = "Guess victory wasn't in my cards."
+@export var phrase_tie : String = "Most unsatisfying."

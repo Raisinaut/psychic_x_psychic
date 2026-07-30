@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://dh2dyltco23pa"]
+
+[ext_resource type="FontFile" uid="uid://dx6xwa58nroef" path="res://assets/fonts/Aref_Ruqaa_Ink,Elsie/Elsie/Elsie-Black.ttf" id="1_8e1yu"]
+
+[resource]
+font = ExtResource("1_8e1yu")
+font_size = 70

@@ -10,6 +10,7 @@ var fade_duration_timer : SceneTreeTimer = null
 var fade_skipped : bool = false
 
 func _ready() -> void:
+	visible = false
 	modulate.a = 0
 	message_label.modulate.a = 0
 

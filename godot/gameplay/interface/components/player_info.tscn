@@ -1,63 +1,26 @@
 [gd_scene format=3 uid="uid://bsy60aj35m02t"]
 
 [ext_resource type="Script" uid="uid://cmj5d2pumvmbs" path="res://gameplay/interface/components/scripts/player_info.gd" id="1_2t1gg"]
-[ext_resource type="Shader" uid="uid://br2vxdpex88xf" path="res://shaders/noise_border.gdshader" id="2_bmcfc"]
+[ext_resource type="Material" uid="uid://wuq0ttyy3jlc" path="res://shaders/materials/noise_border_1.tres" id="2_m1k7l"]
 [ext_resource type="Texture2D" uid="uid://7cl8yjm5pfc5" path="res://assets/textures/portraits/noir_portrait1.png" id="3_gy1nr"]
+[ext_resource type="StyleBox" uid="uid://cjuh6a82f6mok" path="res://gameplay/interface/styles/thick_border.tres" id="4_gy1nr"]
+[ext_resource type="LabelSettings" uid="uid://dgvimkpqkdf5e" path="res://gameplay/interface/label_settings/body_2.tres" id="5_gy1nr"]
 [ext_resource type="Texture2D" uid="uid://bqrqp8xmviaqf" path="res://assets/textures/cards/front/tarot_back_empty.png" id="5_m1k7l"]
-[ext_resource type="FontFile" uid="uid://galv8moamnrk" path="res://assets/fonts/Elsie/Elsie-Black.ttf" id="6_gy1nr"]
 [ext_resource type="PackedScene" uid="uid://clwi6xerpkdr3" path="res://gameplay/card/panel_glow.tscn" id="6_m1k7l"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bjb5o"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_37yhw"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gy1nr"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_6nm0o"]
 seed = 1
 frequency = 0.02
 fractal_octaves = 1
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6nm0o"]
-width = 256
-height = 256
-noise = SubResource("FastNoiseLite_6nm0o")
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_m1k7l"]
-seed = 1
-frequency = 0.02
-offset = Vector3(-521.74, 369.57, 0)
-fractal_octaves = 1
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_gy1nr"]
-width = 256
-height = 256
-noise = SubResource("FastNoiseLite_m1k7l")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bvnae"]
-resource_local_to_scene = true
-shader = ExtResource("2_bmcfc")
-shader_parameter/spin_speed = 0.2
-shader_parameter/offset1 = 0.0
-shader_parameter/noise1 = SubResource("NoiseTexture2D_6nm0o")
-shader_parameter/noise2 = SubResource("NoiseTexture2D_gy1nr")
-shader_parameter/inner_radius = 0.85
-shader_parameter/outer_radius = 1.0
-
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bmcfc"]
 width = 256
 height = 256
 noise = SubResource("FastNoiseLite_6nm0o")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bvnae"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-border_width_left = 15
-border_width_top = 15
-border_width_right = 15
-border_width_bottom = 15
-border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 50
-corner_radius_top_right = 50
-corner_radius_bottom_right = 50
-corner_radius_bottom_left = 50
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ynhvx"]
 
@@ -75,11 +38,6 @@ corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 expand_margin_top = 10.0
 
-[sub_resource type="LabelSettings" id="LabelSettings_37yhw"]
-font = ExtResource("6_gy1nr")
-font_size = 24
-font_color = Color(0.23031491, 0.23031494, 0.23031494, 1)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_82sw0"]
 bg_color = Color(0, 0, 0, 0.6431373)
 corner_radius_top_left = 50
@@ -91,9 +49,323 @@ expand_margin_top = 1.0
 expand_margin_right = 1.0
 expand_margin_bottom = 1.0
 
+[sub_resource type="Animation" id="Animation_gy1nr"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer/PanelContainer/PortraitContainer:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VBoxContainer/PanelContainer/PortraitContainer/MarginContainer/Portrait:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("VBoxContainer/NameContainer:offset_transform_position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("VBoxContainer/PanelContainer/PanelContainer:offset_transform_scale:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("VBoxContainer/NameContainer:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("VBoxContainer/PanelContainer/PortraitContainer/MarginContainer/NoiseDarken:modulate:a")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("VBoxContainer/PanelContainer/PortraitContainer/MarginContainer/NoiseDarken:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("VBoxContainer/PanelContainer/PortraitContainer/MarginContainer/Noise:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_m1k7l"]
+resource_name = "fade_in"
+length = 1.1333333
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer/PanelContainer/PortraitContainer:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VBoxContainer/PanelContainer/PortraitContainer/MarginContainer/Portrait:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.26666668, 0.76666665)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("VBoxContainer/NameContainer:offset_transform_scale:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.43333334, 0.93333334)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("VBoxContainer/PanelContainer/PanelContainer:offset_transform_scale:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.73333323, 1.1333332)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("VBoxContainer/NameContainer:offset_transform_position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-25, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.43333337, 0.9333334)
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("VBoxContainer/NameContainer:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.43333337),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("VBoxContainer/PanelContainer/PortraitContainer/MarginContainer/NoiseDarken:modulate:a")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.5, 1.1333333)
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("VBoxContainer/PanelContainer/PortraitContainer/MarginContainer/NoiseDarken:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("VBoxContainer/PanelContainer/PortraitContainer/MarginContainer/Noise:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_031op"]
+resource_name = "fade_out"
+length = 1.1333333
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer/PanelContainer/PortraitContainer:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.6333333, 1.1333333)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VBoxContainer/PanelContainer/PortraitContainer/MarginContainer/Portrait:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.36666667, 0.8666667)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("VBoxContainer/NameContainer:offset_transform_scale:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.19999999, 0.7)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("VBoxContainer/PanelContainer/PanelContainer:offset_transform_scale:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0, 0),
+"times": PackedFloat32Array(1.1920929e-07, 0.4000001)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("VBoxContainer/NameContainer:offset_transform_position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -25, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.19999993, 0.6999999)
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("VBoxContainer/NameContainer:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.6999999),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("VBoxContainer/PanelContainer/PortraitContainer/MarginContainer/NoiseDarken:modulate:a")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.6333333)
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("VBoxContainer/PanelContainer/PortraitContainer/MarginContainer/NoiseDarken:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.6333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("VBoxContainer/PanelContainer/PortraitContainer/MarginContainer/Noise:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.6333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gy1nr"]
+_data = {
+&"RESET": SubResource("Animation_gy1nr"),
+&"fade_in": SubResource("Animation_m1k7l"),
+&"fade_out": SubResource("Animation_031op")
+}
+
 [node name="PlayerInfo" type="PanelContainer" unique_id=441934147]
 theme_override_styles/panel = SubResource("StyleBoxEmpty_bjb5o")
 script = ExtResource("1_2t1gg")
+default_fade_time = 2.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=435390322]
 layout_mode = 2
@@ -101,28 +373,32 @@ theme_override_constants/separation = -4
 
 [node name="PanelContainer" type="PanelContainer" parent="VBoxContainer" unique_id=1146553778]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_37yhw")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_gy1nr")
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelContainer" unique_id=915873266]
+[node name="PortraitContainer" type="MarginContainer" parent="VBoxContainer/PanelContainer" unique_id=915873266]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelContainer/MarginContainer" unique_id=993362657]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelContainer/PortraitContainer" unique_id=993362657]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="PortraitBack" type="TextureRect" parent="VBoxContainer/PanelContainer/MarginContainer/MarginContainer" unique_id=1700046648]
+[node name="Noise" type="TextureRect" parent="VBoxContainer/PanelContainer/PortraitContainer/MarginContainer" unique_id=1700046648]
 unique_name_in_owner = true
-visible = false
-material = SubResource("ShaderMaterial_bvnae")
+material = ExtResource("2_m1k7l")
 layout_mode = 2
 texture = SubResource("NoiseTexture2D_bmcfc")
 expand_mode = 1
 
-[node name="Portrait" type="TextureRect" parent="VBoxContainer/PanelContainer/MarginContainer/MarginContainer" unique_id=1024957279]
+[node name="NoiseDarken" type="ColorRect" parent="VBoxContainer/PanelContainer/PortraitContainer/MarginContainer" unique_id=1285106842]
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Portrait" type="TextureRect" parent="VBoxContainer/PanelContainer/PortraitContainer/MarginContainer" unique_id=1024957279]
 unique_name_in_owner = true
+z_index = 1
 texture_filter = 1
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
@@ -130,15 +406,17 @@ texture = ExtResource("3_gy1nr")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Frame" type="Panel" parent="VBoxContainer/PanelContainer/MarginContainer" unique_id=1203455745]
+[node name="Frame" type="Panel" parent="VBoxContainer/PanelContainer/PortraitContainer" unique_id=1203455745]
+unique_name_in_owner = true
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_bvnae")
+theme_override_styles/panel = ExtResource("4_gy1nr")
 
 [node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/PanelContainer" unique_id=744230521]
 custom_minimum_size = Vector2(60, 90)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
+offset_transform_enabled = true
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ynhvx")
 
 [node name="CardTexture" type="TextureRect" parent="VBoxContainer/PanelContainer/PanelContainer" unique_id=1959899117]
@@ -159,21 +437,28 @@ horizontal_alignment = 1
 show_behind_parent = true
 layout_mode = 2
 size_flags_horizontal = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1, 0)
 theme_override_styles/panel = SubResource("StyleBoxFlat_37yhw")
 
 [node name="NameLabel" type="Label" parent="VBoxContainer/NameContainer" unique_id=1353557119]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Mx. Longname"
-label_settings = SubResource("LabelSettings_37yhw")
+label_settings = ExtResource("5_gy1nr")
 horizontal_alignment = 1
 
 [node name="PanelGlow" parent="." unique_id=1125906400 instance=ExtResource("6_m1k7l")]
 unique_name_in_owner = true
+z_index = 10
 layout_mode = 2
 
 [node name="PanelDarken" type="Panel" parent="." unique_id=494573351]
 unique_name_in_owner = true
 visible = false
+z_index = 10
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_82sw0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=410357069]
+libraries/ = SubResource("AnimationLibrary_gy1nr")
