@@ -7,7 +7,7 @@ seed = 1
 frequency = 0.02
 fractal_octaves = 1
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6nm0o"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xoqs1"]
 width = 256
 height = 256
 noise = SubResource("FastNoiseLite_6nm0o")
@@ -28,7 +28,7 @@ resource_local_to_scene = true
 shader = ExtResource("1_xoqs1")
 shader_parameter/spin_speed = 0.2
 shader_parameter/offset1 = 0.0
-shader_parameter/noise1 = SubResource("NoiseTexture2D_6nm0o")
+shader_parameter/noise1 = SubResource("NoiseTexture2D_xoqs1")
 shader_parameter/noise2 = SubResource("NoiseTexture2D_gy1nr")
 shader_parameter/inner_radius = 0.0
 shader_parameter/outer_radius = 1.0

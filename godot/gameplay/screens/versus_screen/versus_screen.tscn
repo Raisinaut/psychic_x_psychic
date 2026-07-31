@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://nkx3pxwjthab"]
+
+[ext_resource type="PackedScene" uid="uid://bevgixiukmncn" path="res://gameplay/entities/card_grid/card_grid.tscn" id="1_awt3i"]
+[ext_resource type="Script" uid="uid://3nm0j4cpwjv8" path="res://gameplay/screens/versus_screen/versus_screen.gd" id="1_k7ggh"]
+[ext_resource type="PackedScene" uid="uid://bkw5jy7lmk3td" path="res://gameplay/entities/opponent/opponent.tscn" id="2_pmgb3"]
+[ext_resource type="Resource" uid="uid://c0lhdus5bfv7l" path="res://resources/opponents/opponent_test.tres" id="2_xbsua"]
+[ext_resource type="PackedScene" uid="uid://d3g4l3c0fpus2" path="res://ui/components/message_display.tscn" id="4_l3jmu"]
+[ext_resource type="PackedScene" uid="uid://ccle7011x2ap8" path="res://ui/versus_interface/versus_interface.tscn" id="4_t62bn"]
+[ext_resource type="Script" uid="uid://b2187jctll4mi" path="res://resources/_classes/card_data.gd" id="8_l3jmu"]
+[ext_resource type="Resource" uid="uid://b5gvw6uqjxfpe" path="res://resources/cards/0_fool.tres" id="9_xbsua"]
+[ext_resource type="Resource" uid="uid://dwoti70apphj8" path="res://resources/cards/2_high_priestess.tres" id="10_d105i"]
+[ext_resource type="Resource" uid="uid://vh8q0pgubgq0" path="res://resources/cards/zener_circle.tres" id="11_2v4r7"]
+[ext_resource type="Resource" uid="uid://bwhrtpb7wjw6l" path="res://resources/cards/zener_plus.tres" id="12_sfvc4"]
+[ext_resource type="Resource" uid="uid://dsbxntiexqwdf" path="res://resources/cards/zener_square.tres" id="13_swuu1"]
+[ext_resource type="Resource" uid="uid://bn57xs5h0omvl" path="res://resources/cards/zener_waves.tres" id="15_ptk3l"]
+
+[node name="VersusScreen" type="Node2D" unique_id=981335232]
+script = ExtResource("1_k7ggh")
+opponent_data = ExtResource("2_xbsua")
+
+[node name="Opponent" parent="." unique_id=473762862 node_paths=PackedStringArray("card_grid") instance=ExtResource("2_pmgb3")]
+unique_name_in_owner = true
+card_grid = NodePath("../CardGrid")
+
+[node name="CardGrid" parent="." unique_id=1332015568 instance=ExtResource("1_awt3i")]
+unique_name_in_owner = true
+offset_left = 156.0
+offset_top = 145.0
+offset_right = 1567.0
+offset_bottom = 935.0
+columns = 5
+rows = 2
+data_variants = Array[ExtResource("8_l3jmu")]([ExtResource("9_xbsua"), ExtResource("10_d105i"), ExtResource("11_2v4r7"), ExtResource("12_sfvc4"), ExtResource("13_swuu1"), ExtResource("15_ptk3l")])
+metadata/_edit_use_anchors_ = true
+
+[node name="UI" type="Control" parent="." unique_id=1425082310]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+offset_transform_enabled = true
+mouse_filter = 2
+
+[node name="Interface" parent="UI" unique_id=1003739285 instance=ExtResource("4_t62bn")]
+unique_name_in_owner = true
+layout_mode = 1
+
+[node name="MessageDisplay" parent="UI" unique_id=1671877501 instance=ExtResource("4_l3jmu")]
+unique_name_in_owner = true
+layout_mode = 1

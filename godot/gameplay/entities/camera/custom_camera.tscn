@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://ytccxrdr6ety"]
+
+[ext_resource type="Script" uid="uid://d4exmh2c4d8jw" path="res://gameplay/entities/camera/custom_camera.gd" id="1_itpkb"]
+
+[node name="CustomCamera" type="Camera2D" unique_id=39163921]
+script = ExtResource("1_itpkb")

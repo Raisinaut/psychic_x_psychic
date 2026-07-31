@@ -1,0 +1,100 @@
+[gd_scene format=3 uid="uid://cm1beu1u6kkcj"]
+
+[ext_resource type="Script" uid="uid://c4nmmgjnem0sq" path="res://ui/main_game/game.gd" id="1_hqqek"]
+[ext_resource type="PackedScene" uid="uid://ufvug50cgelr" path="res://gameplay/backgrounds/star_background.tscn" id="1_lvgfr"]
+[ext_resource type="PackedScene" uid="uid://ytccxrdr6ety" path="res://gameplay/entities/camera/custom_camera.tscn" id="2_ow7tg"]
+[ext_resource type="PackedScene" uid="uid://nkx3pxwjthab" path="res://gameplay/screens/versus_screen/versus_screen.tscn" id="3_hqqek"]
+[ext_resource type="Texture2D" uid="uid://bkwjvfq8y3mcg" path="res://assets/textures/palettes/bw_palette.png" id="4_8f5te"]
+[ext_resource type="PackedScene" uid="uid://cxba66dvcwi1i" path="res://gameplay/screens/results_screen/results_screen.tscn" id="4_ow7tg"]
+[ext_resource type="Texture2D" uid="uid://cljngxm14hkso" path="res://assets/textures/cards/front/tarot_1.png" id="5_6qx4u"]
+[ext_resource type="Texture2D" uid="uid://pne1dtcnmwev" path="res://assets/textures/particles/pixel_star_sheet.png" id="6_fmgiq"]
+[ext_resource type="Shader" uid="uid://bf4fahpf537ou" path="res://shaders/palette_adapt.gdshader" id="7_jgixr"]
+[ext_resource type="Texture2D" uid="uid://bx5pi67tf2sew" path="res://assets/textures/palettes/palettes7.png" id="10_8f5te"]
+[ext_resource type="PackedScene" uid="uid://c3qyqsesyrgju" path="res://ui/debug/debug_overlay.tscn" id="11_8f5te"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dajsm"]
+shader = ExtResource("7_jgixr")
+shader_parameter/palette = ExtResource("10_8f5te")
+
+[node name="Game" type="Node2D" unique_id=2104542042]
+script = ExtResource("1_hqqek")
+
+[node name="StaticBackground" type="CanvasLayer" parent="." unique_id=1223712636]
+layer = -100
+
+[node name="ColorRect" type="ColorRect" parent="StaticBackground" unique_id=1695479013]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Screens" type="CanvasLayer" parent="." unique_id=517849825]
+follow_viewport_enabled = true
+
+[node name="StarBackground" parent="Screens" unique_id=2107431555 instance=ExtResource("1_lvgfr")]
+
+[node name="CustomCamera" parent="Screens" unique_id=39163921 instance=ExtResource("2_ow7tg")]
+position = Vector2(960, 540)
+
+[node name="VersusScreen" parent="Screens" unique_id=981335232 node_paths=PackedStringArray("camera") instance=ExtResource("3_hqqek")]
+unique_name_in_owner = true
+camera = NodePath("../CustomCamera")
+
+[node name="ResultsScreen" parent="Screens" unique_id=1371556415 instance=ExtResource("4_ow7tg")]
+unique_name_in_owner = true
+visible = false
+
+[node name="ScreenEffects" type="CanvasLayer" parent="." unique_id=1786609515]
+
+[node name="TestNodes" type="Node2D" parent="ScreenEffects" unique_id=795294785]
+visible = false
+
+[node name="Palette" type="Sprite2D" parent="ScreenEffects/TestNodes" unique_id=843081634]
+texture_filter = 1
+position = Vector2(1144, 1330)
+scale = Vector2(200, 200)
+texture = ExtResource("4_8f5te")
+
+[node name="Sprite2D" type="Sprite2D" parent="ScreenEffects/TestNodes" unique_id=2069483276]
+texture_filter = 1
+position = Vector2(390.99976, 1527.0001)
+scale = Vector2(5.4589043, 5.4589043)
+texture = ExtResource("5_6qx4u")
+
+[node name="Palette2" type="Sprite2D" parent="ScreenEffects/TestNodes" unique_id=1552456206]
+texture_filter = 1
+position = Vector2(-660.74976, 1330)
+scale = Vector2(200, 200)
+texture = ExtResource("4_8f5te")
+
+[node name="Sprite2D2" type="Sprite2D" parent="ScreenEffects/TestNodes" unique_id=70514185]
+texture_filter = 1
+position = Vector2(-1413.7502, 1527.0001)
+scale = Vector2(5.4589043, 5.4589043)
+texture = ExtResource("5_6qx4u")
+
+[node name="PixelStarSheet" type="Sprite2D" parent="ScreenEffects/TestNodes" unique_id=120023159]
+texture_filter = 1
+position = Vector2(1432, 1625)
+scale = Vector2(8, 8)
+texture = ExtResource("6_fmgiq")
+
+[node name="PixelStarSheet2" type="Sprite2D" parent="ScreenEffects/TestNodes" unique_id=2128845750]
+texture_filter = 1
+position = Vector2(-359.99988, 1625)
+scale = Vector2(8, 8)
+texture = ExtResource("6_fmgiq")
+
+[node name="PaletteAdapt" type="ColorRect" parent="ScreenEffects" unique_id=1346040648]
+material = SubResource("ShaderMaterial_dajsm")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 1526.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="DebugOverlay" parent="." unique_id=66341293 instance=ExtResource("11_8f5te")]

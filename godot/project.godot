@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="psychic-x-psychic"
-run/main_scene="uid://nkx3pxwjthab"
+run/main_scene="uid://cm1beu1u6kkcj"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
