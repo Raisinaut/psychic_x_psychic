@@ -44,7 +44,11 @@ func play() -> void:
 		for i : int in selection.size():
 			if accuracy_check() == false:
 				logic_print("Accuracy check failed.")
-				selection[i] = select_random_card(false)
+				var replacement_card = select_random_card(false)
+				if replacement_card:
+					selection[i] = replacement_card
+				else:
+					logic_print("No replacement card found. Keeping original.")
 			logic_print("Flipped: " + selection[i].data.id)
 			await selection[i].flip()
 			await get_tree().create_timer(0.2).timeout
@@ -95,7 +99,7 @@ func select_random_card(exclude_known: bool) -> Card:
 		else:
 			logic_print("Random card selected: " + selected_card.data.id + " " + str(selected_card.name))
 	else:
-		push_error("Could not select unkown card. All active cards are known or selected.")
+		push_error("Could not select unknown card. All active cards are known or selected.")
 	return selected_card
 
 ## Searches memory for a match to the given card. [br]
