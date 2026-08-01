@@ -40,8 +40,11 @@ func end_game(user_forfeit: bool = false) -> void:
 	grid_cleared.emit(user_forfeit)
 	game_started = false
 	game_over = true
-	# reload opponent node
-	# this is to stop processes that would otherwise cause issues
+	reload_opponent_node()
+
+## Used to stop processes that would otherwise cause issues if left running [br]
+## I'm finding this is a problem with overly relying on awaits lol
+func reload_opponent_node() -> void:
 	var opp = opponent_scene.instantiate()
 	opp.card_grid = card_grid
 	opp.data = opponent_data
@@ -72,7 +75,6 @@ func _process(_delta: float) -> void:
 	$UI.offset_transform_position = camera.get_pivot_displacement()
 
 func reset_camera_zoom() -> void:
-	print("reset zoom")
 	camera.target_zoom = 1.0
 
 # SETUP ------------------------------------------------------------------------
@@ -86,6 +88,7 @@ func connect_signals() -> void:
 	card_grid.lockout_changed.connect(_on_card_grid_lockout_changed)
 	card_grid.matched_correct.connect(_on_card_grid_matched_correct)
 	card_grid.match_finished.connect(_on_card_grid_match_finished)
+	card_grid.match_started.connect(_on_card_grid_match_started)
 
 
 # SCORING HANDLING -------------------------------------------------------------
@@ -103,12 +106,23 @@ func next_turn() -> void:
 	else:
 		is_user_turn = not is_user_turn
 
+func user_turn_start() -> void:
+	await message_display.display_message("YOUR TURN").finished
+	interface.field_input_disabled = false
+
+func opponent_turn_start() -> void:
+	await message_display.display_message("OPPONENT TURN").finished
+	await get_tree().create_timer(0.3).timeout
+	opponent.play()
+
 
 # SIGNALS ----------------------------------------------------------------------
 func _on_card_grid_lockout_changed(lockout_active : bool) -> void:
-	print("zoom change from lockout")
 	var target_zoom = 1.05 if lockout_active else 1.0
 	camera.target_zoom = target_zoom
+
+func _on_card_grid_match_started(_correct: bool) -> void:
+	interface.field_input_disabled = true
 
 func _on_card_grid_matched_correct() -> void:
 	increment_relevant_score()
@@ -119,19 +133,13 @@ func _on_card_grid_match_finished(_correct : bool) -> void:
 
 # SETTERS ----------------------------------------------------------------------
 func set_is_user_turn(val) -> void:
-	is_user_turn = val
-	interface.field_input_disabled = not is_user_turn
-	interface.highlight_user = is_user_turn
-	# Show Message
-	if is_user_turn:
-		await message_display.display_message("YOUR TURN").finished
-	else:
-		await message_display.display_message("OPPONENT TURN").finished
-	
 	if game_over:
 		push_warning("Did not change turn becuase game is concluded")
 		return
 	
-	if not is_user_turn:
-		await get_tree().create_timer(0.3).timeout
-		opponent.play()
+	is_user_turn = val
+	interface.highlight_user = is_user_turn
+	if is_user_turn:
+		await user_turn_start()
+	else:
+		await opponent_turn_start()

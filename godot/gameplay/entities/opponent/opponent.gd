@@ -99,7 +99,7 @@ func select_random_card(exclude_known: bool) -> Card:
 		else:
 			logic_print("Random card selected: " + selected_card.data.id + " " + str(selected_card.name))
 	else:
-		push_error("Could not select unknown card. All active cards are known or selected.")
+		logic_print("Could not select unknown card. All active cards are known or selected.")
 	return selected_card
 
 ## Searches memory for a match to the given card. [br]

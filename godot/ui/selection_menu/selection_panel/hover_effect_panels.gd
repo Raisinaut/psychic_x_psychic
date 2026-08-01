@@ -5,12 +5,13 @@ signal fully_retracted
 
 @export var default_rotations_per_second : float = 0.5
 @export var clockwise_rotation : bool = true
-@export var expand_distance : float = 50
+@export var expand_distance : float = 25
 @export var expand_time : float = 0.25
 
 var entity_distance = 0.0 : set = set_entity_distance
 var distance_tween : Tween
 var rotations_per_second : float = 0.5
+var maintain_entity_orientation : bool = true
 
 func _ready() -> void:
 	offset_transform_enabled = true
@@ -28,8 +29,9 @@ func spin(delta : float):
 	if not clockwise_rotation:
 		rotation_amount *= -1
 	offset_transform_rotation += rotation_amount
-	for i in get_children():
-		i.offset_transform_rotation = -offset_transform_rotation
+	if maintain_entity_orientation:
+		for i in get_children():
+			i.offset_transform_rotation = -offset_transform_rotation
 
 func flip_rotation_direction() -> void:
 	clockwise_rotation = not clockwise_rotation
