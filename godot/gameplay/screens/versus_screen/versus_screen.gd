@@ -7,30 +7,47 @@ signal grid_cleared
 @onready var interface: = %Interface
 @onready var message_display: = %MessageDisplay
 
+@export var opponent_scene : PackedScene
 @export var opponent_data : OpponentData
 @export var camera : Camera2D
 
 var game_started : bool = false
+var game_over : bool = false
 var is_user_turn : bool = true : set = set_is_user_turn
 
 func _ready() -> void:
-	card_grid.set_all_cards_interaction_disabled(true)
 	connect_signals()
 
 func start_game() -> void:
 	game_started = true
+	game_over = false
 	is_user_turn = true
-	card_grid.set_all_cards_interaction_disabled(false)
+	#card_grid.set_all_cards_interaction_disabled(false)
 
 func reset_game() -> void:
-	sync_with_opponent_data()
 	GameManager.reset_scores()
+	sync_with_opponent_data()
+	#opponent.clear_memory()
 	card_grid.reset()
 
-func end_game() -> void:
+func forfeit() -> void:
+	end_game(true)
+
+func end_game(user_forfeit: bool = false) -> void:
 	print("Game Over")
-	grid_cleared.emit()
+	card_grid.set_all_cards_interaction_disabled(true) # this changes the zoom
+	reset_camera_zoom() # this line resets it as a workaround for now
+	grid_cleared.emit(user_forfeit)
 	game_started = false
+	game_over = true
+	# reload opponent node
+	# this is to stop processes that would otherwise cause issues
+	var opp = opponent_scene.instantiate()
+	opp.card_grid = card_grid
+	opp.data = opponent_data
+	call_deferred("add_child", opp)
+	opponent.queue_free()
+	opponent = opp
 
 func fade_in() -> void:
 	visible = true
@@ -38,6 +55,8 @@ func fade_in() -> void:
 	fade_in_element(self)
 
 func fade_out() -> void:
+	if not card_grid.is_empty():
+		await card_grid.animate_clear()
 	await interface.fade_out()
 	await fade_out_element(self).finished
 	visible = false
@@ -52,10 +71,15 @@ func _process(_delta: float) -> void:
 	$UI.offset_transform_scale = Vector2.ONE * 1.0 / camera.zoom
 	$UI.offset_transform_position = camera.get_pivot_displacement()
 
+func reset_camera_zoom() -> void:
+	print("reset zoom")
+	camera.target_zoom = 1.0
 
 # SETUP ------------------------------------------------------------------------
 func sync_with_opponent_data() -> void:
 	opponent.data = opponent_data
+	card_grid.columns = opponent_data.grid_dimensions.x
+	card_grid.rows = opponent_data.grid_dimensions.y
 	interface.sync_opponent_info_with_data(opponent_data)
 
 func connect_signals() -> void:
@@ -81,8 +105,10 @@ func next_turn() -> void:
 
 
 # SIGNALS ----------------------------------------------------------------------
-func _on_card_grid_lockout_changed(state : bool) -> void:
-		camera.target_zoom = 1.05 if state else 1.0
+func _on_card_grid_lockout_changed(lockout_active : bool) -> void:
+	print("zoom change from lockout")
+	var target_zoom = 1.05 if lockout_active else 1.0
+	camera.target_zoom = target_zoom
 
 func _on_card_grid_matched_correct() -> void:
 	increment_relevant_score()
@@ -101,6 +127,10 @@ func set_is_user_turn(val) -> void:
 		await message_display.display_message("YOUR TURN").finished
 	else:
 		await message_display.display_message("OPPONENT TURN").finished
+	
+	if game_over:
+		push_warning("Did not change turn becuase game is concluded")
+		return
 	
 	if not is_user_turn:
 		await get_tree().create_timer(0.3).timeout

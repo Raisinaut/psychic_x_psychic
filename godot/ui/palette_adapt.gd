@@ -2,7 +2,7 @@
 extends ColorRect
 
 
-var palette : Texture = null : set = set_palette
+@export var palette : Texture = null : set = set_palette
 
 func set_palette(val) -> void:
 	palette = val

@@ -4,6 +4,7 @@
 [ext_resource type="AudioStream" uid="uid://w0lda506oaa2" path="res://assets/audio/music/background_music_with_effects.wav" id="2_nb6j2"]
 
 [node name="MusicManager" type="Node" unique_id=151795749]
+process_mode = 3
 script = ExtResource("1_alnp1")
 main_music = ExtResource("2_nb6j2")
 

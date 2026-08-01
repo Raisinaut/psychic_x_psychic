@@ -18,6 +18,7 @@
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_k7ggh")
+opponent_scene = ExtResource("2_pmgb3")
 opponent_data = ExtResource("2_xbsua")
 
 [node name="Opponent" parent="." unique_id=473762862 node_paths=PackedStringArray("card_grid") instance=ExtResource("2_pmgb3")]

@@ -6,7 +6,10 @@ extends Resource
 @export var palette : Texture
 @export_range(0, 1, 1, "or_greater") var memory_capacity : int
 @export_range(0, 1, 1, "or_greater") var memory_lifetime : int
-@export_range(0, 1, 0.01) var memory_accuracy : float =1.0
+@export_range(0, 1, 0.01) var memory_accuracy : float = 1.0
+@export_range(0, 1, 0.01) var win_rate : float = 1.0
+@export var grid_dimensions := Vector2i.ZERO
+@export_multiline var description : String = ""
 
 @export_category("Reactions")
 @export_subgroup("swap", "phrase")
@@ -19,3 +22,13 @@ extends Resource
 @export var phrase_win : String = "Better luck in the next life."
 @export var phrase_lose : String = "Guess victory wasn't in my cards."
 @export var phrase_tie : String = "Most unsatisfying."
+
+func get_description_with_stats() -> String:
+	var win_rate_str = str(int(win_rate * 100)) + "%"
+	var grid_area_str = str(get_grid_area()) + " Cards"
+	var stats_string = "Win Rate: " + win_rate_str + "\n" + \
+					   "Grid Area: " + grid_area_str + "\n\n"
+	return stats_string + description
+
+func get_grid_area() -> int:
+	return grid_dimensions.x * grid_dimensions.y

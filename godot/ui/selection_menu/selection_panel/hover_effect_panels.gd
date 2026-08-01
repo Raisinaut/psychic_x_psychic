@@ -3,14 +3,14 @@ extends PanelContainer
 signal fully_expanded
 signal fully_retracted
 
-@export var rotations_per_second : float = 0.5
+@export var default_rotations_per_second : float = 0.5
 @export var clockwise_rotation : bool = true
 @export var expand_distance : float = 50
 @export var expand_time : float = 0.25
 
 var entity_distance = 0.0 : set = set_entity_distance
 var distance_tween : Tween
-
+var rotations_per_second : float = 0.5
 
 func _ready() -> void:
 	offset_transform_enabled = true
@@ -33,6 +33,10 @@ func spin(delta : float):
 
 func flip_rotation_direction() -> void:
 	clockwise_rotation = not clockwise_rotation
+
+func reset_rotations_per_second() -> void:
+	rotations_per_second = default_rotations_per_second
+
 
 # ENTITY CONTROL ---------------------------------------------------------------
 func update_circle_positions() -> void:

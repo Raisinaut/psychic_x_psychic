@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://cpkubf0effrux"]
+
+[ext_resource type="Theme" uid="uid://clr5tu8ev7u57" path="res://theme/interface_theme.tres" id="1_63bmq"]
+[ext_resource type="Script" uid="uid://1dlhpua2v8hy" path="res://ui/pause_screen/pause_screen.gd" id="2_fixcu"]
+[ext_resource type="LabelSettings" uid="uid://d32epvrdmgpnq" path="res://ui/label_settings/header_1.tres" id="3_1jwif"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bvnae"]
+bg_color = Color(0, 0, 0, 0.7647059)
+
+[node name="PauseScreen" type="Control" unique_id=363086114]
+z_index = 10
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_63bmq")
+script = ExtResource("2_fixcu")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=927181395]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bvnae")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=244335578]
+layout_mode = 2
+theme_override_constants/margin_left = 500
+theme_override_constants/margin_right = 500
+theme_override_constants/margin_bottom = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=135096967]
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("1_63bmq")
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=233553349]
+layout_mode = 2
+text = "PAUSED"
+label_settings = ExtResource("3_1jwif")
+horizontal_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=419440149]
+unique_name_in_owner = true
+layout_mode = 2
+text = "RESUME
+"
+
+[node name="ForfeitButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1818558789]
+unique_name_in_owner = true
+layout_mode = 2
+text = "FORFEIT
+"

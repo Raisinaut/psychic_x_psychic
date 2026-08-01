@@ -37,6 +37,7 @@ func _ready() -> void:
 	#reset()
 
 func reset() -> void:
+	set_all_cards_interaction_disabled(false)
 	initialize_variant_count()
 	#generate_data_variants() # for testing without premade resources
 	generate_deck()
@@ -80,6 +81,14 @@ func populate() -> void:
 			c.started_flip.connect(_on_card_started_flip.bind(c))
 			c.just_matched.connect(active_cards.erase.bind(c))
 			active_cards.append(c)
+
+func animate_clear() -> void:
+	if is_empty():
+		return
+	for i in active_cards:
+		i.disappear()
+		#await get_tree().create_timer(0.05).timeout
+	await get_tree().create_timer(0.8).timeout
 
 func clear() -> void:
 	active_cards.clear()
@@ -184,7 +193,7 @@ func _on_card_started_flip(card: Card) -> void:
 
 func set_all_cards_interaction_disabled(state : bool) -> void:
 	lockout_changed.emit(state)
-	for i in cards.get_children():
+	for i : Card in cards.get_children():
 		i.set_interaction_disabled(state)
 
 

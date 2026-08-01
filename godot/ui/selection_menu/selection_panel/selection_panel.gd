@@ -8,6 +8,7 @@ signal just_selected
 @onready var spinning_panels = %SpinningPanels
 @onready var portrait: TextureRect = %Portrait
 @onready var name_label: Label = %NameLabel
+@onready var info_label: Label = %InfoLabel
 @onready var info_container: PanelContainer = %InfoContainer
 @onready var panel_glow: PanelGlow = %PanelGlow
 
@@ -15,7 +16,7 @@ signal just_selected
 
 var highlighted : bool = false : set = set_highlighted
 var highlight_lock : bool = false
-var show_info_delay : float = 0.6
+var show_info_delay : float = 0.4
 var raise_height : float = 30
 var raise_duration : float = 0.2
 
@@ -41,6 +42,7 @@ func sync_with_data(data : OpponentData) -> void:
 		return
 	portrait.texture = data.portrait
 	name_label.text = data.display_name
+	info_label.text = data.get_description_with_stats()
 
 func select() -> void:
 	just_selected.emit()
@@ -88,6 +90,8 @@ func tween_info_alpha_to(val : float, duration := 0.2) -> Tween:
 	info_tween.tween_property(info_container, "modulate:a", val, duration)
 	return info_tween
 
+
+# FADEING ----------------------------------------------------------------------
 func fade_out() -> Tween:
 	await fade_out_element(spinning_panels).finished
 	raise_to(-raise_height, 2.0)
@@ -95,7 +99,7 @@ func fade_out() -> Tween:
 
 func fade_in() -> Tween:
 	reset_fade()
-	fade_in_element(spinning_panels)
+	spinning_panels.modulate.a = 1.0
 	raise_to(0, 0.5)
 	return fade_in_element(self)
 
@@ -104,6 +108,8 @@ func reset_fade() -> void:
 	spinning_panels.modulate.a = 0
 	raise_to(-raise_height, 0) # reset offset position
 	highlight_lock = false
+	spinning_panels.reset_rotations_per_second()
+	spinning_panels.retract_entities()
 
 
 # SETTERS ----------------------------------------------------------------------

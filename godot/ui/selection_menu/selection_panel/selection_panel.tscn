@@ -10,6 +10,13 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_37yhw"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6inx1"]
+bg_color = Color(1, 1, 1, 0.35686275)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bvnae"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p56c5"]
@@ -29,9 +36,11 @@ script = ExtResource("2_jh4xq")
 
 [node name="Panel" type="Panel" parent="SpinningPanels" unique_id=59703860]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6inx1")
 
-[node name="Panel2" type="Panel" parent="SpinningPanels" unique_id=1129855050]
+[node name="Panel2" type="Panel" parent="SpinningPanels" unique_id=1689375199]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6inx1")
 
 [node name="ContentContainer" type="MarginContainer" parent="." unique_id=1122653124]
 layout_mode = 2
@@ -68,6 +77,7 @@ theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 30
 
 [node name="InfoLabel" type="Label" parent="ContentContainer/VBoxContainer/PanelContainer/InfoContainer/MarginContainer" unique_id=1967497824]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
 text = "Description of attributes including memory quality, accuracy and something quirky."

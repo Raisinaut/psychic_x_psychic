@@ -125,7 +125,7 @@ func logic_print(string : String = "") -> void:
 		print(string)
 
 func accuracy_check() -> bool:
-	return data.memory_accuracy > randf()
+	return data.memory_accuracy >= randf()
 
 
 # MEMORY MODIFICATION ----------------------------------------------------------
@@ -159,6 +159,9 @@ func degrade_memory() -> void:
 		if card_memory[c] <= 0:
 			logic_print(c.data.id + " reached memory lifetime end.")
 			forget_card(c)
+
+func clear_memory() -> void:
+	card_memory.clear()
 
 
 # SIGNALS ----------------------------------------------------------------------

@@ -16,3 +16,4 @@ Button/fonts/font = ExtResource("1_ylb6o")
 Button/styles/hover = ExtResource("2_dx63t")
 Button/styles/normal = ExtResource("2_mkijn")
 Button/styles/pressed = ExtResource("3_utrxr")
+VBoxContainer/constants/separation = 50

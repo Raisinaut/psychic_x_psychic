@@ -48,7 +48,6 @@ theme_override_constants/margin_bottom = 50
 
 [node name="ResetButton" type="Button" parent="MarginContainer" unique_id=894900944]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0

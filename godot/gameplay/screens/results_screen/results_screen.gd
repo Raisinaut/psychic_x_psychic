@@ -64,8 +64,10 @@ func reset_fade() -> void:
 	button_container.visible = false
 	button_container.modulate.a = 0
 
-func update_results(data : OpponentData) -> void:
+func update_results(data : OpponentData, lose_override := false) -> void:
 	var results = GameManager.get_game_results()
+	if lose_override:
+		results = GameManager.GameResults.P2_WIN
 	portrait.texture = data.portrait
 	match(results):
 		GameManager.GameResults.P1_WIN:
