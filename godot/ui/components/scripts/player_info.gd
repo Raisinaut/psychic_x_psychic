@@ -14,6 +14,8 @@ var darken_tween : Tween = null
 @onready var panel_glow: = $PanelGlow
 @onready var panel_darken: Panel = %PanelDarken
 
+@onready var animation_player: AnimationPlayer = %AnimationPlayer
+
 func _ready() -> void:
 	panel_darken.visible = true # override hide in editor
 	noise.visible = true # hidden in editor to avoid rendering shader
@@ -21,14 +23,16 @@ func _ready() -> void:
 	noise.material.set_shader_parameter("spin_speed", randf_range(0.2, 0.3))
 
 func fade_in(skip_to_end:= false) -> void:
-	$AnimationPlayer.play("fade_in")
+	animation_player.play("fade_in")
 	if skip_to_end:
-		$AnimationPlayer.seek(1000, true)
+		animation_player.seek(1000, true)
+	await get_tree().create_timer(animation_player.current_animation_length).timeout
 
 func fade_out(skip_to_end:= false) -> void:
-	$AnimationPlayer.play("fade_out")
+	animation_player.play("fade_out")
 	if skip_to_end:
-		$AnimationPlayer.seek(1000, true)
+		animation_player.seek(1000, true)
+	await get_tree().create_timer(animation_player.current_animation_length).timeout
 
 # SETTERS ----------------------------------------------------------------------
 func set_portrait_texture(val) -> void:

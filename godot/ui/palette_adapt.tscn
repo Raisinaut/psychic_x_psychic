@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dyc1k0n3upv07"]
+
+[ext_resource type="Shader" uid="uid://bf4fahpf537ou" path="res://shaders/palette_adapt.gdshader" id="1_l4ak8"]
+[ext_resource type="Texture2D" uid="uid://bx5pi67tf2sew" path="res://assets/textures/palettes/palettes7.png" id="2_sj44j"]
+[ext_resource type="Script" uid="uid://c41qofgo5apua" path="res://ui/palette_adapt.gd" id="3_sj44j"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dajsm"]
+resource_local_to_scene = true
+shader = ExtResource("1_l4ak8")
+shader_parameter/palette = ExtResource("2_sj44j")
+
+[node name="PaletteAdapt" type="ColorRect" unique_id=1214921840]
+material = SubResource("ShaderMaterial_dajsm")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 1526.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("3_sj44j")

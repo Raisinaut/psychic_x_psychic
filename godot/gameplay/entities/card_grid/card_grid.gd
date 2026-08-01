@@ -40,6 +40,7 @@ func reset() -> void:
 	initialize_variant_count()
 	#generate_data_variants() # for testing without premade resources
 	generate_deck()
+	clear()
 	populate()
 
 ## SETUP -----------------------------------------------------------------------
@@ -79,6 +80,11 @@ func populate() -> void:
 			c.started_flip.connect(_on_card_started_flip.bind(c))
 			c.just_matched.connect(active_cards.erase.bind(c))
 			active_cards.append(c)
+
+func clear() -> void:
+	active_cards.clear()
+	for i in cards.get_children():
+		i.queue_free()
 
 ## Returns CardData from a shuffled deck and removes it from the pool
 ## If drawing is attempted on a depleted deck, the deck is refreshed

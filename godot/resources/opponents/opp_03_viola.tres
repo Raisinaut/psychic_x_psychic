@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="OpponentData" format=3 uid="uid://w4gwnbmx08f8"]
+
+[ext_resource type="Texture2D" uid="uid://r5b68nw5iikg" path="res://assets/textures/portraits/noir_portrait6.png" id="1_0kmfp"]
+[ext_resource type="Texture2D" uid="uid://dramtfiuhacji" path="res://assets/textures/palettes/palettes8.png" id="1_67l38"]
+[ext_resource type="Script" uid="uid://rcirnoqp7wpc" path="res://resources/_classes/opponent_data.gd" id="2_67l38"]
+
+[resource]
+script = ExtResource("2_67l38")
+display_name = "Viola"
+portrait = ExtResource("1_0kmfp")
+palette = ExtResource("1_67l38")
+memory_capacity = 10
+memory_lifetime = 4
+memory_accuracy = 0.95
+phrase_swap_good = "Hah. Take that."
+phrase_swap_bad = "Nothin' I can't track."
+metadata/_custom_type_script = "uid://rcirnoqp7wpc"

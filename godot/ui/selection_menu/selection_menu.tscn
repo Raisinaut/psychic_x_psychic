@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://cmb7kl2ww2fo5"]
+
+[ext_resource type="LabelSettings" uid="uid://d32epvrdmgpnq" path="res://ui/label_settings/header_1.tres" id="1_tk7v6"]
+[ext_resource type="Script" uid="uid://c1cqyo64nbohh" path="res://ui/selection_menu/selection_menu.gd" id="1_ub04j"]
+[ext_resource type="PackedScene" uid="uid://r8joxh2bip8k" path="res://ui/selection_menu/selection_panel/selection_panel.tscn" id="2_2qn0g"]
+[ext_resource type="Resource" uid="uid://c0lhdus5bfv7l" path="res://resources/opponents/opp_01_zeke.tres" id="3_dl7c7"]
+[ext_resource type="Resource" uid="uid://d3pq4f464p7j2" path="res://resources/opponents/opp_02_franc.tres" id="4_q1b66"]
+[ext_resource type="Resource" uid="uid://w4gwnbmx08f8" path="res://resources/opponents/opp_03_viola.tres" id="5_ub04j"]
+
+[node name="SelectionMenu" type="Control" unique_id=1623403045]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ub04j")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1056741383]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=259127962]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=364791836]
+layout_mode = 2
+text = "Choose Opponent"
+label_settings = ExtResource("1_tk7v6")
+horizontal_alignment = 1
+
+[node name="SelectionList" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=2032497046]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme_override_constants/separation = 50
+
+[node name="SelectionPanel" parent="MarginContainer/VBoxContainer/SelectionList" unique_id=1951645751 instance=ExtResource("2_2qn0g")]
+layout_mode = 2
+opponent_data = ExtResource("3_dl7c7")
+
+[node name="SelectionPanel2" parent="MarginContainer/VBoxContainer/SelectionList" unique_id=1845567047 instance=ExtResource("2_2qn0g")]
+layout_mode = 2
+opponent_data = ExtResource("4_q1b66")
+
+[node name="SelectionPanel3" parent="MarginContainer/VBoxContainer/SelectionList" unique_id=2053821138 instance=ExtResource("2_2qn0g")]
+layout_mode = 2
+opponent_data = ExtResource("5_ub04j")

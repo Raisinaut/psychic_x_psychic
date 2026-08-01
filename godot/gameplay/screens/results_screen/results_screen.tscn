@@ -147,6 +147,11 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "REMATCH"
 
+[node name="NewOpponentButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ContentContainer/ButtonContainer" unique_id=26385488]
+unique_name_in_owner = true
+layout_mode = 2
+text = "NEW OPPONENT"
+
 [node name="MainMenuButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ContentContainer/ButtonContainer" unique_id=1975008871]
 unique_name_in_owner = true
 layout_mode = 2

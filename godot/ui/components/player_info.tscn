@@ -444,7 +444,6 @@ show_behind_parent = true
 layout_mode = 2
 size_flags_horizontal = 4
 offset_transform_enabled = true
-offset_transform_scale = Vector2(1, 0)
 theme_override_styles/panel = SubResource("StyleBoxFlat_37yhw")
 
 [node name="NameLabel" type="Label" parent="VBoxContainer/NameContainer" unique_id=1353557119]
@@ -467,6 +466,7 @@ layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_82sw0")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=410357069]
+unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_gy1nr")
 
 [node name="PaletteAdaptTest" type="ColorRect" parent="." unique_id=138289364]

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="OpponentData" format=3 uid="uid://d3pq4f464p7j2"]
+
+[ext_resource type="Texture2D" uid="uid://bsedxrra4dp7" path="res://assets/textures/palettes/palettes5.png" id="1_1xwf6"]
+[ext_resource type="Texture2D" uid="uid://bjo354x0e6vni" path="res://assets/textures/portraits/noir_portrait3.png" id="1_hs85c"]
+[ext_resource type="Script" uid="uid://rcirnoqp7wpc" path="res://resources/_classes/opponent_data.gd" id="2_1xwf6"]
+
+[resource]
+script = ExtResource("2_1xwf6")
+display_name = "Franc"
+portrait = ExtResource("1_hs85c")
+palette = ExtResource("1_1xwf6")
+memory_capacity = 6
+memory_lifetime = 3
+memory_accuracy = 0.8
+phrase_swap_good = "Hah. Take that."
+phrase_swap_bad = "Nothin' I can't track."
+metadata/_custom_type_script = "uid://rcirnoqp7wpc"

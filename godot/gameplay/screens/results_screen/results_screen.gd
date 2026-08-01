@@ -2,6 +2,7 @@ extends ControlFader
 
 signal rematch_selected
 signal main_menu_selected
+signal new_opponent_selected
 
 @onready var result_label: Label = %ResultLabel
 @onready var message_label: TextReveal = %MessageLabel
@@ -13,6 +14,7 @@ signal main_menu_selected
 
 @onready var button_container: VBoxContainer = %ButtonContainer
 @onready var rematch_button: Button = %RematchButton
+@onready var new_opponent_button: Button = %NewOpponentButton
 @onready var main_menu_button: Button = %MainMenuButton
 
 enum ContentModes {
@@ -27,6 +29,7 @@ func _ready() -> void:
 	noise_effect.visible = true # disabled in editor to conserve resources
 	rematch_button.pressed.connect(rematch_selected.emit)
 	main_menu_button.pressed.connect(main_menu_selected.emit)
+	new_opponent_button.pressed.connect(new_opponent_selected.emit)
 
 func show_message() -> void:
 	print("show message")

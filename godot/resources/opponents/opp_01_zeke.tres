@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="OpponentData" format=3 uid="uid://c0lhdus5bfv7l"]
+
+[ext_resource type="Texture2D" uid="uid://dw86tbamk5onx" path="res://assets/textures/portraits/noir_portrait2.png" id="1_2qt2w"]
+[ext_resource type="Texture2D" uid="uid://baqney5r6n4g3" path="res://assets/textures/palettes/palettes6.png" id="1_647tf"]
+[ext_resource type="Script" uid="uid://rcirnoqp7wpc" path="res://resources/_classes/opponent_data.gd" id="2_647tf"]
+
+[resource]
+script = ExtResource("2_647tf")
+display_name = "Zeke"
+portrait = ExtResource("1_2qt2w")
+palette = ExtResource("1_647tf")
+memory_capacity = 4
+memory_lifetime = 2
+memory_accuracy = 0.6
+phrase_swap_good = "Hah. Take that."
+phrase_swap_bad = "Nothin' I can't track."
+metadata/_custom_type_script = "uid://rcirnoqp7wpc"

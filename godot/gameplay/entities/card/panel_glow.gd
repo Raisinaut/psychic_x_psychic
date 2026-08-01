@@ -1,3 +1,4 @@
+class_name PanelGlow
 extends Panel
 
 var flash_tween : Tween = null

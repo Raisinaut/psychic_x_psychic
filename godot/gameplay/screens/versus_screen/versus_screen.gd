@@ -1,4 +1,4 @@
-extends Node2D
+extends ControlFader
 
 signal grid_cleared
 
@@ -10,24 +10,42 @@ signal grid_cleared
 @export var opponent_data : OpponentData
 @export var camera : Camera2D
 
+var game_started : bool = false
 var is_user_turn : bool = true : set = set_is_user_turn
 
 func _ready() -> void:
+	card_grid.set_all_cards_interaction_disabled(true)
 	connect_signals()
+
+func start_game() -> void:
+	game_started = true
+	is_user_turn = true
+	card_grid.set_all_cards_interaction_disabled(false)
 
 func reset_game() -> void:
 	sync_with_opponent_data()
 	GameManager.reset_scores()
-	interface.fade_out(true)
-	interface.fade_in()
-	is_user_turn = true
 	card_grid.reset()
 
 func end_game() -> void:
 	print("Game Over")
-	interface.fade_out()
-	await get_tree().create_timer(0.5).timeout
 	grid_cleared.emit()
+	game_started = false
+
+func fade_in() -> void:
+	visible = true
+	await interface.fade_in()
+	fade_in_element(self)
+
+func fade_out() -> void:
+	await interface.fade_out()
+	await fade_out_element(self).finished
+	visible = false
+
+func reset_fade() -> void:
+	fade_out_element(self, 0)
+	interface.fade_out(true)
+	visible = false
 
 func _process(_delta: float) -> void:
 	# Update ui transform to nullify camera zoom and displacement

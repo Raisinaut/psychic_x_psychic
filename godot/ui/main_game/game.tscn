@@ -7,12 +7,15 @@
 [ext_resource type="Texture2D" uid="uid://bkwjvfq8y3mcg" path="res://assets/textures/palettes/bw_palette.png" id="4_8f5te"]
 [ext_resource type="PackedScene" uid="uid://cxba66dvcwi1i" path="res://gameplay/screens/results_screen/results_screen.tscn" id="4_ow7tg"]
 [ext_resource type="Texture2D" uid="uid://cljngxm14hkso" path="res://assets/textures/cards/front/tarot_1.png" id="5_6qx4u"]
+[ext_resource type="PackedScene" uid="uid://cmb7kl2ww2fo5" path="res://ui/selection_menu/selection_menu.tscn" id="6_8f5te"]
 [ext_resource type="Texture2D" uid="uid://pne1dtcnmwev" path="res://assets/textures/particles/pixel_star_sheet.png" id="6_fmgiq"]
 [ext_resource type="Shader" uid="uid://bf4fahpf537ou" path="res://shaders/palette_adapt.gdshader" id="7_jgixr"]
+[ext_resource type="PackedScene" uid="uid://dyc1k0n3upv07" path="res://ui/palette_adapt.tscn" id="10_6qx4u"]
 [ext_resource type="Texture2D" uid="uid://bx5pi67tf2sew" path="res://assets/textures/palettes/palettes7.png" id="10_8f5te"]
 [ext_resource type="PackedScene" uid="uid://c3qyqsesyrgju" path="res://ui/debug/debug_overlay.tscn" id="11_8f5te"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_dajsm"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fmgiq"]
+resource_local_to_scene = true
 shader = ExtResource("7_jgixr")
 shader_parameter/palette = ExtResource("10_8f5te")
 
@@ -40,9 +43,14 @@ position = Vector2(960, 540)
 
 [node name="VersusScreen" parent="Screens" unique_id=981335232 node_paths=PackedStringArray("camera") instance=ExtResource("3_hqqek")]
 unique_name_in_owner = true
+visible = false
 camera = NodePath("../CustomCamera")
 
 [node name="ResultsScreen" parent="Screens" unique_id=1371556415 instance=ExtResource("4_ow7tg")]
+unique_name_in_owner = true
+visible = false
+
+[node name="SelectionScreen" parent="Screens" unique_id=1623403045 instance=ExtResource("6_8f5te")]
 unique_name_in_owner = true
 visible = false
 
@@ -87,14 +95,8 @@ position = Vector2(-359.99988, 1625)
 scale = Vector2(8, 8)
 texture = ExtResource("6_fmgiq")
 
-[node name="PaletteAdapt" type="ColorRect" parent="ScreenEffects" unique_id=1346040648]
-material = SubResource("ShaderMaterial_dajsm")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_bottom = 1526.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
+[node name="PaletteAdapt" parent="ScreenEffects" unique_id=1214921840 instance=ExtResource("10_6qx4u")]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_fmgiq")
 
 [node name="DebugOverlay" parent="." unique_id=66341293 instance=ExtResource("11_8f5te")]

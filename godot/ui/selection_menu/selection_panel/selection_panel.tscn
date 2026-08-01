@@ -1,0 +1,94 @@
+[gd_scene format=3 uid="uid://r8joxh2bip8k"]
+
+[ext_resource type="Theme" uid="uid://c3to0g0smytnr" path="res://ui/selection_menu/selection_menu_theme.tres" id="1_2feqx"]
+[ext_resource type="Texture2D" uid="uid://7cl8yjm5pfc5" path="res://assets/textures/portraits/noir_portrait1.png" id="2_6inx1"]
+[ext_resource type="Script" uid="uid://bmljlalsqq1tt" path="res://ui/selection_menu/selection_panel/hover_effect_panels.gd" id="2_jh4xq"]
+[ext_resource type="Script" uid="uid://euky08ehedad" path="res://ui/selection_menu/selection_panel/selection_panel.gd" id="2_vlglx"]
+[ext_resource type="LabelSettings" uid="uid://dh2dyltco23pa" path="res://ui/label_settings/body_1.tres" id="3_jh4xq"]
+[ext_resource type="LabelSettings" uid="uid://cqu6xu4855ud4" path="res://ui/label_settings/body_3.tres" id="5_vlglx"]
+[ext_resource type="PackedScene" uid="uid://clwi6xerpkdr3" path="res://gameplay/entities/card/panel_glow.tscn" id="7_1cxyf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_37yhw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bvnae"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p56c5"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="SelectionPanel" type="PanelContainer" unique_id=1951645751]
+theme = ExtResource("1_2feqx")
+script = ExtResource("2_vlglx")
+
+[node name="SpinningPanels" type="PanelContainer" parent="." unique_id=935566629]
+unique_name_in_owner = true
+show_behind_parent = true
+layout_mode = 2
+offset_transform_enabled = true
+theme_override_styles/panel = SubResource("StyleBoxEmpty_37yhw")
+script = ExtResource("2_jh4xq")
+
+[node name="Panel" type="Panel" parent="SpinningPanels" unique_id=59703860]
+layout_mode = 2
+
+[node name="Panel2" type="Panel" parent="SpinningPanels" unique_id=1129855050]
+layout_mode = 2
+
+[node name="ContentContainer" type="MarginContainer" parent="." unique_id=1122653124]
+layout_mode = 2
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ContentContainer" unique_id=1631185315]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="ContentContainer/VBoxContainer" unique_id=2119494657]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_bvnae")
+
+[node name="Portrait" type="TextureRect" parent="ContentContainer/VBoxContainer/PanelContainer" unique_id=611726734]
+unique_name_in_owner = true
+texture_filter = 1
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("2_6inx1")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="InfoContainer" type="PanelContainer" parent="ContentContainer/VBoxContainer/PanelContainer" unique_id=421306786]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_p56c5")
+
+[node name="MarginContainer" type="MarginContainer" parent="ContentContainer/VBoxContainer/PanelContainer/InfoContainer" unique_id=1865878734]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="InfoLabel" type="Label" parent="ContentContainer/VBoxContainer/PanelContainer/InfoContainer/MarginContainer" unique_id=1967497824]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Description of attributes including memory quality, accuracy and something quirky."
+label_settings = ExtResource("5_vlglx")
+autowrap_mode = 2
+
+[node name="NameLabel" type="Label" parent="ContentContainer/VBoxContainer" unique_id=1528539819]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Name"
+label_settings = ExtResource("3_jh4xq")
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="." unique_id=1587765813]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="PanelGlow" parent="." unique_id=1125906400 instance=ExtResource("7_1cxyf")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="InfoDelayTimer" type="Timer" parent="." unique_id=892749207]
+unique_name_in_owner = true
+one_shot = true

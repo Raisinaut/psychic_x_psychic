@@ -1,0 +1,40 @@
+[gd_resource type="Theme" format=3 uid="uid://c3to0g0smytnr"]
+
+[ext_resource type="FontFile" uid="uid://dsdu7sueat7xm" path="res://assets/fonts/Aref_Ruqaa_Ink,Elsie/Aref_Ruqaa_Ink/ArefRuqaaInk-Bold.ttf" id="1_jrp0f"]
+[ext_resource type="StyleBox" uid="uid://cx38u1cspgxv2" path="res://ui/styles/button_clear/button_clear_hover.tres" id="2_jrp0f"]
+[ext_resource type="StyleBox" uid="uid://b20eaqjcg2tfi" path="res://ui/styles/button_clear/button_clear_normal.tres" id="2_kemqv"]
+[ext_resource type="StyleBox" uid="uid://do5pl6aix4sxb" path="res://ui/styles/button_clear/button_clear_pressed.tres" id="4_jrp0f"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kemqv"]
+content_margin_left = 40.0
+content_margin_right = 40.0
+content_margin_bottom = 25.0
+bg_color = Color(1, 1, 1, 0.23529412)
+border_color = Color(0.62967473, 0.62967485, 0.62967443, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cssuw"]
+bg_color = Color(0, 0, 0, 1)
+border_color = Color(0.62967473, 0.62967485, 0.62967443, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[resource]
+Button/colors/font_color = Color(0.69135743, 0.69135666, 0.69135684, 1)
+Button/colors/font_focus_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(0, 0, 0, 1)
+Button/font_sizes/font_size = 60
+Button/fonts/font = ExtResource("1_jrp0f")
+Button/styles/disabled = ExtResource("2_jrp0f")
+Button/styles/hover = ExtResource("2_jrp0f")
+Button/styles/normal = ExtResource("2_kemqv")
+Button/styles/pressed = ExtResource("4_jrp0f")
+Panel/styles/panel = SubResource("StyleBoxFlat_kemqv")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_cssuw")
