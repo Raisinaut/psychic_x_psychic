@@ -49,11 +49,9 @@ layout_mode = 2
 opponent_data = ExtResource("3_dl7c7")
 
 [node name="SelectionPanel2" parent="MarginContainer/VBoxContainer/SelectionList" unique_id=1845567047 instance=ExtResource("2_2qn0g")]
-visible = false
 layout_mode = 2
 opponent_data = ExtResource("4_q1b66")
 
 [node name="SelectionPanel3" parent="MarginContainer/VBoxContainer/SelectionList" unique_id=2053821138 instance=ExtResource("2_2qn0g")]
-visible = false
 layout_mode = 2
 opponent_data = ExtResource("5_ub04j")

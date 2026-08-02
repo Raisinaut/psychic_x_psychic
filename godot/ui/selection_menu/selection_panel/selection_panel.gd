@@ -96,9 +96,10 @@ func tween_info_alpha_to(val : float, duration := 0.2) -> Tween:
 
 # FADING ----------------------------------------------------------------------
 func fade_out() -> Tween:
+	set_disabled(true)
 	await fade_out_element(spinning_panels).finished
 	raise_to(-raise_height, 2.0)
-	set_disabled(true)
+	print("fade out")
 	return fade_out_element(self)
 
 func fade_in() -> Tween:

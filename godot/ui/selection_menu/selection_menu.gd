@@ -18,9 +18,8 @@ func fade_in() -> void:
 	await fade_in_element(self).finished
 	# Animate fades
 	for i : SelectionPanel in selection_list.get_children():
-		#i.set_disabled(false)
 		i.fade_in()
-		await get_tree().create_timer(0.4).timeout
+		await get_tree().create_timer(0.1).timeout
 
 func fade_out() -> void:
 	var delay_time : float = 0
@@ -29,7 +28,6 @@ func fade_out() -> void:
 	# Animate panel fades
 	for i : SelectionPanel in other_panels:
 		delay_time = i.default_fade_time
-		#i.set_disabled(true)
 		i.fade_out()
 	await get_tree().create_timer(delay_time).timeout
 	if selected_panel:
