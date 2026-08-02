@@ -21,10 +21,6 @@ script = ExtResource("1_k7ggh")
 opponent_scene = ExtResource("2_pmgb3")
 opponent_data = ExtResource("2_xbsua")
 
-[node name="Opponent" parent="." unique_id=473762862 node_paths=PackedStringArray("card_grid") instance=ExtResource("2_pmgb3")]
-unique_name_in_owner = true
-card_grid = NodePath("../CardGrid")
-
 [node name="CardGrid" parent="." unique_id=1332015568 instance=ExtResource("1_awt3i")]
 unique_name_in_owner = true
 layout_mode = 1

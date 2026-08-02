@@ -3,7 +3,6 @@ extends ControlFader
 signal grid_cleared
 
 @onready var card_grid: CardGrid = %CardGrid
-@onready var opponent: Opponent = %Opponent
 @onready var interface: = %Interface
 @onready var message_display: = %MessageDisplay
 
@@ -11,6 +10,7 @@ signal grid_cleared
 @export var opponent_data : OpponentData
 @export var camera : Camera2D
 
+var opponent : Opponent = null
 var game_started : bool = false
 var game_over : bool = false
 var is_user_turn : bool = true : set = set_is_user_turn
@@ -26,8 +26,8 @@ func start_game() -> void:
 
 func reset_game() -> void:
 	GameManager.reset_scores()
+	create_opponent_node()
 	sync_with_opponent_data()
-	#opponent.clear_memory()
 	card_grid.reset()
 
 func forfeit() -> void:
@@ -40,16 +40,18 @@ func end_game(user_forfeit: bool = false) -> void:
 	grid_cleared.emit(user_forfeit)
 	game_started = false
 	game_over = true
-	reload_opponent_node()
+	delete_opponent_node()
+
+func delete_opponent_node() -> void:
+	opponent.queue_free()
 
 ## Used to stop processes that would otherwise cause issues if left running [br]
 ## I'm finding this is a problem with overly relying on awaits lol
-func reload_opponent_node() -> void:
+func create_opponent_node() -> void:
 	var opp = opponent_scene.instantiate()
 	opp.card_grid = card_grid
 	opp.data = opponent_data
 	call_deferred("add_child", opp)
-	opponent.queue_free()
 	opponent = opp
 
 func fade_in() -> void:
@@ -100,20 +102,26 @@ func increment_relevant_score() -> void:
 
 
 # TURN HANDLING ----------------------------------------------------------------
+## Cycles turns or ends the game if the card grid is empty.
 func next_turn() -> void:
 	if card_grid.is_empty():
 		end_game()
 	else:
 		is_user_turn = not is_user_turn
 
+## Starts the user's turn, enabling field input.
 func user_turn_start() -> void:
 	await message_display.display_message("YOUR TURN").finished
 	interface.field_input_disabled = false
 
+## Starts the opponent's turn if the opponent exists. [br]
+## In the case thaat the opponent does not exist, the match has been forfeit and [br]
+## the opponent has been deleted to stop any logic.
 func opponent_turn_start() -> void:
 	await message_display.display_message("OPPONENT TURN").finished
 	await get_tree().create_timer(0.3).timeout
-	opponent.play()
+	if opponent:
+		opponent.play()
 
 
 # SIGNALS ----------------------------------------------------------------------

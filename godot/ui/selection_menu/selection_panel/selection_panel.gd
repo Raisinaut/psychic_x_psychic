@@ -14,6 +14,7 @@ signal just_selected
 
 @onready var info_delay_timer: Timer = %InfoDelayTimer
 
+var disabled : bool = false : set = set_disabled
 var highlighted : bool = false : set = set_highlighted
 var highlight_lock : bool = false
 var show_info_delay : float = 0.4
@@ -70,12 +71,14 @@ func hide_info() -> void:
 	tween_info_alpha_to(0)
 	info_delay_timer.stop() # prevent timer from going off after hiding
 
-func set_disabled(disabled : bool) -> void:
+func set_disabled(state : bool) -> void:
+	disabled = state
 	button.disabled = disabled
 	if disabled:
 		button.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	else:
 		button.mouse_filter = Control.MOUSE_FILTER_STOP
+
 
 # ANIMATION --------------------------------------------------------------------
 func raise_to(height : float, duration := raise_duration) -> Tween:
@@ -91,22 +94,27 @@ func tween_info_alpha_to(val : float, duration := 0.2) -> Tween:
 	return info_tween
 
 
-# FADEING ----------------------------------------------------------------------
+# FADING ----------------------------------------------------------------------
 func fade_out() -> Tween:
 	await fade_out_element(spinning_panels).finished
 	raise_to(-raise_height, 2.0)
+	set_disabled(true)
 	return fade_out_element(self)
 
 func fade_in() -> Tween:
 	reset_fade()
-	spinning_panels.modulate.a = 1.0
 	raise_to(0, 0.5)
-	return fade_in_element(self)
+	var tween = fade_in_element(self)
+	await tween.finished
+	set_disabled(false)
+	spinning_panels.modulate.a = 1.0
+	return tween
 
 func reset_fade() -> void:
+	set_disabled(true)
 	self.modulate.a = 0
 	spinning_panels.modulate.a = 0
-	raise_to(-raise_height, 0) # reset offset position
+	offset_transform_position.y = raise_height
 	highlight_lock = false
 	spinning_panels.reset_rotations_per_second()
 	spinning_panels.retract_entities()

@@ -15,10 +15,10 @@ func _ready() -> void:
 func fade_in() -> void:
 	#reset_fade()
 	visible = true
-	fade_in_element(self)
+	await fade_in_element(self).finished
 	# Animate fades
 	for i : SelectionPanel in selection_list.get_children():
-		i.set_disabled(false)
+		#i.set_disabled(false)
 		i.fade_in()
 		await get_tree().create_timer(0.4).timeout
 
@@ -29,7 +29,7 @@ func fade_out() -> void:
 	# Animate panel fades
 	for i : SelectionPanel in other_panels:
 		delay_time = i.default_fade_time
-		i.set_disabled(true)
+		#i.set_disabled(true)
 		i.fade_out()
 	await get_tree().create_timer(delay_time).timeout
 	if selected_panel:
@@ -40,7 +40,7 @@ func fade_out() -> void:
 
 func reset_fade() -> void:
 	visible = false
-	fade_out_element(self, 0)
+	modulate.a = 0
 	for i : SelectionPanel in selection_list.get_children():
 		i.set_disabled(true)
 		i.reset_fade()

@@ -54,17 +54,18 @@ func set_entity_distance(value) -> void:
 		var pos = Vector2.from_angle(get_index_angle(i)) * entity_distance
 		entity.offset_transform_position = pos
 
-func expand_entities():
-	if distance_tween: distance_tween.kill()
-	distance_tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
-	distance_tween.tween_property(self, "entity_distance", expand_distance, expand_time)
-	distance_tween.finished.connect(fully_expanded.emit)
+func expand_entities() -> void:
+	tween_entity_distance(expand_distance).finished.connect(fully_expanded.emit)
 
-func retract_entities():
+func retract_entities() -> void:
+	tween_entity_distance(0).finished.connect(fully_retracted.emit)
+
+func tween_entity_distance(to_val : float) -> Tween:
 	if distance_tween: distance_tween.kill()
-	distance_tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
-	distance_tween.tween_property(self, "entity_distance", 0, expand_time)
-	distance_tween.finished.connect(fully_retracted.emit)
+	distance_tween = create_tween()
+	distance_tween.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+	distance_tween.tween_property(self, "entity_distance", to_val, expand_time)
+	return distance_tween
 
 
 # UTILITY ----------------------------------------------------------------------
