@@ -43,7 +43,7 @@ func reveal_next_character():
 	#SpeakerAudio.play_char_sound(next_character)
 	# reveal next character
 	visible_characters += 1
-	await get_tree().create_timer(reveal_pause + additional_pause).timeout
+	await get_tree().create_timer(reveal_pause + additional_pause, false).timeout
 	revealed_character.emit()
 
 

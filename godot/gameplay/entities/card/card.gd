@@ -141,7 +141,7 @@ func disappear() -> Tween:
 	var t = create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_SINE)
 	t.tween_property(visuals, "scale", Vector2.ZERO, 0.7)
 	t.parallel().tween_property(visuals, "rotation", -10, 0.7)
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(0.5, false).timeout
 	%WhirlEffect.shrink().finished.connect(queue_free)
 	return t
 

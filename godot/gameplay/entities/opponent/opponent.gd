@@ -51,7 +51,7 @@ func play() -> void:
 					logic_print("No replacement card found. Keeping original.")
 			logic_print("Flipped: " + selection[i].data.id)
 			await selection[i].flip()
-			await get_tree().create_timer(0.2).timeout
+			await get_tree().create_timer(0.2, false).timeout
 	else:
 		push_error("\tNo cards selected. Make sure memory is accurate.")
 	degrade_memory()
@@ -133,30 +133,26 @@ func accuracy_check() -> bool:
 
 
 # MEMORY MODIFICATION ----------------------------------------------------------
+## Adds card to memory. [br]
+## If a card is already known, the memory lifetime is refreshed.
 func remember_card(card : Card) -> void:
-	# Check if already known
-	if card_memory.has(card):
-		#logic_print("Already known: ", card.data.id, ". Memory lifetime refreshed.")
-		pass
-	else:
-		# Connect match signal
+	if not card_memory.has(card):
 		card.just_matched.connect(_on_card_just_matched.bind(card))
-		#logic_print(" + Remembered card: ", card.data.id)
-	# Add to memory
 	card_memory[card] = data.memory_lifetime
 
+## Erases a card from memory.
 func forget_card(card : Card) -> void:
-	#logic_print(" - Forgot card: ", card.data.id)
-	# Remove from memory
 	card_memory.erase(card)
-	# Disconnect match signal
 	card.just_matched.disconnect(_on_card_just_matched)
 
+## Forgets the card with the lowest memory lifetime.
 func forget_least_recent_card() -> void:
 	# Only attempt to forget if there is a card to forget lol
 	if not card_memory.is_empty():
 		forget_card(get_cards_by_least_recent()[0])
 
+## Decrements the memory lifetime of each card in memory. [br]
+## Any card memory lifetime that is depleted is forgotten.
 func degrade_memory() -> void:
 	for c : Card in card_memory:
 		card_memory[c] -= 1
@@ -164,6 +160,7 @@ func degrade_memory() -> void:
 			logic_print(c.data.id + " reached memory lifetime end.")
 			forget_card(c)
 
+## Completely erase memory.
 func clear_memory() -> void:
 	card_memory.clear()
 

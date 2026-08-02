@@ -87,8 +87,8 @@ func animate_clear() -> void:
 		return
 	for i in active_cards:
 		i.disappear()
-		#await get_tree().create_timer(0.05).timeout
-	await get_tree().create_timer(0.8).timeout
+		#await get_tree().create_timer(0.05, false).timeout
+	await get_tree().create_timer(0.8, false).timeout
 
 func clear() -> void:
 	active_cards.clear()
@@ -127,12 +127,12 @@ func attempt_match(card1 : Card, card2 : Card) -> void:
 	var correct : bool = card1.data.front == card2.data.front
 	match_started.emit(correct)
 	if correct:
-		await get_tree().create_timer(correct_pause_duation).timeout
+		await get_tree().create_timer(correct_pause_duation, false).timeout
 		#correct_match()
 		match_sfx.play_random()
 		await correct_match()
 	else:
-		await get_tree().create_timer(incorrect_pause_duration).timeout
+		await get_tree().create_timer(incorrect_pause_duration, false).timeout
 		#incorrect_match()
 		await incorrect_match()
 	match_finished.emit(correct)
@@ -167,10 +167,10 @@ func incorrect_match() -> void:
 	# animate
 	_first_card.shake()
 	await _second_card.shake().finished
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(0.5, false).timeout
 	# flip back over
 	_first_card.flip()
-	await get_tree().create_timer(card_flip_interval).timeout
+	await get_tree().create_timer(card_flip_interval, false).timeout
 	_second_card.flip()
 	await _second_card.ended_flip
 

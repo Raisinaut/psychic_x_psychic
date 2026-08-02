@@ -57,7 +57,7 @@ func is_fading() -> bool:
 
 func start_fade_duration_timer() -> void:
 	var fade_animation_duration = fade_time * 2 + pause_time
-	fade_duration_timer = get_tree().create_timer(fade_animation_duration)
+	fade_duration_timer = get_tree().create_timer(fade_animation_duration, false)
 
 
 # SIGNALS ----------------------------------------------------------------------

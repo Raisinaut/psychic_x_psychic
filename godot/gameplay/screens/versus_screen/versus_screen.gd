@@ -11,7 +11,6 @@ signal grid_cleared
 @export var camera : Camera2D
 
 var opponent : Opponent = null
-var game_started : bool = false
 var game_over : bool = false
 var is_user_turn : bool = true : set = set_is_user_turn
 
@@ -19,7 +18,6 @@ func _ready() -> void:
 	connect_signals()
 
 func start_game() -> void:
-	game_started = true
 	game_over = false
 	is_user_turn = true
 	#card_grid.set_all_cards_interaction_disabled(false)
@@ -38,12 +36,12 @@ func end_game(user_forfeit: bool = false) -> void:
 	card_grid.set_all_cards_interaction_disabled(true) # this changes the zoom
 	reset_camera_zoom() # this line resets it as a workaround for now
 	grid_cleared.emit(user_forfeit)
-	game_started = false
 	game_over = true
 	delete_opponent_node()
 
 func delete_opponent_node() -> void:
-	opponent.queue_free()
+	if opponent:
+		opponent.queue_free()
 
 ## Used to stop processes that would otherwise cause issues if left running [br]
 ## I'm finding this is a problem with overly relying on awaits lol
@@ -105,7 +103,8 @@ func increment_relevant_score() -> void:
 ## Cycles turns or ends the game if the card grid is empty.
 func next_turn() -> void:
 	if card_grid.is_empty():
-		end_game()
+		if not game_over:
+			end_game()
 	else:
 		is_user_turn = not is_user_turn
 
@@ -119,7 +118,7 @@ func user_turn_start() -> void:
 ## the opponent has been deleted to stop any logic.
 func opponent_turn_start() -> void:
 	await message_display.display_message("OPPONENT TURN").finished
-	await get_tree().create_timer(0.3).timeout
+	await get_tree().create_timer(0.3, false).timeout
 	if opponent:
 		opponent.play()
 

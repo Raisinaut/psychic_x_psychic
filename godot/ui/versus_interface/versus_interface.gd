@@ -37,11 +37,11 @@ func sync_opponent_info_with_data(data : OpponentData) -> void:
 func fade_in(skip_to_end:= false) -> void:
 	user_info.fade_in(skip_to_end)
 	if not skip_to_end:
-		await get_tree().create_timer(0.4).timeout
+		await get_tree().create_timer(0.4, false).timeout
 	opponent_info.fade_in(skip_to_end)
 
 func fade_out(skip_to_end:= false) -> void:
 	user_info.fade_out(skip_to_end)
 	if not skip_to_end:
-		await get_tree().create_timer(0.4).timeout
+		await get_tree().create_timer(0.4, false).timeout
 	opponent_info.fade_out(skip_to_end)

@@ -26,13 +26,13 @@ func fade_in(skip_to_end:= false) -> void:
 	animation_player.play("fade_in")
 	if skip_to_end:
 		animation_player.seek(1000, true)
-	await get_tree().create_timer(animation_player.current_animation_length).timeout
+	await get_tree().create_timer(animation_player.current_animation_length, false).timeout
 
 func fade_out(skip_to_end:= false) -> void:
 	animation_player.play("fade_out")
 	if skip_to_end:
 		animation_player.seek(1000, true)
-	await get_tree().create_timer(animation_player.current_animation_length).timeout
+	await get_tree().create_timer(animation_player.current_animation_length, false).timeout
 
 # SETTERS ----------------------------------------------------------------------
 func set_portrait_texture(val) -> void:
