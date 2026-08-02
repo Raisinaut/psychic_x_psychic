@@ -1,6 +1,6 @@
 extends ControlFader
 
-signal grid_cleared
+signal game_just_ended
 
 @onready var card_grid: CardGrid = %CardGrid
 @onready var interface: = %Interface
@@ -11,16 +11,15 @@ signal grid_cleared
 @export var camera : Camera2D
 
 var opponent : Opponent = null
-var game_over : bool = false
+var game_has_ended : bool = false
 var is_user_turn : bool = true : set = set_is_user_turn
 
 func _ready() -> void:
 	connect_signals()
 
 func start_game() -> void:
-	game_over = false
+	game_has_ended = false
 	is_user_turn = true
-	#card_grid.set_all_cards_interaction_disabled(false)
 
 func reset_game() -> void:
 	GameManager.reset_scores()
@@ -28,15 +27,18 @@ func reset_game() -> void:
 	sync_with_opponent_data()
 	card_grid.reset()
 
-func forfeit() -> void:
+func forfeit_game() -> void:
 	end_game(true)
 
 func end_game(user_forfeit: bool = false) -> void:
+	if game_has_ended:
+		print("Game already ended")
+		return
 	print("Game Over")
 	card_grid.set_all_cards_interaction_disabled(true) # this changes the zoom
 	reset_camera_zoom() # this line resets it as a workaround for now
-	grid_cleared.emit(user_forfeit)
-	game_over = true
+	game_just_ended.emit(user_forfeit)
+	game_has_ended = true
 	delete_opponent_node()
 
 func delete_opponent_node() -> void:
@@ -103,8 +105,7 @@ func increment_relevant_score() -> void:
 ## Cycles turns or ends the game if the card grid is empty.
 func next_turn() -> void:
 	if card_grid.is_empty():
-		if not game_over:
-			end_game()
+		end_game()
 	else:
 		is_user_turn = not is_user_turn
 
@@ -140,7 +141,7 @@ func _on_card_grid_match_finished(_correct : bool) -> void:
 
 # SETTERS ----------------------------------------------------------------------
 func set_is_user_turn(val) -> void:
-	if game_over:
+	if game_has_ended:
 		push_warning("Did not change turn becuase game is concluded")
 		return
 	

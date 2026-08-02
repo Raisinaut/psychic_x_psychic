@@ -15,7 +15,7 @@ func _ready() -> void:
 	results_screen.main_menu_selected.connect(_on_results_main_menu_selected)
 	results_screen.reset_fade()
 	# setup versus screen
-	versus_screen.grid_cleared.connect(_on_versus_screen_grid_cleared)
+	versus_screen.game_just_ended.connect(_on_versus_screen_game_just_ended)
 	versus_screen.reset_fade()
 	# setup selection screen
 	selection_screen.opponent_selected.connect(_on_selection_screen_opponent_selected)
@@ -29,7 +29,7 @@ func _ready() -> void:
 
 # SIGNALS ----------------------------------------------------------------------
 # VERSUS
-func _on_versus_screen_grid_cleared(user_forfeit : bool) -> void:
+func _on_versus_screen_game_just_ended(user_forfeit : bool) -> void:
 	pause_screen.can_pause = false
 	await versus_screen.fade_out()
 	results_screen.update_results(versus_screen.opponent_data, user_forfeit)
@@ -57,7 +57,7 @@ func _on_results_main_menu_selected() -> void:
 # PAUSE SCREEN
 func _on_pause_screen_forfeit_selected() -> void:
 	pause_screen.can_pause = false
-	versus_screen.forfeit()
+	versus_screen.forfeit_game()
 
 # SELECTION
 func _on_selection_screen_opponent_selected(data : OpponentData) -> void:
