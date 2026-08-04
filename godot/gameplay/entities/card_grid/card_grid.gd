@@ -19,11 +19,11 @@ signal card_flipped(card : Card)
 
 @onready var cards: Node2D = %Cards
 @onready var match_sfx: VariableStreamPlayer = %MatchSFX
+@onready var original_size : Vector2 = size
 
 var variant_count : int = 0
 var active_cards : Array[Card] = []
 var deck : Array[CardData] = []
-#var card_coords : Dictionary[Vector2, Card] = {}
 var first_card : Card = null 
 var second_card : Card = null
 
@@ -31,10 +31,6 @@ var correct_pause_duation : float = 0.5
 var incorrect_pause_duration : float = 0.7
 var card_flip_interval : float = 0.2
 
-func _ready() -> void:
-	if Engine.is_editor_hint():
-		return
-	#reset()
 
 func reset() -> void:
 	set_all_cards_interaction_disabled(false)
@@ -43,6 +39,7 @@ func reset() -> void:
 	generate_deck()
 	clear()
 	populate()
+
 
 ## SETUP -----------------------------------------------------------------------
 func initialize_variant_count() -> void:
@@ -69,13 +66,12 @@ func generate_deck() -> void:
 func populate() -> void:
 	var card_spacing = Vector2.ONE * spacing
 	var card_area : Vector2 = size / Vector2(columns, rows)
-	var max_card_size = card_area - card_spacing
+	var max_card_size = card_area - card_spacing * 2
 	var card_center_offset = card_area * 0.5
 	for x in columns:
 		for y in rows:
 			var c = create_card(draw_shuffled_card_data())
 			var coords = Vector2(x, y)
-			#card_coords[coords] = c
 			c.global_position = card_area * coords + card_center_offset
 			c.ready.connect(maximize_card_size.bind(c, max_card_size))
 			c.started_flip.connect(_on_card_started_flip.bind(c))

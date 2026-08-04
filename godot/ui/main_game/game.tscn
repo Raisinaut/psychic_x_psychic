@@ -43,10 +43,10 @@ visible = false
 
 [node name="SelectionScreen" parent="Screens" unique_id=1623403045 instance=ExtResource("6_8f5te")]
 unique_name_in_owner = true
-visible = false
 
 [node name="PauseScreen" parent="Screens" unique_id=363086114 instance=ExtResource("7_006b8")]
 unique_name_in_owner = true
+visible = false
 
 [node name="ScreenEffects" type="CanvasLayer" parent="." unique_id=1786609515]
 
