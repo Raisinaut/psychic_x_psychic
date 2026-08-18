@@ -21,7 +21,7 @@ func _ready() -> void:
 	selection_screen.opponent_selected.connect(_on_selection_screen_opponent_selected)
 	selection_screen.opponent_highlighted.connect(_on_selection_screen_opponent_highlighted)
 	selection_screen.reset_fade()
-	selection_screen.fade_in()
+	selection_screen.fade_in() ## Show selection screen first
 	# setup pause screen
 	pause_screen.forfeit_selected.connect(_on_pause_screen_forfeit_selected)
 	pause_screen.close()
