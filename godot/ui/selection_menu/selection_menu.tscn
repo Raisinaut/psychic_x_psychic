@@ -32,6 +32,7 @@ layout_mode = 2
 theme_override_constants/separation = 50
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=364791836]
+z_index = 10
 layout_mode = 2
 text = "Choose Opponent"
 label_settings = ExtResource("1_tk7v6")

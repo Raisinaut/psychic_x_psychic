@@ -12,10 +12,10 @@ signal card_flipped(card : Card)
 	set(val): columns = val; check_grid_validity()
 @export_range(0, 1, 1, "or_greater") var rows : int = 3 :
 	set(val): rows = val; check_grid_validity()
-@export var spacing : int = 20
+@export var spacing : int = 10
 @export var card_scene : PackedScene
 @export var data_variants : Array[CardData] = []
-@export_range(0, 1, 1, "or_greater") var variant_count_override : int = 0
+@export_range(0, 1, 1, "or_greater") var variant_cap : int = 0
 
 @onready var cards: Node2D = %Cards
 @onready var match_sfx: VariableStreamPlayer = %MatchSFX
@@ -23,7 +23,6 @@ signal card_flipped(card : Card)
 var variant_count : int = 0
 var active_cards : Array[Card] = []
 var deck : Array[CardData] = []
-#var card_coords : Dictionary[Vector2, Card] = {}
 var first_card : Card = null 
 var second_card : Card = null
 
@@ -44,14 +43,15 @@ func reset() -> void:
 	clear()
 	populate()
 
+
 ## SETUP -----------------------------------------------------------------------
 func initialize_variant_count() -> void:
 	# Default to maximum variants
 	var max_variants = round(max_item_count() / 2.0)
 	variant_count = max_variants
 	# Allow override to anything lower than max
-	if variant_count_override in range(1, max_variants):
-		variant_count = variant_count_override
+	if variant_cap in range(1, max_variants):
+		variant_count = variant_cap
 
 func generate_deck() -> void:
 	check_grid_validity()
@@ -75,7 +75,6 @@ func populate() -> void:
 		for y in rows:
 			var c = create_card(draw_shuffled_card_data())
 			var coords = Vector2(x, y)
-			#card_coords[coords] = c
 			c.global_position = card_area * coords + card_center_offset
 			c.ready.connect(maximize_card_size.bind(c, max_card_size))
 			c.started_flip.connect(_on_card_started_flip.bind(c))

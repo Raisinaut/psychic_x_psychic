@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://jxj7xnxi08mm"]
 
 [ext_resource type="Script" uid="uid://dcpka2yohlos6" path="res://gameplay/entities/card/card.gd" id="1_8mlfh"]
-[ext_resource type="Shader" uid="uid://dlh64ehprmkm7" path="res://shaders/2d_perspective.gdshader" id="2_8o45e"]
 [ext_resource type="Texture2D" uid="uid://cljngxm14hkso" path="res://assets/textures/cards/front/tarot_1.png" id="3_8o45e"]
 [ext_resource type="Texture2D" uid="uid://7xbw03vhxpkd" path="res://assets/textures/cards/front/tarot_back.png" id="3_ltiga"]
 [ext_resource type="Texture2D" uid="uid://br5ym2xemb2ra" path="res://assets/textures/effects/whirl.png" id="5_2csm4"]
@@ -19,14 +18,6 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bvnae"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h4w2n"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_c6mru"]
-shader = ExtResource("2_8o45e")
-shader_parameter/fov = 35.000001615
-shader_parameter/cull_back = false
-shader_parameter/y_rot = 0.0
-shader_parameter/x_rot = 0.0
-shader_parameter/inset = 0.0
 
 [node name="Card" type="Node2D" unique_id=38919468]
 script = ExtResource("1_8mlfh")
@@ -78,7 +69,6 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_h4w2n")
 [node name="Texture" type="TextureRect" parent="Visuals/Panel" unique_id=1437854727]
 unique_name_in_owner = true
 texture_filter = 5
-material = SubResource("ShaderMaterial_c6mru")
 layout_mode = 2
 mouse_filter = 2
 texture = ExtResource("3_8o45e")
@@ -87,7 +77,6 @@ stretch_mode = 5
 
 [node name="HintTexture" type="TextureRect" parent="Visuals/Panel" unique_id=1648944894]
 unique_name_in_owner = true
-visible = false
 texture_filter = 5
 layout_mode = 2
 mouse_filter = 2
@@ -122,6 +111,7 @@ texture = ExtResource("3_ltiga")
 [node name="WhirlEffect" type="Sprite2D" parent="." unique_id=1919798607]
 unique_name_in_owner = true
 show_behind_parent = true
+z_index = -1
 scale = Vector2(1e-05, 1e-05)
 texture = ExtResource("5_2csm4")
 script = ExtResource("6_ltiga")
