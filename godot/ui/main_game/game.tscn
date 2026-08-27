@@ -27,6 +27,7 @@ script = ExtResource("1_hqqek")
 follow_viewport_enabled = true
 
 [node name="StarBackground" parent="Screens" unique_id=2107431555 instance=ExtResource("1_lvgfr")]
+z_index = -100
 
 [node name="CustomCamera" parent="Screens" unique_id=39163921 instance=ExtResource("2_ow7tg")]
 process_mode = 3

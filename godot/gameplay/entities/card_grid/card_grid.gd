@@ -12,10 +12,10 @@ signal card_flipped(card : Card)
 	set(val): columns = val; check_grid_validity()
 @export_range(0, 1, 1, "or_greater") var rows : int = 3 :
 	set(val): rows = val; check_grid_validity()
-@export var spacing : int = 20
+@export var spacing : int = 10
 @export var card_scene : PackedScene
 @export var data_variants : Array[CardData] = []
-@export_range(0, 1, 1, "or_greater") var variant_count_override : int = 0
+@export_range(0, 1, 1, "or_greater") var variant_cap : int = 0
 
 @onready var cards: Node2D = %Cards
 @onready var match_sfx: VariableStreamPlayer = %MatchSFX
@@ -47,8 +47,8 @@ func initialize_variant_count() -> void:
 	var max_variants = round(max_item_count() / 2.0)
 	variant_count = max_variants
 	# Allow override to anything lower than max
-	if variant_count_override in range(1, max_variants):
-		variant_count = variant_count_override
+	if variant_cap in range(1, max_variants):
+		variant_count = variant_cap
 
 func generate_deck() -> void:
 	check_grid_validity()

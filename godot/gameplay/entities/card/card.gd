@@ -86,19 +86,27 @@ func get_size() -> Vector2:
 
 func _on_press_detection_mouse_entered() -> void:
 	%HoverSFX.play_random()
-	if mouseover_tween: mouseover_tween.kill()
-	mouseover_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
-	mouseover_tween.tween_property(panel, "offset_transform_position:y", -40, 0.15)
-	mouseover_tween.parallel().tween_property(panel, "offset_transform_scale", Vector2.ONE * 1.2, 0.15)
+	raise()
 
 func _on_press_detection_mouse_exited() -> void:
-	if mouseover_tween: mouseover_tween.kill()
-	mouseover_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
-	mouseover_tween.tween_property(panel, "offset_transform_position:y", 0, 0.15)
-	mouseover_tween.parallel().tween_property(panel, "offset_transform_scale", Vector2.ONE, 0.15)
+	lower()
 
+func raise() -> void:
+	tween_height(40, 1.2)
+	z_index = 1
+
+func lower() -> void:
+	tween_height(0, 1.0)
+	z_index = 0
 
 # ANIMATIONS -------------------------------------------------------------------
+func tween_height(height : float, new_scale : float) -> Tween:
+	if mouseover_tween: mouseover_tween.kill()
+	mouseover_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
+	mouseover_tween.tween_property(panel, "offset_transform_position:y", -height, 0.15)
+	mouseover_tween.parallel().tween_property(panel, "offset_transform_scale", Vector2.ONE * new_scale, 0.15)
+	return mouseover_tween
+
 func shake() -> Tween:
 	if shake_tween: shake_tween.kill()
 	shake_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
@@ -137,6 +145,7 @@ func hint() -> Tween:
 	return hint_tween
 
 func disappear() -> Tween:
+	z_index = -1
 	await %WhirlEffect.grow().finished
 	var t = create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_SINE)
 	t.tween_property(visuals, "scale", Vector2.ZERO, 0.7)
