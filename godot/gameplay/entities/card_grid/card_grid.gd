@@ -33,9 +33,10 @@ var card_flip_interval : float = 0.2
 
 
 func reset() -> void:
+	if Engine.is_editor_hint():
+		return
 	set_all_cards_interaction_disabled(false)
 	initialize_variant_count()
-	#generate_data_variants() # for testing without premade resources
 	generate_deck()
 	clear()
 	populate()
@@ -64,9 +65,11 @@ func generate_deck() -> void:
 		deck.append(data)
 
 func populate() -> void:
+	minimize_grid_size()
+	
 	var card_spacing = Vector2.ONE * spacing
 	var card_area : Vector2 = size / Vector2(columns, rows)
-	var max_card_size = card_area - card_spacing * 2
+	var max_card_size = card_area - card_spacing 
 	var card_center_offset = card_area * 0.5
 	for x in columns:
 		for y in rows:
@@ -102,6 +105,19 @@ func create_card(data : CardData) -> Card:
 	cards.call_deferred("add_child", card)
 	card.data = data
 	return card
+
+func minimize_grid_size() -> void:
+	var card_spacing = Vector2.ONE * spacing
+	var card_area : Vector2 = size / Vector2(columns, rows)
+	var max_card_area = card_area - card_spacing 
+	
+	var base_card_size := Vector2(73, 113) # TODO: REFERENCE THIS FROM A GLOBAL SOURCE
+	var max_card_size = fit_vector_proportinally(base_card_size, max_card_area)
+	
+	var min_size = Vector2(columns, rows) * (max_card_size + card_spacing)
+	var displacement = (original_size - min_size) * 0.5
+	size = min_size
+	global_position += displacement
 
 func maximize_card_size(card : Card, max_size : Vector2) -> void:
 	card.set_size(fit_vector_proportinally(card.get_size(), max_size))

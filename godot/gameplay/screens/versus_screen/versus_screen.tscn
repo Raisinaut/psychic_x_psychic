@@ -10,13 +10,18 @@
 [ext_resource type="Resource" uid="uid://b5gvw6uqjxfpe" path="res://resources/cards/0_fool.tres" id="9_xbsua"]
 [ext_resource type="Resource" uid="uid://dwoti70apphj8" path="res://resources/cards/2_high_priestess.tres" id="10_d105i"]
 [ext_resource type="Resource" uid="uid://vh8q0pgubgq0" path="res://resources/cards/zener_circle.tres" id="11_2v4r7"]
+[ext_resource type="Resource" uid="uid://r23e1y6k8qt5" path="res://resources/cards/zener_star.tres" id="12_3a74c"]
 [ext_resource type="Resource" uid="uid://bwhrtpb7wjw6l" path="res://resources/cards/zener_plus.tres" id="12_sfvc4"]
 [ext_resource type="Resource" uid="uid://dsbxntiexqwdf" path="res://resources/cards/zener_square.tres" id="13_swuu1"]
 [ext_resource type="Resource" uid="uid://bn57xs5h0omvl" path="res://resources/cards/zener_waves.tres" id="15_ptk3l"]
 
 [node name="VersusScreen" type="Control" unique_id=2052495618]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_k7ggh")
 opponent_scene = ExtResource("2_pmgb3")
 opponent_data = ExtResource("2_xbsua")
@@ -24,14 +29,18 @@ opponent_data = ExtResource("2_xbsua")
 [node name="CardGrid" parent="." unique_id=1332015568 instance=ExtResource("1_awt3i")]
 unique_name_in_owner = true
 layout_mode = 1
-offset_left = 156.0
-offset_top = 145.0
-offset_right = 1567.0
-offset_bottom = 935.0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 127.0
+offset_top = 128.0
+offset_right = 1586.0
+offset_bottom = 936.0
+grow_horizontal = 1
+grow_vertical = 1
 columns = 1
 rows = 2
-data_variants = Array[ExtResource("8_l3jmu")]([ExtResource("9_xbsua"), ExtResource("10_d105i"), ExtResource("11_2v4r7"), ExtResource("12_sfvc4"), ExtResource("13_swuu1"), ExtResource("15_ptk3l")])
-metadata/_edit_use_anchors_ = true
+data_variants = Array[ExtResource("8_l3jmu")]([ExtResource("9_xbsua"), ExtResource("10_d105i"), ExtResource("11_2v4r7"), ExtResource("12_sfvc4"), ExtResource("13_swuu1"), ExtResource("15_ptk3l"), ExtResource("12_3a74c")])
 
 [node name="UI" type="Control" parent="." unique_id=1425082310]
 anchors_preset = 0

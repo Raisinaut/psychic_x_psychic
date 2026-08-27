@@ -86,6 +86,7 @@ stretch_mode = 5
 
 [node name="Glow" parent="Visuals/Panel" unique_id=1125906400 instance=ExtResource("5_8o45e")]
 unique_name_in_owner = true
+z_index = 5
 layout_mode = 2
 
 [node name="Shadow" type="TextureRect" parent="Visuals" unique_id=1691805350]
