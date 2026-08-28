@@ -20,6 +20,7 @@ signal card_flipped(card : Card)
 @onready var cards: Node2D = %Cards
 @onready var match_sfx: VariableStreamPlayer = %MatchSFX
 @onready var original_size : Vector2 = size
+@onready var original_position : Vector2 = global_position
 
 var variant_count : int = 0
 var active_cards : Array[Card] = []
@@ -161,7 +162,8 @@ func correct_match() -> void:
 	matched_correct.emit()
 	# delete
 	first_card.disappear()
-	await second_card.disappear()
+	if second_card: # Check in case of free
+		await second_card.disappear()
 	# perform action
 	var action_tween = attempt_action(card_reference.data.action_name)
 	if action_tween:
@@ -178,14 +180,19 @@ func incorrect_match() -> void:
 	second_card = null
 	# animate
 	_first_card.shake()
-	await _second_card.shake().finished
+	if _second_card:
+		await _second_card.shake().finished
 	await get_tree().create_timer(0.5, false).timeout
 	# flip back over
-	_first_card.flip()
+	if _first_card:
+		_first_card.flip()
 	await get_tree().create_timer(card_flip_interval, false).timeout
-	_second_card.flip()
+	if _second_card:
+		_second_card.flip()
 	await _second_card.ended_flip
 
+## Calls the associated action function and returns its [code]Tween[/code]. [br]
+## If no association exists, [code]null[/code] is returned.
 func attempt_action(action : String) -> Tween:
 	if card_actions.keys().has(action):
 		return call(card_actions[action])
