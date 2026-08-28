@@ -1,11 +1,14 @@
 extends Sprite2D
 
+const DEFAULT_GROW_SCALE : float = 0.25
+
 var scale_tween : Tween = null
+var grow_scale : float = DEFAULT_GROW_SCALE
 
 func grow() -> Tween:
 	if scale_tween: scale_tween.kill()
 	scale_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
-	scale_tween.tween_property(self, "scale", Vector2.ONE * 0.3, 0.3)
+	scale_tween.tween_property(self, "scale", Vector2.ONE * grow_scale, 0.3)
 	return scale_tween
 
 func shrink() -> Tween:
@@ -16,3 +19,6 @@ func shrink() -> Tween:
 
 func _process(delta) -> void:
 	rotation -= 10 * delta
+
+func adjust_grow_scale(factor : float) -> void:
+	grow_scale = DEFAULT_GROW_SCALE * factor

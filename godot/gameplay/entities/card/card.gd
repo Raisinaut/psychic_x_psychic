@@ -41,6 +41,8 @@ var hint_duration : float = 2.5
 @onready var hint_texture: TextureRect = %HintTexture
 @onready var shadow: TextureRect = %Shadow
 @onready var press_detection: Button = %PressDetection
+@onready var whirl_effect: = %WhirlEffect
+
 
 # AUDIO
 @onready var match_sfx: VariableStreamPlayer2D = %MatchSFX
@@ -74,12 +76,14 @@ func animating_flip() -> bool:
 
 ## Update card size and sync related node sizes.
 func set_size(val) -> void:
+	var scale_factor : float = val.length() / panel.size.length()
 	panel.size = val
 	panel.position = -val * 0.5
 	shadow.size = panel.size
 	shadow.position = panel.position
 	press_detection.size = panel.size
 	press_detection.position = panel.position
+	whirl_effect.adjust_grow_scale(scale_factor)
 
 func get_size() -> Vector2:
 	return panel.size
