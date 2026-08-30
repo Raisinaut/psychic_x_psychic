@@ -8,6 +8,8 @@ enum GameResults {
 
 signal score_changed(id, value)
 
+var current_opponent_data : OpponentData = null
+
 var user_score : int = 0:
 	set(val):
 		user_score = val
@@ -17,10 +19,10 @@ var cpu_score : int = 0:
 		cpu_score = val
 		score_changed.emit("cpu", val)
 
+
 func reset_scores() -> void:
 	user_score = 0
 	cpu_score = 0
-
 
 func get_game_results() -> int:
 	if user_score > cpu_score:

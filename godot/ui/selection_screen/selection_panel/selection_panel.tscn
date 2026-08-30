@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://r8joxh2bip8k"]
 
-[ext_resource type="Theme" uid="uid://c3to0g0smytnr" path="res://ui/selection_menu/selection_menu_theme.tres" id="1_2feqx"]
+[ext_resource type="Theme" uid="uid://c3to0g0smytnr" path="res://ui/selection_screen/selection_screen_theme.tres" id="1_2feqx"]
 [ext_resource type="Texture2D" uid="uid://7cl8yjm5pfc5" path="res://assets/textures/portraits/noir_portrait1.png" id="2_6inx1"]
-[ext_resource type="Script" uid="uid://bmljlalsqq1tt" path="res://ui/selection_menu/selection_panel/hover_effect_panels.gd" id="2_jh4xq"]
-[ext_resource type="Script" uid="uid://euky08ehedad" path="res://ui/selection_menu/selection_panel/selection_panel.gd" id="2_vlglx"]
+[ext_resource type="Script" uid="uid://bmljlalsqq1tt" path="res://ui/selection_screen/selection_panel/hover_effect_panels.gd" id="2_jh4xq"]
+[ext_resource type="Script" uid="uid://euky08ehedad" path="res://ui/selection_screen/selection_panel/selection_panel.gd" id="2_vlglx"]
 [ext_resource type="LabelSettings" uid="uid://dh2dyltco23pa" path="res://ui/label_settings/body_1.tres" id="3_jh4xq"]
 [ext_resource type="LabelSettings" uid="uid://cqu6xu4855ud4" path="res://ui/label_settings/body_3.tres" id="5_vlglx"]
 [ext_resource type="PackedScene" uid="uid://clwi6xerpkdr3" path="res://gameplay/entities/card/panel_glow.tscn" id="7_1cxyf"]

@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://b4naxj38wqywf"]
+
+[ext_resource type="Script" uid="uid://cbwbxf54jwb0a" path="res://ui/main_game/screen_switcher/screen_switcher.gd" id="1_tmu6o"]
+[ext_resource type="PackedScene" uid="uid://nkx3pxwjthab" path="res://gameplay/screens/versus_screen/versus_screen.tscn" id="2_1eax6"]
+[ext_resource type="PackedScene" uid="uid://cxba66dvcwi1i" path="res://gameplay/screens/results_screen/results_screen.tscn" id="3_vwbrg"]
+[ext_resource type="PackedScene" uid="uid://cmb7kl2ww2fo5" path="res://ui/selection_screen/selection_screen.tscn" id="4_2q4hx"]
+[ext_resource type="PackedScene" uid="uid://ufvug50cgelr" path="res://gameplay/backgrounds/star_background.tscn" id="5_t5824"]
+[ext_resource type="PackedScene" uid="uid://cpkubf0effrux" path="res://ui/pause_screen/pause_screen.tscn" id="5_vwbrg"]
+[ext_resource type="PackedScene" uid="uid://ytccxrdr6ety" path="res://gameplay/entities/camera/custom_camera.tscn" id="6_1oh24"]
+
+[node name="ScreenSwitcher" type="CanvasLayer" unique_id=470236616]
+follow_viewport_enabled = true
+script = ExtResource("1_tmu6o")
+versus_screen = ExtResource("2_1eax6")
+results_screen = ExtResource("3_vwbrg")
+selection_screen = ExtResource("4_2q4hx")
+
+[node name="StaticScreens" type="CanvasLayer" parent="." unique_id=11651137]
+layer = 2
+
+[node name="PauseScreen" parent="StaticScreens" unique_id=363086114 instance=ExtResource("5_vwbrg")]
+unique_name_in_owner = true
+visible = false
+
+[node name="StarBackground" parent="." unique_id=2107431555 instance=ExtResource("5_t5824")]
+z_index = -100
+
+[node name="CustomCamera" parent="." unique_id=39163921 instance=ExtResource("6_1oh24")]
+process_mode = 3
+position = Vector2(960, 540)

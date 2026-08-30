@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://cmb7kl2ww2fo5"]
 
 [ext_resource type="LabelSettings" uid="uid://d32epvrdmgpnq" path="res://ui/label_settings/header_1.tres" id="1_tk7v6"]
-[ext_resource type="Script" uid="uid://c1cqyo64nbohh" path="res://ui/selection_menu/selection_menu.gd" id="1_ub04j"]
-[ext_resource type="PackedScene" uid="uid://r8joxh2bip8k" path="res://ui/selection_menu/selection_panel/selection_panel.tscn" id="2_2qn0g"]
+[ext_resource type="Script" uid="uid://c1cqyo64nbohh" path="res://ui/selection_screen/selection_screen.gd" id="1_ub04j"]
+[ext_resource type="PackedScene" uid="uid://r8joxh2bip8k" path="res://ui/selection_screen/selection_panel/selection_panel.tscn" id="2_2qn0g"]
 [ext_resource type="Resource" uid="uid://c0lhdus5bfv7l" path="res://resources/opponents/opp_01_zeke.tres" id="3_dl7c7"]
 [ext_resource type="Resource" uid="uid://d3pq4f464p7j2" path="res://resources/opponents/opp_02_franc.tres" id="4_q1b66"]
 [ext_resource type="Resource" uid="uid://w4gwnbmx08f8" path="res://resources/opponents/opp_03_viola.tres" id="5_ub04j"]
 
-[node name="SelectionMenu" type="Control" unique_id=1623403045]
+[node name="SelectionScreen" type="Control" unique_id=1623403045]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
