@@ -1,21 +1,16 @@
 [gd_scene format=3 uid="uid://cm1beu1u6kkcj"]
 
 [ext_resource type="Script" uid="uid://c4nmmgjnem0sq" path="res://ui/main_game/game.gd" id="1_hqqek"]
-[ext_resource type="PackedScene" uid="uid://ufvug50cgelr" path="res://gameplay/backgrounds/star_background.tscn" id="1_lvgfr"]
-[ext_resource type="PackedScene" uid="uid://ytccxrdr6ety" path="res://gameplay/entities/camera/custom_camera.tscn" id="2_ow7tg"]
-[ext_resource type="PackedScene" uid="uid://nkx3pxwjthab" path="res://gameplay/screens/versus_screen/versus_screen.tscn" id="3_hqqek"]
 [ext_resource type="Texture2D" uid="uid://bkwjvfq8y3mcg" path="res://assets/textures/palettes/bw_palette.png" id="4_8f5te"]
-[ext_resource type="PackedScene" uid="uid://cxba66dvcwi1i" path="res://gameplay/screens/results_screen/results_screen.tscn" id="4_ow7tg"]
 [ext_resource type="Texture2D" uid="uid://cljngxm14hkso" path="res://assets/textures/cards/front/tarot_1.png" id="5_6qx4u"]
-[ext_resource type="PackedScene" uid="uid://cmb7kl2ww2fo5" path="res://ui/selection_menu/selection_menu.tscn" id="6_8f5te"]
 [ext_resource type="Texture2D" uid="uid://pne1dtcnmwev" path="res://assets/textures/particles/pixel_star_sheet.png" id="6_fmgiq"]
-[ext_resource type="PackedScene" uid="uid://cpkubf0effrux" path="res://ui/pause_screen/pause_screen.tscn" id="7_006b8"]
 [ext_resource type="Shader" uid="uid://bf4fahpf537ou" path="res://shaders/palette_adapt.gdshader" id="7_jgixr"]
+[ext_resource type="PackedScene" uid="uid://b4naxj38wqywf" path="res://ui/main_game/screen_switcher/screen_switcher.tscn" id="7_nmhep"]
 [ext_resource type="PackedScene" uid="uid://dyc1k0n3upv07" path="res://ui/palette_adapt.tscn" id="10_6qx4u"]
 [ext_resource type="PackedScene" uid="uid://c3qyqsesyrgju" path="res://ui/debug/debug_overlay.tscn" id="11_8f5te"]
 [ext_resource type="Texture2D" uid="uid://baqney5r6n4g3" path="res://assets/textures/palettes/palettes6.png" id="12_fmgiq"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jgixr"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ow7tg"]
 resource_local_to_scene = true
 shader = ExtResource("7_jgixr")
 shader_parameter/palette = ExtResource("12_fmgiq")
@@ -23,35 +18,11 @@ shader_parameter/palette = ExtResource("12_fmgiq")
 [node name="Game" type="Node2D" unique_id=2104542042]
 script = ExtResource("1_hqqek")
 
-[node name="Screens" type="CanvasLayer" parent="." unique_id=517849825]
-follow_viewport_enabled = true
-
-[node name="StarBackground" parent="Screens" unique_id=2107431555 instance=ExtResource("1_lvgfr")]
-z_index = -100
-
-[node name="CustomCamera" parent="Screens" unique_id=39163921 instance=ExtResource("2_ow7tg")]
-process_mode = 3
-position = Vector2(960, 540)
-
-[node name="VersusScreen" parent="Screens" unique_id=981335232 node_paths=PackedStringArray("camera") instance=ExtResource("3_hqqek")]
+[node name="ScreenSwitcher" parent="." unique_id=199742953 instance=ExtResource("7_nmhep")]
 unique_name_in_owner = true
-visible = false
-camera = NodePath("../CustomCamera")
-
-[node name="ResultsScreen" parent="Screens" unique_id=1371556415 instance=ExtResource("4_ow7tg")]
-unique_name_in_owner = true
-visible = false
-
-[node name="SelectionScreen" parent="Screens" unique_id=1623403045 instance=ExtResource("6_8f5te")]
-unique_name_in_owner = true
-
-[node name="StaticScreens" type="CanvasLayer" parent="." unique_id=348107608]
-
-[node name="PauseScreen" parent="StaticScreens" unique_id=363086114 instance=ExtResource("7_006b8")]
-unique_name_in_owner = true
-visible = false
 
 [node name="ScreenEffects" type="CanvasLayer" parent="." unique_id=1786609515]
+layer = 10
 
 [node name="TestNodes" type="Node2D" parent="ScreenEffects" unique_id=795294785]
 visible = false
@@ -94,7 +65,8 @@ texture = ExtResource("6_fmgiq")
 
 [node name="PaletteAdapt" parent="ScreenEffects" unique_id=1214921840 instance=ExtResource("10_6qx4u")]
 unique_name_in_owner = true
-material = SubResource("ShaderMaterial_jgixr")
+material = SubResource("ShaderMaterial_ow7tg")
 palette = ExtResource("12_fmgiq")
 
 [node name="DebugOverlay" parent="." unique_id=66341293 instance=ExtResource("11_8f5te")]
+layer = 100

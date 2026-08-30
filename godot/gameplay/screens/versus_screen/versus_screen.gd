@@ -14,8 +14,12 @@ var opponent : Opponent = null
 var game_has_ended : bool = false
 var is_user_turn : bool = true : set = set_is_user_turn
 
+
 func _ready() -> void:
 	connect_signals()
+	#opponent_data = GameManager.current_opponent_data
+	reset_game()
+	start_game()
 
 func start_game() -> void:
 	game_has_ended = false
@@ -36,7 +40,7 @@ func end_game(user_forfeit: bool = false) -> void:
 		return
 	print("Game Over")
 	card_grid.set_all_cards_interaction_disabled(true) # this changes the zoom
-	reset_camera_zoom() # this line resets it as a workaround for now
+	#reset_camera_zoom() # this line resets it as a workaround for now
 	game_just_ended.emit(user_forfeit)
 	game_has_ended = true
 	delete_opponent_node()
@@ -55,6 +59,7 @@ func create_opponent_node() -> void:
 	opponent = opp
 
 func fade_in() -> void:
+	reset_fade()
 	visible = true
 	await interface.fade_in()
 	fade_in_element(self)
@@ -67,14 +72,9 @@ func fade_out() -> void:
 	visible = false
 
 func reset_fade() -> void:
-	fade_out_element(self, 0)
+	self.modulate.a = 0
 	interface.fade_out(true)
 	visible = false
-
-func _process(_delta: float) -> void:
-	# Update ui transform to nullify camera zoom and displacement
-	$UI.offset_transform_scale = Vector2.ONE * 1.0 / camera.zoom
-	$UI.offset_transform_position = camera.get_pivot_displacement()
 
 func reset_camera_zoom() -> void:
 	camera.target_zoom = 1.0
@@ -127,7 +127,7 @@ func opponent_turn_start() -> void:
 # SIGNALS ----------------------------------------------------------------------
 func _on_card_grid_lockout_changed(lockout_active : bool) -> void:
 	var target_zoom = 1.05 if lockout_active else 1.0
-	camera.target_zoom = target_zoom
+	#camera.target_zoom = target_zoom
 
 func _on_card_grid_match_started(_correct: bool) -> void:
 	interface.field_input_disabled = true
