@@ -22,7 +22,7 @@ script = ExtResource("1_hqqek")
 unique_name_in_owner = true
 
 [node name="ScreenEffects" type="CanvasLayer" parent="." unique_id=1786609515]
-layer = 10
+layer = 100
 
 [node name="TestNodes" type="Node2D" parent="ScreenEffects" unique_id=795294785]
 visible = false
@@ -69,4 +69,4 @@ material = SubResource("ShaderMaterial_ow7tg")
 palette = ExtResource("12_fmgiq")
 
 [node name="DebugOverlay" parent="." unique_id=66341293 instance=ExtResource("11_8f5te")]
-layer = 100
+layer = 1000

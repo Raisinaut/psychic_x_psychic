@@ -16,7 +16,7 @@ results_screen = ExtResource("3_vwbrg")
 selection_screen = ExtResource("4_2q4hx")
 
 [node name="StaticScreens" type="CanvasLayer" parent="." unique_id=11651137]
-layer = 2
+layer = 10
 
 [node name="PauseScreen" parent="StaticScreens" unique_id=363086114 instance=ExtResource("5_vwbrg")]
 unique_name_in_owner = true

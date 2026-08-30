@@ -23,7 +23,6 @@ func _ready() -> void:
 # SCREEN MANAGEMENT -----------------------------------------------------------
 func close_current_screen() -> void:
 	if current_screen:
-		print("fade ", current_screen)
 		await current_screen.fade_out()
 		current_screen.queue_free()
 
@@ -71,7 +70,7 @@ func open_versus_screen(data: OpponentData = null) -> void:
 func _on_results_screen_rematch_selected() -> void:
 	await close_current_screen()
 	open_versus_screen()
-	#pause_screen.can_pause = true
+	pause_screen.can_pause = true
 
 func _on_results_new_opponent_selected() -> void:
 	await close_current_screen()
