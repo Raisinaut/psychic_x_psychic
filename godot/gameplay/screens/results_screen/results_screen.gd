@@ -32,7 +32,6 @@ func _ready() -> void:
 	new_opponent_button.pressed.connect(new_opponent_selected.emit)
 
 func show_message() -> void:
-	print("show message")
 	content_mode = ContentModes.MESSAGE
 	message_label.visible_characters = 0
 	await fade_in_element(result_label).finished
@@ -43,7 +42,6 @@ func show_message() -> void:
 	message_label.reveal_more()
 
 func show_choices() -> void:
-	print("show choices")
 	content_mode = ContentModes.CHOICES
 	await fade_in_element(noise_darken).finished
 	await fade_out_element(noise_effect, 0.0).finished

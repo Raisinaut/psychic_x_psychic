@@ -86,6 +86,10 @@ func reveal_all():
 	if not is_fully_visible():
 		fully_visible.emit()
 	visible_characters = -1
+	reveal_progress = original_text.length() - 1
+	match reveal_mode:
+		RevealModes.STATIC:
+			text = original_text
 
 
 # CHECKS -----------------------------------------------------------------------
