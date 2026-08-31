@@ -1,12 +1,26 @@
 class_name TextReveal
-extends Label
+extends RichTextLabel
 
-signal revealed_character
+signal revealed_more
 signal fully_visible
 
-@export var reveal_pause := 0.03
+enum RevealChunks {
+	LETTER,
+	WORD
+}
 
-var character_pauses = {
+enum RevealModes {
+	FLUID,
+	STATIC
+}
+
+@export var reveal_pause := 0.025
+@export var reveal_chunk :=  RevealChunks.LETTER
+@export var reveal_mode :=  RevealModes.FLUID
+
+var reveal_progress : int = 0
+var original_text: String = ""
+var character_pauses : Dictionary[String, float] = {
 	"," : 0.0,
 	"." : 0.3,
 	"!" : 0.3,
@@ -15,50 +29,80 @@ var character_pauses = {
 	"-" : 0.3
 }
 
-var settings_override: LabelSettings = null
-
 
 func _ready():
-	_match_data()
-	revealed_character.connect(reveal_next_character)
+	bbcode_enabled = true
+	insert_newlines(" ")
+	revealed_more.connect(reveal_more)
 	visible_characters = 0
-	#reveal_next_character()
 
-
-func _match_data():
-	if settings_override != null:
-		label_settings = settings_override
+func update_text(_text : String) -> void:
+	text = _text
+	original_text = text
 	insert_newlines(" ")
 
 
-func reveal_next_character():
+# REVEAL METHODS ---------------------------------------------------------------
+func _next_character_idx() -> int:
+	return reveal_progress + 1
+
+func _next_word_idx() -> int:
+	var word_end_idx : int = original_text.find(" ", reveal_progress + 1)
+	var word_length : int = max(word_end_idx - reveal_progress, -1)
+	var word: String = original_text.substr(reveal_progress, word_length)
+	return reveal_progress + word.length()
+
+func reveal_more():
 	if is_fully_visible():
 		fully_visible.emit()
 		return
-	# check for an additional wait
-	var next_character = text.substr(visible_characters, 1)
-	var additional_pause = 0.0
-	if character_pauses.has(next_character):
-		additional_pause = character_pauses[next_character]
-	#SpeakerAudio.play_char_sound(next_character)
-	# reveal next character
-	visible_characters += 1
-	await get_tree().create_timer(reveal_pause + additional_pause, false).timeout
-	revealed_character.emit()
-
+	
+	# Get reveal index
+	match reveal_chunk:
+		RevealChunks.LETTER:
+			reveal_progress = _next_character_idx()
+		RevealChunks.WORD:
+			reveal_progress = _next_word_idx()
+	
+	# Reveal progress
+	match reveal_mode:
+		RevealModes.FLUID:
+			visible_characters = reveal_progress
+		RevealModes.STATIC:
+			visible_characters = -1 # show all chars, control opacity below
+			text = original_text
+			text = text.insert(reveal_progress, "[color=ffffff00]")
+			text = text.insert(-1, "[/style]")
+	
+	# Pause between reveals
+	var pause_duration : float = reveal_pause
+	var final_character = original_text[reveal_progress - 1]
+	if character_pauses.has(final_character):
+		pause_duration += character_pauses[final_character]
+	await get_tree().create_timer(pause_duration, false).timeout
+	revealed_more.emit()
 
 func reveal_all():
 	if not is_fully_visible():
 		fully_visible.emit()
-	visible_characters = text.length()
+	visible_characters = -1
 
 
+# CHECKS -----------------------------------------------------------------------
 func is_fully_visible() -> bool:
-	return visible_characters >= text.length()
+	match reveal_mode:
+		RevealModes.FLUID:
+			return visible_characters >= original_text.length()
+		RevealModes.STATIC:
+			return reveal_progress >= original_text.length()
+		_:
+			push_warning("Invalid text reveal mode.")
+			return false
 
 
-# reads through the text and progressively 
-# inserts the argument string at each newline
+# UTILITY ----------------------------------------------------------------------
+## Parses the text and progressively 
+## inserts the argument string at each newline.
 func insert_newlines(additional_str := ""):
 	# start with all characters invisible
 	visible_characters = 0

@@ -189,7 +189,7 @@ func incorrect_match() -> void:
 	await get_tree().create_timer(card_flip_interval, false).timeout
 	if _second_card:
 		_second_card.flip()
-	await _second_card.ended_flip
+		await _second_card.ended_flip
 
 ## Calls the associated action function and returns its [code]Tween[/code]. [br]
 ## If no association exists, [code]null[/code] is returned.

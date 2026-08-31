@@ -4,7 +4,7 @@
 [ext_resource type="LabelSettings" uid="uid://d32epvrdmgpnq" path="res://ui/label_settings/header_1.tres" id="2_wauw3"]
 [ext_resource type="Material" uid="uid://uah8cbjhuu7l" path="res://shaders/materials/noise_border_2.tres" id="3_map34"]
 [ext_resource type="Theme" uid="uid://clr5tu8ev7u57" path="res://theme/interface_theme.tres" id="3_wauw3"]
-[ext_resource type="LabelSettings" uid="uid://dh2dyltco23pa" path="res://ui/label_settings/body_1.tres" id="4_bj6sl"]
+[ext_resource type="FontFile" uid="uid://galv8moamnrk" path="res://assets/fonts/Elsie/Elsie-Black.ttf" id="4_wauw3"]
 [ext_resource type="Script" uid="uid://dcvy1n3iig2bx" path="res://general/control/text_reveal.gd" id="5_dwuet"]
 [ext_resource type="Texture2D" uid="uid://7cl8yjm5pfc5" path="res://assets/textures/portraits/noir_portrait1.png" id="6_5mcmp"]
 
@@ -32,6 +32,8 @@ corner_radius_top_left = 50
 corner_radius_top_right = 50
 corner_radius_bottom_right = 50
 corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_afkid"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7c5pc"]
 
@@ -123,20 +125,25 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_2lncs")
 
-[node name="MessageLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ContentContainer/MessageContainer" unique_id=1497142715]
+[node name="MessageLabel" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ContentContainer/MessageContainer" unique_id=1986786932]
 unique_name_in_owner = true
-custom_maximum_size = Vector2(900, 300)
+custom_maximum_size = Vector2(900, 600)
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_fonts/normal_font = ExtResource("4_wauw3")
+theme_override_font_sizes/normal_font_size = 71
+theme_override_styles/focus = SubResource("StyleBoxEmpty_afkid")
+bbcode_enabled = true
 text = "Big long sentence to test the boundaries of the text box. Plus another for safety - you can't be too careful now."
-label_settings = ExtResource("4_bj6sl")
+autowrap_mode = 2
 horizontal_alignment = 1
 vertical_alignment = 1
-autowrap_mode = 2
 script = ExtResource("5_dwuet")
+reveal_mode = 1
 
 [node name="ButtonContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ContentContainer" unique_id=395093401]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_vertical = 4
 theme = ExtResource("3_wauw3")

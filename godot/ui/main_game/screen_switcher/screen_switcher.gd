@@ -63,6 +63,7 @@ func open_versus_screen(data: OpponentData = null) -> void:
 	screen.game_just_ended.connect(_on_versus_screen_game_just_ended)
 	screen.reset_fade()
 	screen.fade_in()
+	pause_screen.can_pause = true
 
 
 # SIGNALS ----------------------------------------------------------------------
@@ -70,7 +71,6 @@ func open_versus_screen(data: OpponentData = null) -> void:
 func _on_results_screen_rematch_selected() -> void:
 	await close_current_screen()
 	open_versus_screen()
-	pause_screen.can_pause = true
 
 func _on_results_new_opponent_selected() -> void:
 	await close_current_screen()
@@ -87,7 +87,6 @@ func _on_selection_screen_opponent_selected(data : OpponentData) -> void:
 	opponent_selected.emit(data) # update palette data in receiving function
 	await close_current_screen()
 	open_versus_screen(data)
-	pause_screen.can_pause = true
 
 func _on_selection_screen_opponent_highlighted(data : OpponentData) -> void:
 	opponent_highlighted.emit(data)
@@ -102,9 +101,8 @@ func _on_versus_screen_game_just_ended(user_forfeit : bool) -> void:
 
 # PAUSE
 func _on_pause_screen_forfeit_selected() -> void:
-	pause_screen.can_pause = false
 	var forfeit_method : String = "forfeit_game"
 	if current_screen.has_method(forfeit_method):
-		current_screen.forfeit_game()
+		current_screen.forfeit_game() # triggers game_just_ended signal
 	else:
 		push_error("Current screen does not have method: ", forfeit_method)

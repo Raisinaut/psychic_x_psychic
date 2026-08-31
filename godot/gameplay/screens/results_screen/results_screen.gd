@@ -40,7 +40,7 @@ func show_message() -> void:
 	await fade_in_element(portrait).finished
 	await fade_in_element(noise_effect, 0.0).finished
 	await fade_out_element(noise_darken).finished
-	message_label.reveal_next_character()
+	message_label.reveal_more()
 
 func show_choices() -> void:
 	print("show choices")
@@ -72,13 +72,13 @@ func update_results(data : OpponentData, lose_override := false) -> void:
 	match(results):
 		GameManager.GameResults.P1_WIN:
 			result_label.text = "YOU WIN"
-			message_label.text = data.phrase_lose
+			message_label.update_text(data.phrase_lose)
 		GameManager.GameResults.P2_WIN:
 			result_label.text = "YOU LOSE"
-			message_label.text = data.phrase_win
+			message_label.update_text(data.phrase_win)
 		GameManager.GameResults.TIE:
 			result_label.text = "TIE"
-			message_label.text = data.phrase_tie
+			message_label.update_text(data.phrase_tie)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
