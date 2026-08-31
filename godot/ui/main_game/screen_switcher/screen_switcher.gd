@@ -55,7 +55,7 @@ func open_selection_screen() -> void:
 
 func open_versus_screen(data: OpponentData = null) -> void:
 	var screen = open_and_set_current(versus_screen)
-	if data:
+	if data != null:
 		screen.opponent_data = data
 	else:
 		print("Data reused on versus screen.")
@@ -70,7 +70,7 @@ func open_versus_screen(data: OpponentData = null) -> void:
 # RESULTS
 func _on_results_screen_rematch_selected() -> void:
 	await close_current_screen()
-	open_versus_screen()
+	open_versus_screen(selected_opponent)
 
 func _on_results_new_opponent_selected() -> void:
 	await close_current_screen()
