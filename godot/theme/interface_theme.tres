@@ -1,6 +1,6 @@
 [gd_resource type="Theme" format=3 uid="uid://clr5tu8ev7u57"]
 
-[ext_resource type="FontFile" uid="uid://dsdu7sueat7xm" path="res://assets/fonts/Aref_Ruqaa_Ink,Elsie/Aref_Ruqaa_Ink/ArefRuqaaInk-Bold.ttf" id="1_ylb6o"]
+[ext_resource type="FontFile" uid="uid://dsdu7sueat7xm" path="res://assets/fonts/Aref_Ruqaa_Ink/ArefRuqaaInk-Bold.ttf" id="1_ylb6o"]
 [ext_resource type="StyleBox" uid="uid://bo2di7kejqx8" path="res://ui/styles/button/button_hover.tres" id="2_dx63t"]
 [ext_resource type="StyleBox" uid="uid://bollb4nujow60" path="res://ui/styles/button/button_normal.tres" id="2_mkijn"]
 [ext_resource type="StyleBox" uid="uid://clx3r1ar1o8lm" path="res://ui/styles/button/button_pressed.tres" id="3_utrxr"]

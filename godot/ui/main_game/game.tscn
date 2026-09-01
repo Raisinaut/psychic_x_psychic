@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://cm1beu1u6kkcj"]
 
 [ext_resource type="Script" uid="uid://c4nmmgjnem0sq" path="res://ui/main_game/game.gd" id="1_hqqek"]
+[ext_resource type="Script" uid="uid://oyhgi3oyypcg" path="res://autoloads/music_manager/linked_nodes/music_trigger.gd" id="2_hqqek"]
+[ext_resource type="Resource" uid="uid://xhfwua1vlr67" path="res://resources/music_loops/game_loop.tres" id="3_8f5te"]
 [ext_resource type="Texture2D" uid="uid://bkwjvfq8y3mcg" path="res://assets/textures/palettes/bw_palette.png" id="4_8f5te"]
 [ext_resource type="Texture2D" uid="uid://cljngxm14hkso" path="res://assets/textures/cards/front/tarot_1.png" id="5_6qx4u"]
 [ext_resource type="Texture2D" uid="uid://pne1dtcnmwev" path="res://assets/textures/particles/pixel_star_sheet.png" id="6_fmgiq"]
@@ -10,13 +12,18 @@
 [ext_resource type="PackedScene" uid="uid://c3qyqsesyrgju" path="res://ui/debug/debug_overlay.tscn" id="11_8f5te"]
 [ext_resource type="Texture2D" uid="uid://baqney5r6n4g3" path="res://assets/textures/palettes/palettes6.png" id="12_fmgiq"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ow7tg"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8f5te"]
 resource_local_to_scene = true
 shader = ExtResource("7_jgixr")
 shader_parameter/palette = ExtResource("12_fmgiq")
 
 [node name="Game" type="Node2D" unique_id=2104542042]
 script = ExtResource("1_hqqek")
+
+[node name="MusicTrigger" type="Node" parent="." unique_id=218014895]
+script = ExtResource("2_hqqek")
+music_loop = ExtResource("3_8f5te")
+metadata/_custom_type_script = "uid://oyhgi3oyypcg"
 
 [node name="ScreenSwitcher" parent="." unique_id=199742953 instance=ExtResource("7_nmhep")]
 unique_name_in_owner = true
@@ -65,7 +72,7 @@ texture = ExtResource("6_fmgiq")
 
 [node name="PaletteAdapt" parent="ScreenEffects" unique_id=1214921840 instance=ExtResource("10_6qx4u")]
 unique_name_in_owner = true
-material = SubResource("ShaderMaterial_ow7tg")
+material = SubResource("ShaderMaterial_8f5te")
 palette = ExtResource("12_fmgiq")
 
 [node name="DebugOverlay" parent="." unique_id=66341293 instance=ExtResource("11_8f5te")]

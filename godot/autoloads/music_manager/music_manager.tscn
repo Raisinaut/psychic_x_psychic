@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bf0aix4f5bo2o"]
+
+[ext_resource type="Script" uid="uid://dsd1uv3hrkqjo" path="res://autoloads/music_manager/music_manager.gd" id="1_pldsu"]
+[ext_resource type="Script" uid="uid://ce6sswkcf32p0" path="res://autoloads/music_manager/music_looper.gd" id="2_034fw"]
+
+[node name="MusicManager" type="Node" unique_id=199755584]
+process_mode = 3
+script = ExtResource("1_pldsu")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=509176376]
+unique_name_in_owner = true
+bus = &"Music"
+playback_type = 1
+script = ExtResource("2_034fw")
+metadata/_custom_type_script = "uid://ce6sswkcf32p0"

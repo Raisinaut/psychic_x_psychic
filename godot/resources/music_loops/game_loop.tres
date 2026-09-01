@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MusicLoop" format=3 uid="uid://xhfwua1vlr67"]
+
+[ext_resource type="AudioStream" uid="uid://8nolci0ibhj3" path="res://assets/audio/music/main_game/end.ogg" id="1_7tr0x"]
+[ext_resource type="Script" uid="uid://biby762t7k0g2" path="res://resources/_classes/music_loop.gd" id="1_dualq"]
+[ext_resource type="AudioStream" uid="uid://6jnog4q48sxn" path="res://assets/audio/music/main_game/loop.ogg" id="2_0pg7y"]
+[ext_resource type="AudioStream" uid="uid://ctka5j1mo52f1" path="res://assets/audio/music/main_game/start.ogg" id="4_wqir8"]
+
+[resource]
+script = ExtResource("1_dualq")
+start = ExtResource("4_wqir8")
+loop = ExtResource("2_0pg7y")
+end = ExtResource("1_7tr0x")
+metadata/_custom_type_script = "uid://biby762t7k0g2"

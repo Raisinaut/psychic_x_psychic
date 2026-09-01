@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dcpka2yohlos6" path="res://gameplay/entities/card/card.gd" id="1_8mlfh"]
 [ext_resource type="Texture2D" uid="uid://cljngxm14hkso" path="res://assets/textures/cards/front/tarot_1.png" id="3_8o45e"]
-[ext_resource type="Texture2D" uid="uid://7xbw03vhxpkd" path="res://assets/textures/cards/front/tarot_back.png" id="3_ltiga"]
+[ext_resource type="Texture2D" uid="uid://7xbw03vhxpkd" path="res://assets/textures/cards/back/tarot_back.png" id="3_ltiga"]
 [ext_resource type="Texture2D" uid="uid://br5ym2xemb2ra" path="res://assets/textures/effects/whirl.png" id="5_2csm4"]
 [ext_resource type="PackedScene" uid="uid://clwi6xerpkdr3" path="res://gameplay/entities/card/panel_glow.tscn" id="5_8o45e"]
 [ext_resource type="Script" uid="uid://bcvw3mjepgimq" path="res://gameplay/entities/card/whirl_effect.gd" id="6_ltiga"]

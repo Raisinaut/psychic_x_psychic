@@ -1,6 +1,6 @@
 [gd_resource type="LabelSettings" format=3 uid="uid://d32epvrdmgpnq"]
 
-[ext_resource type="FontFile" uid="uid://dsdu7sueat7xm" path="res://assets/fonts/Aref_Ruqaa_Ink,Elsie/Aref_Ruqaa_Ink/ArefRuqaaInk-Bold.ttf" id="1_k0hm5"]
+[ext_resource type="FontFile" uid="uid://dsdu7sueat7xm" path="res://assets/fonts/Aref_Ruqaa_Ink/ArefRuqaaInk-Bold.ttf" id="1_k0hm5"]
 
 [resource]
 font = ExtResource("1_k0hm5")

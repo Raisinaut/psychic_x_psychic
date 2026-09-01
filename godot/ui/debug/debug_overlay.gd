@@ -12,4 +12,4 @@ func _on_reset_button_pressed() -> void:
 	get_tree().reload_current_scene()
 
 func _on_volume_button_toggled(state: bool) -> void:
-	MusicManager.mute_music(state)
+	MusicManager.muted = state

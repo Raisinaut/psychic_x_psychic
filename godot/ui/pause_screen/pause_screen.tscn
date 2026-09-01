@@ -3,6 +3,7 @@
 [ext_resource type="Theme" uid="uid://clr5tu8ev7u57" path="res://theme/interface_theme.tres" id="1_63bmq"]
 [ext_resource type="Script" uid="uid://1dlhpua2v8hy" path="res://ui/pause_screen/pause_screen.gd" id="2_fixcu"]
 [ext_resource type="LabelSettings" uid="uid://d32epvrdmgpnq" path="res://ui/label_settings/header_1.tres" id="3_1jwif"]
+[ext_resource type="Script" uid="uid://dugsnxgd7mg0g" path="res://autoloads/music_manager/linked_nodes/music_dampen_trigger.gd" id="4_t4jpt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bvnae"]
 bg_color = Color(0, 0, 0, 0.7647059)
@@ -55,3 +56,10 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "FORFEIT
 "
+
+[node name="MusicDampenTrigger" type="Control" parent="." unique_id=3865540]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_t4jpt")
+metadata/_custom_type_script = "uid://dugsnxgd7mg0g"
