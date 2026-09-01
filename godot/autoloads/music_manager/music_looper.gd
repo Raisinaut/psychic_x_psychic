@@ -19,11 +19,9 @@ func _on_finished() -> void:
 	match(stream):
 		music_loop.start:
 			start_section(music_loop.loop)
-			print("music start loop")
 		music_loop.loop:
 			if infinite_loop:
 				start_section(music_loop.loop)
-				print("music continue loop")
 			else:
 				start_section(music_loop.end)
 		music_loop.end:

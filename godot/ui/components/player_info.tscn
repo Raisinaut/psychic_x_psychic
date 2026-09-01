@@ -418,7 +418,7 @@ layout_mode = 2
 theme_override_styles/panel = ExtResource("4_gy1nr")
 
 [node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/PanelContainer" unique_id=744230521]
-custom_minimum_size = Vector2(60, 90)
+custom_minimum_size = Vector2(58, 90)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
