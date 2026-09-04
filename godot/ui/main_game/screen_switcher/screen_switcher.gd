@@ -3,6 +3,7 @@ extends CanvasLayer
 signal opponent_highlighted(data: OpponentData)
 signal opponent_selected(data: OpponentData)
 
+@export var creation_screen : PackedScene
 @export var versus_screen : PackedScene
 @export var results_screen : PackedScene
 @export var selection_screen : PackedScene
@@ -14,7 +15,8 @@ var current_screen : Node
 var selected_opponent: OpponentData = null
 
 func _ready() -> void:
-	open_selection_screen()
+	open_creation_screen()
+	#open_selection_screen()
 	# setup pause screen
 	pause_screen.forfeit_selected.connect(_on_pause_screen_forfeit_selected)
 	pause_screen.close()
@@ -35,6 +37,10 @@ func open_and_set_current(screen_scene : PackedScene) -> Control:
 
 
 # OPEN SCREENS -----------------------------------------------------------------
+func open_creation_screen() -> void:
+	var screen = open_and_set_current(creation_screen)
+	await screen.ready
+
 func open_results_screen(data: OpponentData, user_forfeit : bool) -> void:
 	GameManager.can_pause = false # not pausable
 	var screen = open_and_set_current(results_screen)
