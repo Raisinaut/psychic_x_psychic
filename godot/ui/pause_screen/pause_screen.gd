@@ -6,7 +6,7 @@ signal resume_selected
 @onready var resume_button: Button = %ResumeButton
 @onready var forfeit_button: Button = %ForfeitButton
 
-var can_pause : bool = false
+var can_pause : bool = false : set = set_can_pause
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -37,6 +37,9 @@ func close() -> void:
 func set_buttons_disabled(disabled : bool) -> void:
 	resume_button.disabled = disabled
 	forfeit_button.disabled = disabled
+
+func set_can_pause(state: bool) -> void:
+	can_pause = state
 
 
 # ANIMATION --------------------------------------------------------------------

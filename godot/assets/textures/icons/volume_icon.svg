@@ -2,18 +2,19 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="32"
-   height="32"
-   viewBox="0 0 32 32"
+   width="24"
+   height="24"
+   viewBox="0 0 24 24"
    version="1.1"
    id="svg1"
    sodipodi:docname="volume_icon.svg"
    inkscape:version="1.4.4 (dcaf3e7d9e, 2026-05-05)"
-   inkscape:export-filename="volume_icon_on.png"
+   inkscape:export-filename="pause.png"
    inkscape:export-xdpi="768"
    inkscape:export-ydpi="768"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
   <sodipodi:namedview
@@ -27,15 +28,15 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="px"
      showgrid="true"
-     inkscape:zoom="20.804524"
-     inkscape:cx="19.490953"
-     inkscape:cy="10.190091"
+     inkscape:zoom="34.109431"
+     inkscape:cx="18.631211"
+     inkscape:cy="10.466314"
      inkscape:window-width="2560"
      inkscape:window-height="1368"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer1">
+     inkscape:current-layer="layer3">
     <inkscape:grid
        id="grid1"
        units="px"
@@ -54,13 +55,15 @@
   <defs
      id="defs1" />
   <g
-     inkscape:label="Layer 1"
+     inkscape:label="volume"
      inkscape:groupmode="layer"
      id="layer1"
-     style="display:inline">
+     style="display:none">
     <g
        id="g15"
-       inkscape:label="speaker">
+       inkscape:label="speaker"
+       transform="translate(-5,-4)"
+       style="display:inline">
       <path
          style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
          d="M 17,7 V 25 L 12,19 H 7 v -6 h 5 z"
@@ -70,7 +73,8 @@
     <g
        id="g10"
        inkscape:label="waves"
-       style="display:inline;stroke-width:2;stroke-dasharray:none">
+       style="display:none;stroke-width:2;stroke-dasharray:none"
+       transform="translate(-5.5,-4)">
       <path
          style="fill:none;stroke:#ffffff;stroke-width:2;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
          id="path9"
@@ -102,8 +106,8 @@
     </g>
     <g
        id="g14"
-       transform="translate(0.70710678)"
-       style="display:none;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-opacity:1"
+       transform="translate(-4.7928932,-4)"
+       style="display:inline;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-opacity:1"
        inkscape:label="X">
       <path
          style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:2;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
@@ -114,5 +118,50 @@
          d="m 20,19 6,-6"
          id="path14" />
     </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="reset"
+     style="display:none"
+     inkscape:transform-center-x="-0.024546569"
+     inkscape:transform-center-y="-0.484075"
+     transform="matrix(0.29312696,-1.0100462,-1.0100462,-0.29312696,23.53611,32.895197)">
+    <path
+       style="display:inline;fill:none;stroke:#ffffff;stroke-width:2.85247;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       id="path1"
+       sodipodi:type="arc"
+       sodipodi:cx="16.002291"
+       sodipodi:cy="15.997315"
+       sodipodi:rx="8.0671377"
+       sodipodi:ry="8.0671377"
+       sodipodi:start="6.1021257"
+       sodipodi:end="4.9854019"
+       sodipodi:arc-type="arc"
+       d="M 23.937558,14.54465 A 8.0671377,8.0671377 0 0 1 19.58542,23.225033 8.0671377,8.0671377 0 0 1 10.041817,21.433442 8.0671377,8.0671377 0 0 1 9.1341252,11.765648 8.0671377,8.0671377 0 0 1 18.177465,8.2289612"
+       sodipodi:open="true"
+       inkscape:label="ring" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.950823;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       d="m 21.613419,10.455008 4.166838,2.945449 -4.023095,2.155288 z"
+       id="path2"
+       inkscape:transform-center-x="-1.2088733"
+       inkscape:transform-center-y="-0.18757902" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="pause"
+     style="display:inline">
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       d="M 8,6.0034736 V 18.024612 Z"
+       id="path3" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#path3"
+       id="use3"
+       transform="translate(8)" />
   </g>
 </svg>

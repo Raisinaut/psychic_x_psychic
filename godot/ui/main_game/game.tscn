@@ -76,4 +76,3 @@ material = SubResource("ShaderMaterial_8f5te")
 palette = ExtResource("12_fmgiq")
 
 [node name="DebugOverlay" parent="." unique_id=66341293 instance=ExtResource("11_8f5te")]
-layer = 1000

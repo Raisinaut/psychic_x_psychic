@@ -5,6 +5,51 @@
 [ext_resource type="StyleBox" uid="uid://bollb4nujow60" path="res://ui/styles/button/button_normal.tres" id="2_mkijn"]
 [ext_resource type="StyleBox" uid="uid://clx3r1ar1o8lm" path="res://ui/styles/button/button_pressed.tres" id="3_utrxr"]
 
+[sub_resource type="Gradient" id="Gradient_13s64"]
+resource_local_to_scene = true
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ffsdm"]
+gradient = SubResource("Gradient_13s64")
+width = 10
+height = 24
+
+[sub_resource type="Gradient" id="Gradient_u8257"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.50534403, 0.5053441, 0.5053438, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_sqko2"]
+gradient = SubResource("Gradient_u8257")
+width = 10
+height = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l303q"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dx63t"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wt2l3"]
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
+
 [resource]
 Button/colors/font_color = Color(0.69135743, 0.69135666, 0.69135684, 1)
 Button/colors/font_focus_color = Color(1, 1, 1, 1)
@@ -16,4 +61,11 @@ Button/fonts/font = ExtResource("1_ylb6o")
 Button/styles/hover = ExtResource("2_dx63t")
 Button/styles/normal = ExtResource("2_mkijn")
 Button/styles/pressed = ExtResource("3_utrxr")
+HSlider/constants/center_grabber = 1
+HSlider/icons/grabber = SubResource("GradientTexture2D_ffsdm")
+HSlider/icons/grabber_disabled = SubResource("GradientTexture2D_sqko2")
+HSlider/icons/grabber_highlight = SubResource("GradientTexture2D_ffsdm")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_l303q")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_dx63t")
+HSlider/styles/slider = SubResource("StyleBoxFlat_wt2l3")
 VBoxContainer/constants/separation = 50

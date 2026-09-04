@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://lrtwfufmaovb"]
+
+[ext_resource type="Script" uid="uid://du1ss122gwfpc" path="res://ui/debug/slider_control.gd" id="1_jmh8y"]
+[ext_resource type="StyleBox" uid="uid://dyl8ab3j8ylfu" path="res://theme/styles/rounded_panel.tres" id="1_wt2l3"]
+[ext_resource type="Texture2D" uid="uid://dxnlo803tu3fn" path="res://assets/textures/icons/volume_icon_on.png" id="2_wt2l3"]
+[ext_resource type="Texture2D" uid="uid://cpqbvoa51ojq1" path="res://assets/textures/icons/volume_icon_off.png" id="3_l303q"]
+[ext_resource type="Script" uid="uid://0o8h3t2ud2dp" path="res://ui/debug/volume_slider.gd" id="4_hqm7q"]
+[ext_resource type="FontFile" uid="uid://dt5duracmsa8h" path="res://assets/fonts/Sometype_Mono/static/SometypeMono-Medium.ttf" id="5_k0xki"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bvnae"]
+font = ExtResource("5_k0xki")
+font_size = 24
+
+[node name="SliderControl" type="PanelContainer" unique_id=1834006730]
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_styles/panel = ExtResource("1_wt2l3")
+script = ExtResource("1_jmh8y")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=94176734]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=257386731]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Toggle" type="TextureButton" parent="VBoxContainer/HBoxContainer" unique_id=118875762]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 8
+mouse_filter = 1
+toggle_mode = true
+action_mode = 0
+texture_normal = ExtResource("2_wt2l3")
+texture_pressed = ExtResource("3_l303q")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Slider" type="HSlider" parent="VBoxContainer/HBoxContainer" unique_id=1381957979]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_vertical = 1
+mouse_filter = 1
+max_value = 1.0
+step = 0.01
+value = 1.0
+script = ExtResource("4_hqm7q")
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=1086535948]
+layout_mode = 2
+text = "Music"
+label_settings = SubResource("LabelSettings_bvnae")
+horizontal_alignment = 1

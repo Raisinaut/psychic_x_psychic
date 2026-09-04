@@ -18,6 +18,7 @@ func _ready() -> void:
 	# setup pause screen
 	pause_screen.forfeit_selected.connect(_on_pause_screen_forfeit_selected)
 	pause_screen.close()
+	GameManager.can_pause_changed.connect(pause_screen.set_can_pause)
 
 
 # SCREEN MANAGEMENT -----------------------------------------------------------
@@ -35,6 +36,7 @@ func open_and_set_current(screen_scene : PackedScene) -> Control:
 
 # OPEN SCREENS -----------------------------------------------------------------
 func open_results_screen(data: OpponentData, user_forfeit : bool) -> void:
+	GameManager.can_pause = false # not pausable
 	var screen = open_and_set_current(results_screen)
 	await screen.ready
 	screen.update_results(data, user_forfeit)
@@ -46,6 +48,7 @@ func open_results_screen(data: OpponentData, user_forfeit : bool) -> void:
 	screen.fade_in()
 
 func open_selection_screen() -> void:
+	GameManager.can_pause = false # not pausable
 	var screen = open_and_set_current(selection_screen)
 	await screen.ready
 	screen.opponent_selected.connect(_on_selection_screen_opponent_selected)
@@ -63,7 +66,7 @@ func open_versus_screen(data: OpponentData = null) -> void:
 	screen.game_just_ended.connect(_on_versus_screen_game_just_ended)
 	screen.reset_fade()
 	screen.fade_in()
-	pause_screen.can_pause = true
+	GameManager.can_pause = true # pausable
 
 
 # SIGNALS ----------------------------------------------------------------------
@@ -94,7 +97,7 @@ func _on_selection_screen_opponent_highlighted(data : OpponentData) -> void:
 
 # VERSUS
 func _on_versus_screen_game_just_ended(user_forfeit : bool) -> void:
-	pause_screen.can_pause = false
+	GameManager.can_pause = false # disable pausing immediately
 	await close_current_screen()
 	open_results_screen(selected_opponent, user_forfeit)
 

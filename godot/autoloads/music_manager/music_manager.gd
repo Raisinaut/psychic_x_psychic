@@ -18,20 +18,14 @@ func connect_web_signals() -> void:
 
 # PLAYBACK CONTROL -------------------------------------------------------------
 func play_music(music_loop : MusicLoop) -> void:
-	reset_volume()
+	music_player.reset_volume()
 	music_player.music_loop = music_loop
 	music_player.restart()
 
 
-# VOLUME CONTROL ---------------------------------------------------------------
-func fade_out(duration := 0.3) -> void:
-	music_player.fade_volume_to_linear_value(0.0, duration)
-
-func fade_in(duration := 0.3) -> void:
-	music_player.fade_volume_to_linear_value(1.0, duration)
-
-func reset_volume() -> void:
-	music_player.reset_volume()
+# MASTER VOLUME CONTROL --------------------------------------------------------
+func set_volume_linear(value: float) -> void:
+		AudioServer.set_bus_volume_linear(get_music_bus_idx(), value)
 
 func set_muted(state : bool) -> void:
 	muted = state
@@ -39,6 +33,14 @@ func set_muted(state : bool) -> void:
 		fade_out(mute_toggle_duration)
 	else:
 		fade_in(mute_toggle_duration)
+
+
+# PLAYER VOLUME CONTROL --------------------------------------------------------
+func fade_out(duration := 0.3) -> void:
+	music_player.fade_volume_to_linear_value(0.0, duration)
+
+func fade_in(duration := 0.3) -> void:
+	music_player.fade_volume_to_linear_value(1.0, duration)
 
 
 # SETTERS ----------------------------------------------------------------------
@@ -52,6 +54,14 @@ func _set_music_lowpass_enabled(enabled : bool) -> void:
 	AudioServer.set_bus_effect_enabled(music_bus_idx, effect_idx, enabled)
 
 
+# GETTERS ----------------------------------------------------------------------
+func get_volume_linear() -> float:
+	return AudioServer.get_bus_volume_linear(get_music_bus_idx())
+
+
 # UTILITY ----------------------------------------------------------------------
 func get_current_music_loop() -> MusicLoop:
 	return music_player.music_loop
+
+func get_music_bus_idx() -> int:
+	return AudioServer.get_bus_index("Music")
