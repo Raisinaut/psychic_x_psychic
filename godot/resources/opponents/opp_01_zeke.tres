@@ -17,4 +17,7 @@ grid_dimensions = Vector2i(5, 2)
 description = "Not the brightest bulb and mostly relies on luck. Not much of a challenge honestly."
 phrase_swap_good = "Hah. Take that."
 phrase_swap_bad = "Nothin' I can't track."
+phrase_win = "Kneel before my might!"
+phrase_lose = "I almost had you!"
+phrase_tie = "Well that's dumb."
 metadata/_custom_type_script = "uid://rcirnoqp7wpc"

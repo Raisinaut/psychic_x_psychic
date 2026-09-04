@@ -13,11 +13,12 @@ signal just_selected
 @onready var panel_glow: PanelGlow = %PanelGlow
 
 @onready var info_delay_timer: Timer = %InfoDelayTimer
+@onready var hover_sfx: VariableStreamPlayer = %HoverSFX
 
 var disabled : bool = false : set = set_disabled
 var highlighted : bool = false : set = set_highlighted
 var highlight_lock : bool = false
-var show_info_delay : float = 0.4
+var show_info_delay : float = 0.2
 var raise_height : float = 30
 var raise_duration : float = 0.2
 
@@ -54,6 +55,7 @@ func select() -> void:
 	panel_glow.flash()
 
 func start_highlight() -> void:
+	hover_sfx.play_random()
 	just_highlighted.emit()
 	spinning_panels.expand_entities()
 	raise_to(raise_height)

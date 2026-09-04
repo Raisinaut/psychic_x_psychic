@@ -26,10 +26,8 @@ func open() -> void:
 	get_tree().paused = true
 	visible = true
 	set_buttons_disabled(false)
-	#await fade_in()
 
 func close() -> void:
-	#await fade_out()
 	visible = false
 	set_buttons_disabled(true)
 	get_tree().paused = false
@@ -40,14 +38,6 @@ func set_buttons_disabled(disabled : bool) -> void:
 
 func set_can_pause(state: bool) -> void:
 	can_pause = state
-
-
-# ANIMATION --------------------------------------------------------------------
-func fade_in() -> void:
-	await fade_in_element(self).finished
-
-func fade_out() -> void:
-	await fade_out_element(self).finished
 
 
 # SIGNALS ----------------------------------------------------------------------

@@ -17,4 +17,7 @@ grid_dimensions = Vector2i(6, 3)
 description = "Can recall any meal consumed within the past two weeks. Does that help him here? You decide."
 phrase_swap_good = "Hah. Take that."
 phrase_swap_bad = "Nothin' I can't track."
+phrase_win = "I eat players like you for breakfast."
+phrase_lose = "Fine you beat me. Can I have my lunch now?"
+phrase_tie = "Not very filling..."
 metadata/_custom_type_script = "uid://rcirnoqp7wpc"
