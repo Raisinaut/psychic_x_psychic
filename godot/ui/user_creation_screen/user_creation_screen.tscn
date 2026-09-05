@@ -81,8 +81,8 @@ horizontal_alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer" unique_id=4744915]
 layout_mode = 2
-theme_override_constants/margin_left = 400
-theme_override_constants/margin_right = 400
+theme_override_constants/margin_left = 450
+theme_override_constants/margin_right = 450
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer" unique_id=1717433995]
 layout_mode = 2
@@ -98,7 +98,7 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_yrk3s")
 layout_mode = 2
 texture = SubResource("GradientTexture2D_1brk3")
 
-[node name="PotraitCarousel" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/PortraitContainer" unique_id=1149719865 instance=ExtResource("3_md347")]
+[node name="PortraitCarousel" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/PortraitContainer" unique_id=1149719865 instance=ExtResource("3_md347")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(400, 400)
 layout_mode = 2
@@ -121,10 +121,10 @@ theme_override_constants/caret_width = 4
 theme_override_fonts/font = ExtResource("2_y5fst")
 theme_override_font_sizes/font_size = 60
 theme_override_styles/focus = SubResource("StyleBoxEmpty_md347")
-text = "MMMMMMMMMMMM"
+text = "MMMMMMMMMM"
 placeholder_text = "name"
 alignment = 1
-max_length = 12
+max_length = 10
 keep_editing_on_text_submit = true
 context_menu_enabled = false
 emoji_menu_enabled = false
@@ -146,7 +146,8 @@ theme_override_font_sizes/font_size = 30
 text = "0/0"
 vertical_alignment = 2
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=726148140]
+[node name="ConfirmButton" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=726148140]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(700, 0)
 layout_mode = 2
 text = "Confirm"

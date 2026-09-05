@@ -26,7 +26,8 @@ func _ready() -> void:
 # SCREEN MANAGEMENT -----------------------------------------------------------
 func close_current_screen() -> void:
 	if current_screen:
-		await current_screen.fade_out()
+		if current_screen.has_method("fade_out"):
+			await current_screen.fade_out()
 		current_screen.queue_free()
 
 func open_and_set_current(screen_scene : PackedScene) -> Control:
@@ -40,6 +41,7 @@ func open_and_set_current(screen_scene : PackedScene) -> Control:
 func open_creation_screen() -> void:
 	var screen = open_and_set_current(creation_screen)
 	await screen.ready
+	screen.confirmed.connect(_on_creation_screen_confirmed)
 
 func open_results_screen(data: OpponentData, user_forfeit : bool) -> void:
 	GameManager.can_pause = false # not pausable
@@ -76,6 +78,11 @@ func open_versus_screen(data: OpponentData = null) -> void:
 
 
 # SIGNALS ----------------------------------------------------------------------
+# CREATION
+func _on_creation_screen_confirmed() -> void:
+	await close_current_screen()
+	open_selection_screen()
+
 # RESULTS
 func _on_results_screen_rematch_selected() -> void:
 	await close_current_screen()

@@ -14,6 +14,9 @@ var highlight_user : bool = true : set = set_highlight_user
 
 func _ready() -> void:
 	GameManager.score_changed.connect(_on_game_manager_score_changed)
+	# SYNC WITH USER DATA
+	user_info.portrait_texture = UserData.portrait
+	user_info.name_text = UserData.username
 
 func set_highlight_user(val) -> void:
 	highlight_user = val

@@ -19,7 +19,6 @@ var darken_tween : Tween = null
 func _ready() -> void:
 	panel_darken.visible = true # override hide in editor
 	noise.visible = true # hidden in editor to avoid rendering shader
-	#score = 0
 	noise.material.set_shader_parameter("spin_speed", randf_range(0.2, 0.3))
 
 func fade_in(skip_to_end:= false) -> void:

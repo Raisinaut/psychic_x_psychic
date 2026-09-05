@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://b2r5a3po6x5xj"]
+
+[ext_resource type="Script" uid="uid://cmq4kip2hn564" path="res://autoloads/user_data/user_data.gd" id="1_nwmqu"]
+
+[node name="UserData" type="Node" unique_id=1741381386]
+script = ExtResource("1_nwmqu")

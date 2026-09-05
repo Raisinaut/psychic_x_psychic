@@ -23,10 +23,11 @@ driver/output_latency.web=100
 
 [autoload]
 
-GameManager="*uid://p2djfq32galt"
 Screenshots="*uid://kj6n63bix0me"
+GameManager="*uid://p2djfq32galt"
 MusicManager="*uid://bf0aix4f5bo2o"
 CameraManager="*uid://wa5nrkaet2gt"
+UserData="*uid://b2r5a3po6x5xj"
 
 [display]
 
