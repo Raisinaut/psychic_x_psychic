@@ -1,10 +1,21 @@
 [gd_scene format=3 uid="uid://bjhows3er5uwn"]
 
 [ext_resource type="LabelSettings" uid="uid://d32epvrdmgpnq" path="res://ui/label_settings/header_1.tres" id="1_5j6vg"]
+[ext_resource type="Theme" uid="uid://clr5tu8ev7u57" path="res://theme/interface_theme.tres" id="1_687fb"]
+[ext_resource type="Script" uid="uid://ctsoblmeitd1s" path="res://ui/user_creation_screen/user_creation_screen.gd" id="1_qhujn"]
 [ext_resource type="Script" uid="uid://chipbeyl8upmy" path="res://ui/user_creation_screen/name_edit_container.gd" id="2_1brk3"]
 [ext_resource type="FontFile" uid="uid://galv8moamnrk" path="res://assets/fonts/Elsie/Elsie-Black.ttf" id="2_y5fst"]
 [ext_resource type="PackedScene" uid="uid://pl62qxmgdftu" path="res://ui/user_creation_screen/carousel/carousel.tscn" id="3_md347"]
+[ext_resource type="Texture2D" uid="uid://7cl8yjm5pfc5" path="res://assets/textures/portraits/noir_portrait1.png" id="3_uclxs"]
 [ext_resource type="FontFile" uid="uid://dt5duracmsa8h" path="res://assets/fonts/Sometype_Mono/static/SometypeMono-Medium.ttf" id="3_yrk3s"]
+[ext_resource type="Texture2D" uid="uid://dvwaap7cm4066" path="res://assets/textures/portraits/noir_portrait4.png" id="4_qhujn"]
+[ext_resource type="Texture2D" uid="uid://jx6yastn46s7" path="res://assets/textures/portraits/noir_portrait5.png" id="5_687fb"]
+[ext_resource type="Texture2D" uid="uid://tyeoqu5yyo1q" path="res://assets/textures/portraits/noir_portrait7.png" id="6_lpx2w"]
+[ext_resource type="Texture2D" uid="uid://bgjpbfb7fjk7q" path="res://assets/textures/portraits/noir_portrait8.png" id="7_7rc43"]
+[ext_resource type="Texture2D" uid="uid://d2yms64p88dpj" path="res://assets/textures/portraits/noir_portrait9.png" id="8_t2ij2"]
+[ext_resource type="Texture2D" uid="uid://cpm5bsnwe83jm" path="res://assets/textures/portraits/noir_portrait10.png" id="9_246fx"]
+[ext_resource type="Texture2D" uid="uid://h1dx3tj8y2qc" path="res://assets/textures/portraits/noir_portrait11.png" id="10_xqnb3"]
+[ext_resource type="Texture2D" uid="uid://4c01iuwv8vvx" path="res://assets/textures/portraits/noir_portrait12.png" id="11_pi5jg"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yrk3s"]
 
@@ -42,6 +53,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_687fb")
+script = ExtResource("1_qhujn")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=926125024]
 layout_mode = 1
@@ -50,8 +63,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 200
-theme_override_constants/margin_right = 200
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1500919589]
@@ -65,32 +79,39 @@ text = "Define Yourself"
 label_settings = ExtResource("1_5j6vg")
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=620879396]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer" unique_id=4744915]
 layout_mode = 2
-size_flags_horizontal = 4
+theme_override_constants/margin_left = 400
+theme_override_constants/margin_right = 400
 
-[node name="PortraitContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1633690567]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer" unique_id=1717433995]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="PortraitContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1633690567]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxEmpty_yrk3s")
 
-[node name="Vignette" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/PortraitContainer" unique_id=1715532199]
+[node name="Vignette" type="TextureRect" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/PortraitContainer" unique_id=1715532199]
 layout_mode = 2
 texture = SubResource("GradientTexture2D_1brk3")
 
-[node name="PotraitCarousel" parent="MarginContainer/VBoxContainer/HBoxContainer/PortraitContainer" unique_id=1149719865 instance=ExtResource("3_md347")]
-custom_minimum_size = Vector2(500, 500)
+[node name="PotraitCarousel" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/PortraitContainer" unique_id=1149719865 instance=ExtResource("3_md347")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 400)
 layout_mode = 2
+textures = Array[Texture]([ExtResource("3_uclxs"), ExtResource("4_qhujn"), ExtResource("5_687fb"), ExtResource("6_lpx2w"), ExtResource("7_7rc43"), ExtResource("8_t2ij2"), ExtResource("9_246fx"), ExtResource("10_xqnb3"), ExtResource("11_pi5jg")])
 
-[node name="NameEditContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer" unique_id=1218704317]
+[node name="NameEditContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1218704317]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_yrk3s")
 script = ExtResource("2_1brk3")
 
-[node name="NameEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/NameEditContainer" unique_id=836012443]
+[node name="NameEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/NameEditContainer" unique_id=836012443]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -98,20 +119,25 @@ size_flags_vertical = 4
 theme_override_constants/outline_size = 5
 theme_override_constants/caret_width = 4
 theme_override_fonts/font = ExtResource("2_y5fst")
-theme_override_font_sizes/font_size = 120
+theme_override_font_sizes/font_size = 60
 theme_override_styles/focus = SubResource("StyleBoxEmpty_md347")
+text = "MMMMMMMMMMMM"
 placeholder_text = "name"
 alignment = 1
 max_length = 12
+keep_editing_on_text_submit = true
 context_menu_enabled = false
 emoji_menu_enabled = false
 shortcut_keys_enabled = false
 middle_mouse_paste_enabled = false
 selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+flat = true
 caret_blink = true
 caret_blink_interval = 0.5
 
-[node name="RemainingCharacters" type="Label" parent="MarginContainer/VBoxContainer/NameEditContainer" unique_id=1404971428]
+[node name="RemainingCharacters" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/NameEditContainer" unique_id=1404971428]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 1
@@ -119,3 +145,8 @@ theme_override_fonts/font = ExtResource("3_yrk3s")
 theme_override_font_sizes/font_size = 30
 text = "0/0"
 vertical_alignment = 2
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=726148140]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+text = "Confirm"

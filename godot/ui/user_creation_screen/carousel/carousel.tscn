@@ -1,18 +1,6 @@
 [gd_scene format=3 uid="uid://pl62qxmgdftu"]
 
-[ext_resource type="Texture2D" uid="uid://4c01iuwv8vvx" path="res://assets/textures/portraits/noir_portrait12.png" id="1_4slov"]
 [ext_resource type="Script" uid="uid://trp8o8qvycul" path="res://ui/user_creation_screen/carousel/carousel.gd" id="1_qm64i"]
-[ext_resource type="Texture2D" uid="uid://7cl8yjm5pfc5" path="res://assets/textures/portraits/noir_portrait1.png" id="2_brh0a"]
-[ext_resource type="Texture2D" uid="uid://dw86tbamk5onx" path="res://assets/textures/portraits/noir_portrait2.png" id="3_2ah1h"]
-[ext_resource type="Texture2D" uid="uid://dvwaap7cm4066" path="res://assets/textures/portraits/noir_portrait4.png" id="3_l0xs7"]
-[ext_resource type="Texture2D" uid="uid://bjo354x0e6vni" path="res://assets/textures/portraits/noir_portrait3.png" id="4_qafcl"]
-[ext_resource type="Texture2D" uid="uid://jx6yastn46s7" path="res://assets/textures/portraits/noir_portrait5.png" id="6_gxul1"]
-[ext_resource type="Texture2D" uid="uid://r5b68nw5iikg" path="res://assets/textures/portraits/noir_portrait6.png" id="7_dt3i8"]
-[ext_resource type="Texture2D" uid="uid://tyeoqu5yyo1q" path="res://assets/textures/portraits/noir_portrait7.png" id="8_412kh"]
-[ext_resource type="Texture2D" uid="uid://bgjpbfb7fjk7q" path="res://assets/textures/portraits/noir_portrait8.png" id="9_txv3c"]
-[ext_resource type="Texture2D" uid="uid://d2yms64p88dpj" path="res://assets/textures/portraits/noir_portrait9.png" id="10_naxyt"]
-[ext_resource type="Texture2D" uid="uid://cpm5bsnwe83jm" path="res://assets/textures/portraits/noir_portrait10.png" id="11_75yep"]
-[ext_resource type="Texture2D" uid="uid://h1dx3tj8y2qc" path="res://assets/textures/portraits/noir_portrait11.png" id="12_t4dv5"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2ah1h"]
 
@@ -30,7 +18,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_2ah1h")
 script = ExtResource("1_qm64i")
-textures = Array[Texture]([ExtResource("2_brh0a"), ExtResource("3_2ah1h"), ExtResource("4_qafcl"), ExtResource("3_l0xs7"), ExtResource("6_gxul1"), ExtResource("7_dt3i8"), ExtResource("8_412kh"), ExtResource("9_txv3c"), ExtResource("10_naxyt"), ExtResource("11_75yep"), ExtResource("12_t4dv5"), ExtResource("1_4slov")])
 
 [node name="ReferenceRect" type="ReferenceRect" parent="." unique_id=2045507]
 layout_mode = 2

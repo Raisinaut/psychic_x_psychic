@@ -6,7 +6,8 @@ const item_separation: float = 400
 
 @onready var element_container: PanelContainer = %ElementContainer
 
-var index_visibility: int = 2
+var index_visibility: int = 3
+var end_buffer_count : int = 0 # blank indices that can delineate the loop point
 var current_index: int = 0 : set = set_current_index
 
 func _ready() -> void:
@@ -36,8 +37,11 @@ func update_all_elements() -> void:
 
 func update_element(element: CarouselElement, tween: bool) -> void:
 	var relative_idx: int = element.get_index() - current_index
-	var index_limit: int = round(textures.size() / 2.0)
-	var wrapped_idx: int = wrapi(relative_idx, -index_limit, index_limit)
+	var index_max: int = round(textures.size() / 2.0)
+	var index_min: int = -index_max - end_buffer_count # include buffer on end
+	if textures.size() % 2 == 1:
+		index_min += 1 # Add 1 to account for division of odd pool size
+	var wrapped_idx: int = wrapi(relative_idx, index_min, index_max)
 	var properties: Array = get_index_properties(wrapped_idx)
 	set_element_properties(element, properties, tween)
 
@@ -52,6 +56,7 @@ func set_element_properties(element : CarouselElement, properties : Array, tween
 		element.offset_transform_scale = Vector2.ONE * properties[2]
 
 func get_index_properties(idx: int) -> Array:
+	#print(abs(idx))
 	print(idx)
 	var i_position_offset := Vector2(item_separation * idx, 0)
 	var i_alpha: float = remap(abs(idx), index_visibility, 0, 0, 1.0)

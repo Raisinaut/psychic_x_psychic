@@ -15,8 +15,8 @@ var current_screen : Node
 var selected_opponent: OpponentData = null
 
 func _ready() -> void:
-	#open_creation_screen()
-	open_selection_screen()
+	open_creation_screen()
+	#open_selection_screen()
 	# setup pause screen
 	pause_screen.forfeit_selected.connect(_on_pause_screen_forfeit_selected)
 	pause_screen.close()
