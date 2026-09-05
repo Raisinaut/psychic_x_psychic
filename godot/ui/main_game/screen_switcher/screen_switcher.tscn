@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cmb7kl2ww2fo5" path="res://ui/selection_screen/selection_screen.tscn" id="4_2q4hx"]
 [ext_resource type="PackedScene" uid="uid://ufvug50cgelr" path="res://gameplay/backgrounds/star_background.tscn" id="5_t5824"]
 [ext_resource type="PackedScene" uid="uid://cpkubf0effrux" path="res://ui/pause_screen/pause_screen.tscn" id="5_vwbrg"]
-[ext_resource type="PackedScene" uid="uid://ytccxrdr6ety" path="res://gameplay/entities/camera/custom_camera.tscn" id="6_1oh24"]
+[ext_resource type="PackedScene" uid="uid://ytccxrdr6ety" path="res://autoloads/camera_manager/custom_camera/custom_camera.tscn" id="6_1oh24"]
 
 [node name="ScreenSwitcher" type="CanvasLayer" unique_id=470236616]
 follow_viewport_enabled = true

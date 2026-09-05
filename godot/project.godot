@@ -26,6 +26,7 @@ driver/output_latency.web=100
 GameManager="*uid://p2djfq32galt"
 Screenshots="*uid://kj6n63bix0me"
 MusicManager="*uid://bf0aix4f5bo2o"
+CameraManager="*uid://wa5nrkaet2gt"
 
 [display]
 

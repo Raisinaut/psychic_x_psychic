@@ -17,7 +17,6 @@ var is_user_turn : bool = true : set = set_is_user_turn
 
 func _ready() -> void:
 	connect_signals()
-	#opponent_data = GameManager.current_opponent_data
 	reset_game()
 	start_game()
 
@@ -30,6 +29,7 @@ func reset_game() -> void:
 	create_opponent_node()
 	sync_with_opponent_data()
 	card_grid.reset()
+	interface.set_field_input_disabled(true)
 
 func forfeit_game() -> void:
 	end_game(true)
@@ -39,8 +39,7 @@ func end_game(user_forfeit: bool = false) -> void:
 		print("Game already ended")
 		return
 	print("Game Over")
-	card_grid.set_all_cards_interaction_disabled(true) # this changes the zoom
-	#reset_camera_zoom() # this line resets it as a workaround for now
+	interface.set_field_input_disabled(true)
 	game_just_ended.emit(user_forfeit)
 	game_has_ended = true
 	delete_opponent_node()
@@ -65,6 +64,7 @@ func fade_in() -> void:
 	fade_in_element(self)
 
 func fade_out() -> void:
+	CameraManager.reset_target_zoom_scale()
 	if not card_grid.is_empty():
 		await card_grid.animate_clear()
 	await interface.fade_out()
@@ -76,8 +76,6 @@ func reset_fade() -> void:
 	interface.fade_out(true)
 	visible = false
 
-func reset_camera_zoom() -> void:
-	camera.target_zoom = 1.0
 
 # SETUP ------------------------------------------------------------------------
 func sync_with_opponent_data() -> void:
@@ -87,7 +85,6 @@ func sync_with_opponent_data() -> void:
 	interface.sync_opponent_info_with_data(opponent_data)
 
 func connect_signals() -> void:
-	card_grid.lockout_changed.connect(_on_card_grid_lockout_changed)
 	card_grid.matched_correct.connect(_on_card_grid_matched_correct)
 	card_grid.match_finished.connect(_on_card_grid_match_finished)
 	card_grid.match_started.connect(_on_card_grid_match_started)
@@ -112,7 +109,7 @@ func next_turn() -> void:
 ## Starts the user's turn, enabling field input.
 func user_turn_start() -> void:
 	await message_display.display_message("YOUR TURN").finished
-	interface.field_input_disabled = false
+	interface.set_field_input_disabled(false)
 
 ## Starts the opponent's turn if the opponent exists. [br]
 ## In the case thaat the opponent does not exist, the match has been forfeit and [br]
@@ -125,18 +122,16 @@ func opponent_turn_start() -> void:
 
 
 # SIGNALS ----------------------------------------------------------------------
-func _on_card_grid_lockout_changed(lockout_active : bool) -> void:
-	var target_zoom = 1.05 if lockout_active else 1.0
-	#camera.target_zoom = target_zoom
-
 func _on_card_grid_match_started(_correct: bool) -> void:
-	interface.field_input_disabled = true
+	interface.set_field_input_disabled(true)
+	CameraManager.set_target_zoom_scale(1.05)
 
 func _on_card_grid_matched_correct() -> void:
 	increment_relevant_score()
 
 func _on_card_grid_match_finished(_correct : bool) -> void:
 	next_turn()
+	CameraManager.reset_target_zoom_scale()
 
 
 # SETTERS ----------------------------------------------------------------------

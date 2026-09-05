@@ -10,6 +10,9 @@ extends Camera2D
 var target_zoom : float = 1.0 : set = set_target_zoom
 var zoom_tween : Tween = null
 
+func _ready() -> void:
+	CameraManager.current_camera = self
+
 func set_target_zoom(val) -> void:
 	target_zoom = val
 	tween_zoom(Vector2.ONE * target_zoom, 0.6)
@@ -18,7 +21,7 @@ func tween_zoom(value, duration) -> void:
 	if zoom_tween : zoom_tween.kill()
 	zoom_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	zoom_tween.tween_property(self, "zoom", value, duration)
-
+ 
 func _process(_delta: float) -> void:
 	var target_pos = initial_position
 	if can_pivot:
