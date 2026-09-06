@@ -3,11 +3,22 @@
 [ext_resource type="Texture2D" uid="uid://4c01iuwv8vvx" path="res://assets/textures/portraits/noir_portrait12.png" id="1_8crwd"]
 [ext_resource type="Script" uid="uid://cd3h4ukaerag1" path="res://ui/user_creation_screen/carousel/carousel_element.gd" id="2_8i2a3"]
 
-[node name="CarouselElement" type="TextureRect" unique_id=562963436]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1hwh7"]
+
+[node name="CarouselElement" type="PanelContainer" unique_id=339416394]
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_1hwh7")
+script = ExtResource("2_8i2a3")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=562963436]
+unique_name_in_owner = true
 texture_filter = 1
+layout_mode = 2
 offset_transform_enabled = true
-offset_transform_position = Vector2(-50, 0)
+mouse_filter = 2
 texture = ExtResource("1_8crwd")
 expand_mode = 1
 stretch_mode = 5
-script = ExtResource("2_8i2a3")

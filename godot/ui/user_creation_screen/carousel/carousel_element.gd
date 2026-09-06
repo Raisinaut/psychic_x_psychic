@@ -1,16 +1,26 @@
 class_name CarouselElement
-extends TextureRect
+extends PanelContainer
 
+var texture: Texture = null : set = set_texture
 var pos_offset_tween : Tween = null
 var scale_offset_tween : Tween = null
 var alpha_tween : Tween = null
 
+@onready var texture_rect: TextureRect = %TextureRect
+
+
+# SETUP-------------------------------------------------------------------------
 func _init() -> void:
 	offset_transform_enabled = true
-	expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 
+func set_texture(new_texture: Texture) -> void:
+	if not is_node_ready():
+		await ready
+	texture = new_texture
+	texture_rect.texture = new_texture
+
+
+# TWEENING ---------------------------------------------------------------------
 func tween_offset_position(pos : Vector2) -> void:
 	if pos_offset_tween: pos_offset_tween.kill()
 	pos_offset_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)

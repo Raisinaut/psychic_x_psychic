@@ -1,4 +1,4 @@
-extends Control
+extends ControlFader
 
 signal confirmed
 
@@ -19,3 +19,6 @@ func _on_confirm_button_pressed() -> void:
 
 func _on_portrait_carousel_all_elements_ready() -> void:
 	portrait_carousel.go_to_element_with_texture(UserData.portrait)
+
+func fade_out() -> void:
+	await fade_out_element(self).finished

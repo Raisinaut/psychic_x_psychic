@@ -404,7 +404,6 @@ color = Color(0, 0, 0, 1)
 
 [node name="Portrait" type="TextureRect" parent="VBoxContainer/PanelContainer/PortraitContainer/MarginContainer" unique_id=1024957279]
 unique_name_in_owner = true
-z_index = 1
 texture_filter = 1
 custom_minimum_size = Vector2(250, 210)
 layout_mode = 2
@@ -435,7 +434,7 @@ stretch_mode = 5
 [node name="ScoreLabel" type="Label" parent="VBoxContainer/PanelContainer/PanelContainer" unique_id=634692920]
 unique_name_in_owner = true
 layout_mode = 2
-text = "8"
+text = "0"
 label_settings = SubResource("LabelSettings_bvnae")
 horizontal_alignment = 1
 
@@ -450,6 +449,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_37yhw")
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+text = "Name"
 label_settings = ExtResource("5_gy1nr")
 horizontal_alignment = 1
 

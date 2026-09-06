@@ -1,30 +1,72 @@
 [gd_scene format=3 uid="uid://pl62qxmgdftu"]
 
 [ext_resource type="Script" uid="uid://trp8o8qvycul" path="res://ui/user_creation_screen/carousel/carousel.gd" id="1_qm64i"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2ah1h"]
+[ext_resource type="PackedScene" uid="uid://03him17lbwtx" path="res://ui/user_creation_screen/carousel/carousel_element.tscn" id="2_qm64i"]
+[ext_resource type="Texture2D" uid="uid://7cl8yjm5pfc5" path="res://assets/textures/portraits/noir_portrait1.png" id="3_qafcl"]
+[ext_resource type="Texture2D" uid="uid://dw86tbamk5onx" path="res://assets/textures/portraits/noir_portrait2.png" id="4_gxul1"]
+[ext_resource type="Texture2D" uid="uid://bjo354x0e6vni" path="res://assets/textures/portraits/noir_portrait3.png" id="5_dt3i8"]
+[ext_resource type="Texture2D" uid="uid://dvwaap7cm4066" path="res://assets/textures/portraits/noir_portrait4.png" id="6_412kh"]
+[ext_resource type="Texture2D" uid="uid://jx6yastn46s7" path="res://assets/textures/portraits/noir_portrait5.png" id="7_txv3c"]
+[ext_resource type="Texture2D" uid="uid://r5b68nw5iikg" path="res://assets/textures/portraits/noir_portrait6.png" id="8_naxyt"]
+[ext_resource type="Texture2D" uid="uid://tyeoqu5yyo1q" path="res://assets/textures/portraits/noir_portrait7.png" id="9_75yep"]
+[ext_resource type="Texture2D" uid="uid://bgjpbfb7fjk7q" path="res://assets/textures/portraits/noir_portrait8.png" id="10_t4dv5"]
+[ext_resource type="Texture2D" uid="uid://d2yms64p88dpj" path="res://assets/textures/portraits/noir_portrait9.png" id="11_xc6k7"]
+[ext_resource type="Texture2D" uid="uid://cpm5bsnwe83jm" path="res://assets/textures/portraits/noir_portrait10.png" id="12_4top2"]
+[ext_resource type="Texture2D" uid="uid://h1dx3tj8y2qc" path="res://assets/textures/portraits/noir_portrait11.png" id="13_nrjki"]
+[ext_resource type="Texture2D" uid="uid://4c01iuwv8vvx" path="res://assets/textures/portraits/noir_portrait12.png" id="14_54vcg"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qafcl"]
 
-[node name="Carousel" type="PanelContainer" unique_id=1149719865]
+[sub_resource type="Theme" id="Theme_687fb"]
+Button/styles/disabled = SubResource("StyleBoxEmpty_qafcl")
+Button/styles/focus = SubResource("StyleBoxEmpty_qafcl")
+Button/styles/hover = SubResource("StyleBoxEmpty_qafcl")
+Button/styles/normal = SubResource("StyleBoxEmpty_qafcl")
+Button/styles/pressed = SubResource("StyleBoxEmpty_qafcl")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4sp4h"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gxul1"]
+
+[node name="Carousel" type="PanelContainer" unique_id=749526617]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 593.77783
-offset_top = 334.0
-offset_right = -593.77783
-offset_bottom = -334.0
+offset_left = 273.0
+offset_top = 257.0
+offset_right = -359.0
+offset_bottom = -335.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_2ah1h")
+theme = SubResource("Theme_687fb")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_4sp4h")
 script = ExtResource("1_qm64i")
+element_scene = ExtResource("2_qm64i")
+textures = Array[Texture]([ExtResource("3_qafcl"), ExtResource("4_gxul1"), ExtResource("5_dt3i8"), ExtResource("6_412kh"), ExtResource("7_txv3c"), ExtResource("8_naxyt"), ExtResource("9_75yep"), ExtResource("10_t4dv5"), ExtResource("11_xc6k7"), ExtResource("12_4top2"), ExtResource("13_nrjki"), ExtResource("14_54vcg")])
 
-[node name="ReferenceRect" type="ReferenceRect" parent="." unique_id=2045507]
+[node name="ReferenceRect" type="ReferenceRect" parent="." unique_id=650043713]
 layout_mode = 2
-border_color = Color(2.887845e-06, 0.56857723, 0.41954732, 1)
+border_color = Color(2.7915835e-06, 0.6031592, 0.6758941, 1)
 border_width = 4.0
 
-[node name="ElementContainer" type="PanelContainer" parent="." unique_id=495101606]
-unique_name_in_owner = true
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1180631389]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_qafcl")
+
+[node name="NavLeft" type="Button" parent="HBoxContainer" unique_id=1807571740]
+unique_name_in_owner = true
+show_behind_parent = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ElementContainer" type="PanelContainer" parent="HBoxContainer" unique_id=111414720]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_gxul1")
+
+[node name="NavRight" type="Button" parent="HBoxContainer" unique_id=889635537]
+unique_name_in_owner = true
+show_behind_parent = true
+layout_mode = 2
+size_flags_horizontal = 3

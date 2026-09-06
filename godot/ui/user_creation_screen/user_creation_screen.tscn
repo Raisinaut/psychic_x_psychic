@@ -70,7 +70,7 @@ theme_override_constants/margin_bottom = 50
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1500919589]
 layout_mode = 2
-theme_override_constants/separation = 30
+theme_override_constants/separation = 40
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1939674201]
 z_index = 10
@@ -79,6 +79,21 @@ text = "Define Yourself"
 label_settings = ExtResource("1_5j6vg")
 horizontal_alignment = 1
 
+[node name="PortraitContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer" unique_id=1633690567]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxEmpty_yrk3s")
+
+[node name="Vignette" type="TextureRect" parent="MarginContainer/VBoxContainer/PortraitContainer" unique_id=1715532199]
+layout_mode = 2
+texture = SubResource("GradientTexture2D_1brk3")
+
+[node name="PortraitCarousel" parent="MarginContainer/VBoxContainer/PortraitContainer" unique_id=1149719865 instance=ExtResource("3_md347")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 2
+textures = Array[Texture]([ExtResource("3_uclxs"), ExtResource("4_qhujn"), ExtResource("5_687fb"), ExtResource("6_lpx2w"), ExtResource("7_7rc43"), ExtResource("8_t2ij2"), ExtResource("9_246fx"), ExtResource("10_xqnb3"), ExtResource("11_pi5jg")])
+
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer" unique_id=4744915]
 layout_mode = 2
 theme_override_constants/margin_left = 450
@@ -86,23 +101,7 @@ theme_override_constants/margin_right = 450
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer" unique_id=1717433995]
 layout_mode = 2
-theme_override_constants/separation = 30
-
-[node name="PortraitContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1633690567]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxEmpty_yrk3s")
-
-[node name="Vignette" type="TextureRect" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/PortraitContainer" unique_id=1715532199]
-layout_mode = 2
-texture = SubResource("GradientTexture2D_1brk3")
-
-[node name="PortraitCarousel" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/PortraitContainer" unique_id=1149719865 instance=ExtResource("3_md347")]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(400, 400)
-layout_mode = 2
-textures = Array[Texture]([ExtResource("3_uclxs"), ExtResource("4_qhujn"), ExtResource("5_687fb"), ExtResource("6_lpx2w"), ExtResource("7_7rc43"), ExtResource("8_t2ij2"), ExtResource("9_246fx"), ExtResource("10_xqnb3"), ExtResource("11_pi5jg")])
+theme_override_constants/separation = 20
 
 [node name="NameEditContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1218704317]
 layout_mode = 2
@@ -148,6 +147,6 @@ vertical_alignment = 2
 
 [node name="ConfirmButton" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=726148140]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(700, 0)
 layout_mode = 2
-text = "Confirm"
+size_flags_horizontal = 4
+text = "CONFIRM"
