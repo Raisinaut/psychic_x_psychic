@@ -29,22 +29,38 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 0.5)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yrk3s"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t2ij2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_687fb"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 0.6666667)
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 0.6)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lpx2w"]
 content_margin_left = 20.0
-content_margin_top = 20.0
+content_margin_top = 10.0
 content_margin_right = 20.0
 content_margin_bottom = 10.0
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 8
-border_width_top = 8
-border_width_right = 8
-border_width_bottom = 8
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_md347"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 5
 
 [node name="UserCreationScreen" type="Control" unique_id=19638990]
 layout_mode = 3
@@ -66,13 +82,13 @@ grow_vertical = 2
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 50
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1500919589]
 layout_mode = 2
-theme_override_constants/separation = 40
+theme_override_constants/separation = 20
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1939674201]
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1939674201]
+unique_name_in_owner = true
 z_index = 10
 layout_mode = 2
 text = "Define Yourself"
@@ -90,40 +106,41 @@ texture = SubResource("GradientTexture2D_1brk3")
 
 [node name="PortraitCarousel" parent="MarginContainer/VBoxContainer/PortraitContainer" unique_id=1149719865 instance=ExtResource("3_md347")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(400, 400)
+custom_minimum_size = Vector2(500, 500)
 layout_mode = 2
 textures = Array[Texture]([ExtResource("3_uclxs"), ExtResource("4_qhujn"), ExtResource("5_687fb"), ExtResource("6_lpx2w"), ExtResource("7_7rc43"), ExtResource("8_t2ij2"), ExtResource("9_246fx"), ExtResource("10_xqnb3"), ExtResource("11_pi5jg")])
+item_separation = 500.0
+navigation_deadzone = 500.0
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer" unique_id=4744915]
-layout_mode = 2
-theme_override_constants/margin_left = 450
-theme_override_constants/margin_right = 450
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer" unique_id=1717433995]
+[node name="LowerElements" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1717433995]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="NameEditContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1218704317]
+[node name="NameEditContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/LowerElements" unique_id=1218704317]
+custom_minimum_size = Vector2(900, 0)
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxFlat_yrk3s")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_t2ij2")
 script = ExtResource("2_1brk3")
 
-[node name="NameEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/NameEditContainer" unique_id=836012443]
+[node name="NameEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/LowerElements/NameEditContainer" unique_id=836012443]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/caret_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 5
 theme_override_constants/caret_width = 4
 theme_override_fonts/font = ExtResource("2_y5fst")
 theme_override_font_sizes/font_size = 60
-theme_override_styles/focus = SubResource("StyleBoxEmpty_md347")
-text = "MMMMMMMMMM"
+theme_override_styles/normal = SubResource("StyleBoxFlat_687fb")
+theme_override_styles/focus = SubResource("StyleBoxFlat_lpx2w")
 placeholder_text = "name"
 alignment = 1
-max_length = 10
+max_length = 16
 keep_editing_on_text_submit = true
 context_menu_enabled = false
 emoji_menu_enabled = false
@@ -136,7 +153,12 @@ flat = true
 caret_blink = true
 caret_blink_interval = 0.5
 
-[node name="RemainingCharacters" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/NameEditContainer" unique_id=1404971428]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/LowerElements/NameEditContainer" unique_id=2129530317]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 10
+
+[node name="RemainingCharacters" type="Label" parent="MarginContainer/VBoxContainer/LowerElements/NameEditContainer/MarginContainer" unique_id=1404971428]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 1
@@ -145,8 +167,18 @@ theme_override_font_sizes/font_size = 30
 text = "0/0"
 vertical_alignment = 2
 
-[node name="ConfirmButton" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=726148140]
+[node name="ConfirmButton" type="Button" parent="MarginContainer/VBoxContainer/LowerElements" unique_id=726148140]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 text = "CONFIRM"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer" unique_id=4744915]
+layout_mode = 2
+theme_override_constants/margin_left = 450
+theme_override_constants/margin_right = 450
+
+[node name="InputBlocker" type="Control" parent="MarginContainer" unique_id=1978507854]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2

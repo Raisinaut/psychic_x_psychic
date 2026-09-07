@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://cpm5bsnwe83jm" path="res://assets/textures/portraits/noir_portrait10.png" id="12_4top2"]
 [ext_resource type="Texture2D" uid="uid://h1dx3tj8y2qc" path="res://assets/textures/portraits/noir_portrait11.png" id="13_nrjki"]
 [ext_resource type="Texture2D" uid="uid://4c01iuwv8vvx" path="res://assets/textures/portraits/noir_portrait12.png" id="14_54vcg"]
+[ext_resource type="Script" uid="uid://nthclx8ie0wi" path="res://general/effects/visibility_flasher.gd" id="15_gxul1"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qafcl"]
 
@@ -26,7 +27,33 @@ Button/styles/pressed = SubResource("StyleBoxEmpty_qafcl")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4sp4h"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gxul1"]
+[sub_resource type="Curve" id="Curve_qafcl"]
+_data = [Vector2(0, 0.26000005), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.1368417, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_gxul1"]
+_data = [Vector2(0, 0), 0.0, 0.6352944, 0, 0, Vector2(0.97777784, 1), 1.7470573, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_dt3i8"]
+_data = [Vector2(0, 0.100000024), 0.0, 2.076923, 0, 0, Vector2(1, 1), 0.12857132, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qafcl"]
+content_margin_left = 30.0
+content_margin_top = 30.0
+content_margin_right = 30.0
+content_margin_bottom = 30.0
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 15
+border_width_top = 15
+border_width_right = 15
+border_width_bottom = 15
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
 
 [node name="Carousel" type="PanelContainer" unique_id=749526617]
 anchors_preset = 15
@@ -43,6 +70,16 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_4sp4h")
 script = ExtResource("1_qm64i")
 element_scene = ExtResource("2_qm64i")
 textures = Array[Texture]([ExtResource("3_qafcl"), ExtResource("4_gxul1"), ExtResource("5_dt3i8"), ExtResource("6_412kh"), ExtResource("7_txv3c"), ExtResource("8_naxyt"), ExtResource("9_75yep"), ExtResource("10_t4dv5"), ExtResource("11_xc6k7"), ExtResource("12_4top2"), ExtResource("13_nrjki"), ExtResource("14_54vcg")])
+curve_scale = SubResource("Curve_qafcl")
+curve_alpha = SubResource("Curve_gxul1")
+curve_separation = SubResource("Curve_dt3i8")
+
+[node name="ContainerFlasher" type="Node" parent="." unique_id=1079109218 node_paths=PackedStringArray("linked_node")]
+unique_name_in_owner = true
+script = ExtResource("15_gxul1")
+linked_node = NodePath("../HBoxContainer/ElementContainer")
+affect_self_modulate = true
+metadata/_custom_type_script = "uid://nthclx8ie0wi"
 
 [node name="ReferenceRect" type="ReferenceRect" parent="." unique_id=650043713]
 layout_mode = 2
@@ -63,7 +100,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxEmpty_gxul1")
+theme_override_styles/panel = SubResource("StyleBoxFlat_qafcl")
 
 [node name="NavRight" type="Button" parent="HBoxContainer" unique_id=889635537]
 unique_name_in_owner = true

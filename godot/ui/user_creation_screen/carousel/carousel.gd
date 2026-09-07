@@ -4,15 +4,20 @@ extends PanelContainer
 
 signal all_elements_ready
 
-const item_separation: float = 400
-
 @export var element_scene : PackedScene = null
 @export var textures : Array[Texture] = []
+@export var item_separation: float = 400
 @export var navigation_deadzone: float = 400 : set = set_navigation_deadzone
+@export var navigation_duration: float = 0.35 # seconds
+@export_group("Curves", "curve_")
+@export var curve_scale : Curve
+@export var curve_alpha : Curve
+@export var curve_separation : Curve
 
 @onready var element_container: = %ElementContainer
 @onready var nav_right: Button = %NavRight
 @onready var nav_left: Button = %NavLeft
+@onready var container_flasher: VisibilityFlasher = %ContainerFlasher
 
 var index_visibility: int = 3
 var end_buffer_count : int = 0 # blank indices that can delineate the loop point
@@ -66,6 +71,8 @@ func go_to_element_with_texture(t: Texture) -> void:
 		return
 	go_to_element(element)
 
+func flash_container() -> void:
+	container_flasher.active = true
 
 # ELEMENT POSITIONING ----------------------------------------------------------
 func update_all_elements() -> void:
@@ -84,23 +91,28 @@ func update_element(element: CarouselElement, tween: bool) -> void:
 
 func set_element_properties(element : CarouselElement, properties : Array, tween: bool) -> void:
 	if tween:
-		element.tween_offset_position(properties[0])
-		element.tween_alpha(properties[1])
-		element.tween_offset_scale(properties[2])
+		element.tween_offset_position(properties[0], navigation_duration)
+		element.tween_alpha(properties[1], navigation_duration)
+		element.tween_offset_scale(properties[2], navigation_duration)
 	else:
 		element.offset_transform_position = properties[0]
 		element.modulate.a = properties[1]
 		element.offset_transform_scale = Vector2.ONE * properties[2]
 
 func get_index_properties(idx: int) -> Array:
-	var i_position_offset := Vector2(item_separation * idx, 0)
 	var i_alpha: float = remap(abs(idx), index_visibility, 0, 0, 1.0)
-	var i_scale: float = max(0, remap(abs(idx), 4, 0, 0, 1.0))
+	i_alpha = curve_alpha.sample(i_alpha)
+	var i_scale: float = max(0, remap(abs(idx), index_visibility, 0, 0, 1.0))
+	i_scale = curve_scale.sample(i_scale) # apply scale curve
+	var i_position_offset := Vector2(item_separation * idx, 0)
+	i_position_offset *= curve_separation.sample(i_scale)
 	return [i_position_offset, i_alpha, i_scale]
 
 
 # SETTERS ----------------------------------------------------------------------
 func set_navigation_deadzone(value: float) -> void:
+	if not is_node_ready():
+		await ready
 	navigation_deadzone = value
 	element_container.custom_minimum_size.x = navigation_deadzone
 
