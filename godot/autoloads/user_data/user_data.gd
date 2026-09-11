@@ -11,9 +11,9 @@ func set_username(new_username: String) -> void:
 	new_username = new_username.rstrip(" ") # remove trailing spaces
 	username = new_username
 	username_changed.emit(username)
-	print("Username changed to: ", username)
+	#print("Username changed to: ", username)
 
 func set_portrait(new_portrait: Texture) -> void:
 	portrait = new_portrait
 	portrait_changed.emit(portrait)
-	print("Portrait changed to: ", portrait)
+	#print("Portrait changed to: ", portrait)
