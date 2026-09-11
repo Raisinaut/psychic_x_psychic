@@ -97,7 +97,7 @@ size_flags_horizontal = 3
 
 [node name="ElementContainer" type="PanelContainer" parent="HBoxContainer" unique_id=111414720]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(400, 0)
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_qafcl")

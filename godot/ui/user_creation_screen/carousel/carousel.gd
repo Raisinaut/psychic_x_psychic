@@ -6,8 +6,8 @@ signal all_elements_ready
 
 @export var element_scene : PackedScene = null
 @export var textures : Array[Texture] = []
-@export var item_separation: float = 400
-@export var navigation_deadzone: float = 400 : set = set_navigation_deadzone
+@export var item_separation: float = 500
+@export var navigation_deadzone: float = 500 : set = set_navigation_deadzone
 @export var navigation_duration: float = 0.35 # seconds
 @export_group("Curves", "curve_")
 @export var curve_scale : Curve
@@ -73,6 +73,7 @@ func go_to_element_with_texture(t: Texture) -> void:
 
 func flash_container() -> void:
 	container_flasher.active = true
+
 
 # ELEMENT POSITIONING ----------------------------------------------------------
 func update_all_elements() -> void:

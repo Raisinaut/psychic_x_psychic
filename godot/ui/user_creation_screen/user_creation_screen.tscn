@@ -109,8 +109,6 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(500, 500)
 layout_mode = 2
 textures = Array[Texture]([ExtResource("3_uclxs"), ExtResource("4_qhujn"), ExtResource("5_687fb"), ExtResource("6_lpx2w"), ExtResource("7_7rc43"), ExtResource("8_t2ij2"), ExtResource("9_246fx"), ExtResource("10_xqnb3"), ExtResource("11_pi5jg")])
-item_separation = 500.0
-navigation_deadzone = 500.0
 
 [node name="LowerElements" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1717433995]
 unique_name_in_owner = true
