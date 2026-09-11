@@ -4,9 +4,14 @@ extends Resource
 @export var display_name : String = ""
 @export var portrait : Texture
 @export var palette : Texture
+@export_group("Memory", "memory_")
 @export_range(0, 1, 1, "or_greater") var memory_capacity : int
 @export_range(0, 1, 1, "or_greater") var memory_lifetime : int
-@export_range(0, 1, 0.01) var memory_accuracy : float = 1.0
+@export_group("Accuracy", "accuracy_")
+@export_range(0, 1, 0.01) var accuracy_min : float = 1.0
+@export_range(0, 1, 0.01) var accuracy_max : float = 1.0
+
+@export_category("Card Info")
 @export_range(0, 1, 0.01) var win_rate : float = 1.0
 @export var grid_dimensions := Vector2i.ZERO
 @export_multiline var description : String = ""
@@ -32,3 +37,7 @@ func get_description_with_stats() -> String:
 
 func get_grid_area() -> int:
 	return grid_dimensions.x * grid_dimensions.y
+
+func get_accuracy_value(rem_lifetime: int) -> float:
+	var lifetime_percent: float = rem_lifetime / float(memory_lifetime)
+	return lerp(accuracy_min, accuracy_max, lifetime_percent)

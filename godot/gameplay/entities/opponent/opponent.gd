@@ -42,7 +42,7 @@ func play() -> void:
 	if selection:
 		logic_print("-- Flipping cards")
 		for i : int in selection.size():
-			if accuracy_check() == false:
+			if accuracy_check(selection[i]) == false:
 				logic_print("Accuracy check failed.")
 				var replacement_card = select_random_card(false)
 				if replacement_card:
@@ -95,9 +95,9 @@ func select_random_card(exclude_known: bool) -> Card:
 		available_cards.shuffle()
 		selected_card = available_cards[0]
 		if exclude_known:
-			logic_print("Unknown card selected: " + selected_card.data.id + " " + str(selected_card.name))
+			logic_print("Unknown card selected: " + selected_card.data.id + " " + selected_card.name)
 		else:
-			logic_print("Random card selected: " + selected_card.data.id + " " + str(selected_card.name))
+			logic_print("Random card selected: " + selected_card.data.id + " " + selected_card.name)
 	else:
 		logic_print("Could not select unknown card. All active cards are known or selected.")
 	return selected_card
@@ -128,8 +128,14 @@ func logic_print(string : String = "") -> void:
 	if print_logic:
 		print(string)
 
-func accuracy_check() -> bool:
-	return data.memory_accuracy >= randf()
+func accuracy_check(card : Card) -> bool:
+	var accuracy: float = 1.0
+	if card_memory.get(card):
+		accuracy = data.get_accuracy_value(card_memory.get(card))
+		logic_print(card.data.id + " memory accuracy: "+ str(accuracy))
+	else:
+		logic_print(card.data.id + " not in memory, accuracy left at 1.0.")
+	return accuracy >= randf()
 
 
 # MEMORY MODIFICATION ----------------------------------------------------------
