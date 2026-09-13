@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="32"
+   height="32"
+   viewBox="0 0 32 32"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.4 (dcaf3e7d9e, 2026-05-05)"
+   sodipodi:docname="carousel_button.svg"
+   inkscape:export-filename="carousel_button_border.png"
+   inkscape:export-xdpi="2880"
+   inkscape:export-ydpi="2880"
+   inkscape:export-batch-name="carousel_button"
+   inkscape:export-batch-path="/home/zach/Documents/git/2026/psychic_x_psychic/godot/assets/textures/buttons"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#616161"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#000000"
+     inkscape:document-units="px"
+     showgrid="true"
+     inkscape:zoom="13.907782"
+     inkscape:cx="11.827911"
+     inkscape:cy="18.766472"
+     inkscape:window-width="2560"
+     inkscape:window-height="1368"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer3">
+    <inkscape:grid
+       id="grid1"
+       units="px"
+       originx="0"
+       originy="0"
+       spacingx="1"
+       spacingy="1"
+       empcolor="#0099e5"
+       empopacity="0.30196078"
+       color="#0099e5"
+       opacity="0.14901961"
+       empspacing="4"
+       enabled="true"
+       visible="true" />
+  </sodipodi:namedview>
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="AttachedButton"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="matrix(0.71428571,0,0,0.75,4,4)"
+     style="display:none;stroke-width:1.36625">
+    <path
+       style="display:inline;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1.36626;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       d="M -5.6,33.333336 -2.8,16 -5.6,-1.3333334"
+       id="path1"
+       sodipodi:nodetypes="ccc" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="EncapsulatingButton"
+     style="display:none">
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       d="m 0,4 h 24 l 7,12 -7,12 H 0 Z"
+       id="path3"
+       inkscape:label="Fill"
+       sodipodi:nodetypes="cccccc" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="EncapsulatingButtonBorder"
+     style="display:inline">
+    <path
+       style="display:none;fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:0.999999;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+       d="M 23.66781,4.4999999 30.435367,16 23.66781,27.500001"
+       id="path3-3"
+       inkscape:label="Fill"
+       sodipodi:nodetypes="ccc" />
+  </g>
+</svg>

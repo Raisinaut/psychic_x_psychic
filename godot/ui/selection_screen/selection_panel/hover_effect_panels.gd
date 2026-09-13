@@ -1,3 +1,4 @@
+class_name HoverEffectPanels
 extends PanelContainer
 
 signal fully_expanded

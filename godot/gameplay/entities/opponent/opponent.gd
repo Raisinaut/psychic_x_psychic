@@ -115,7 +115,8 @@ func find_memory_match(card : Card) -> Card:
 func _print_memory_contents() -> void:
 	logic_print("Memory Contents (Capacity: {}):".format([data.memory_capacity], "{}"))
 	logic_print("".lpad(55, "-"))
-	for c : Card in get_cards_by_alphabetical():
+	#for c : Card in get_cards_by_alphabetical():
+	for c : Card in get_cards_by_least_recent():
 		var line : String = "|"
 		line += c.data.id.lpad(20) + " | "
 		line += str(card_memory[c]) + " turns till forget"

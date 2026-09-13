@@ -27,6 +27,7 @@ func _on_portrait_carousel_all_elements_ready() -> void:
 func fade_out() -> void:
 	input_blocker.visible = true
 	portrait_carousel.flash_container()
+	portrait_carousel.allow_navigation = false
 	await fade_out_element(confirm_button).finished
 	await get_tree().create_timer(0.2).timeout
 	#await fade_out_element(title).finished

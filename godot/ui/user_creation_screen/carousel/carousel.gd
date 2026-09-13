@@ -9,19 +9,23 @@ signal all_elements_ready
 @export var item_separation: float = 500
 @export var navigation_deadzone: float = 500 : set = set_navigation_deadzone
 @export var navigation_duration: float = 0.35 # seconds
+@export var absorb_nav_inputs: bool = true
 @export_group("Curves", "curve_")
 @export var curve_scale : Curve
 @export var curve_alpha : Curve
 @export var curve_separation : Curve
 
 @onready var element_container: = %ElementContainer
-@onready var nav_right: Button = %NavRight
-@onready var nav_left: Button = %NavLeft
+@onready var nav_right: = %NavRight
+@onready var nav_left: = %NavLeft
 @onready var container_flasher: VisibilityFlasher = %ContainerFlasher
 
 var index_visibility: int = 3
 var end_buffer_count : int = 0 # blank indices that can delineate the loop point
 var current_index: int = 0 : set = set_current_index
+var allow_navigation: bool = true : set = set_allow_navigation
+var min_nav_interval: float = 0.1
+var nav_interval_timer: SceneTreeTimer = null
 
 
 # SETUP ------------------------------------------------------------------------
@@ -29,8 +33,8 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 	populate_elements()
-	nav_right.pressed.connect(_on_nav_right_pressed)
-	nav_left.pressed.connect(_on_nav_left_pressed)
+	nav_left.pressed.connect(decrement_current_idx)
+	nav_right.pressed.connect(increment_current_idx)
 
 
 # POPULATION -------------------------------------------------------------------
@@ -47,9 +51,18 @@ func create_element(texture: Texture):
 
 # NAVIGATION -------------------------------------------------------------------
 func set_current_index(idx: int) -> void:
+	if inside_nav_interval():
+		return
 	idx = wrapi(idx, 0, textures.size())
 	current_index = idx
 	update_all_elements()
+	reset_nav_interval()
+
+func increment_current_idx() -> void:
+	current_index += 1
+
+func decrement_current_idx() -> void:
+	current_index -= 1
 
 func get_current_element() -> CarouselElement:
 	return element_container.get_child(current_index)
@@ -117,6 +130,11 @@ func set_navigation_deadzone(value: float) -> void:
 	navigation_deadzone = value
 	element_container.custom_minimum_size.x = navigation_deadzone
 
+func set_allow_navigation(state: bool) -> void:
+	allow_navigation = state
+	nav_left.disabled = not allow_navigation
+	nav_right.disabled = not allow_navigation
+
 
 # SIGNALS ----------------------------------------------------------------------
 func _on_element_ready(element: CarouselElement) -> void:
@@ -124,9 +142,10 @@ func _on_element_ready(element: CarouselElement) -> void:
 	if element.get_index() == textures.size() - 1:
 		all_elements_ready.emit()
 
-func _on_nav_left_pressed() -> void:
-	current_index -= 1
 
-func _on_nav_right_pressed() -> void:
-	current_index += 1
-	
+# TIMERS -----------------------------------------------------------------------
+func reset_nav_interval() -> void:
+	nav_interval_timer = get_tree().create_timer(min_nav_interval)
+
+func inside_nav_interval() -> bool:
+	return nav_interval_timer and nav_interval_timer.time_left > 0

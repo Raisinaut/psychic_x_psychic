@@ -15,15 +15,10 @@
 [ext_resource type="Texture2D" uid="uid://h1dx3tj8y2qc" path="res://assets/textures/portraits/noir_portrait11.png" id="13_nrjki"]
 [ext_resource type="Texture2D" uid="uid://4c01iuwv8vvx" path="res://assets/textures/portraits/noir_portrait12.png" id="14_54vcg"]
 [ext_resource type="Script" uid="uid://nthclx8ie0wi" path="res://general/effects/visibility_flasher.gd" id="15_gxul1"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qafcl"]
-
-[sub_resource type="Theme" id="Theme_687fb"]
-Button/styles/disabled = SubResource("StyleBoxEmpty_qafcl")
-Button/styles/focus = SubResource("StyleBoxEmpty_qafcl")
-Button/styles/hover = SubResource("StyleBoxEmpty_qafcl")
-Button/styles/normal = SubResource("StyleBoxEmpty_qafcl")
-Button/styles/pressed = SubResource("StyleBoxEmpty_qafcl")
+[ext_resource type="Script" uid="uid://c3xole6rxrfve" path="res://ui/user_creation_screen/carousel/fx_button.gd" id="16_dt3i8"]
+[ext_resource type="Texture2D" uid="uid://djb883on7pa3i" path="res://assets/textures/buttons/carousel_button_border.png" id="17_naxyt"]
+[ext_resource type="Texture2D" uid="uid://bdt06ssai5ay1" path="res://assets/textures/buttons/carousel_button_fill.png" id="18_75yep"]
+[ext_resource type="Texture2D" uid="uid://dbgaafmvrpw1u" path="res://assets/textures/buttons/carousel_button_disabled.png" id="19_75yep"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4sp4h"]
 
@@ -65,11 +60,11 @@ offset_right = -359.0
 offset_bottom = -335.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_687fb")
 theme_override_styles/panel = SubResource("StyleBoxEmpty_4sp4h")
 script = ExtResource("1_qm64i")
 element_scene = ExtResource("2_qm64i")
 textures = Array[Texture]([ExtResource("3_qafcl"), ExtResource("4_gxul1"), ExtResource("5_dt3i8"), ExtResource("6_412kh"), ExtResource("7_txv3c"), ExtResource("8_naxyt"), ExtResource("9_75yep"), ExtResource("10_t4dv5"), ExtResource("11_xc6k7"), ExtResource("12_4top2"), ExtResource("13_nrjki"), ExtResource("14_54vcg")])
+absorb_nav_inputs = null
 curve_scale = SubResource("Curve_qafcl")
 curve_alpha = SubResource("Curve_gxul1")
 curve_separation = SubResource("Curve_dt3i8")
@@ -88,12 +83,30 @@ border_width = 4.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1180631389]
 layout_mode = 2
+theme_override_constants/separation = -1
 
-[node name="NavLeft" type="Button" parent="HBoxContainer" unique_id=1807571740]
+[node name="NavLeft" type="TextureButton" parent="HBoxContainer" unique_id=908578262]
 unique_name_in_owner = true
-show_behind_parent = true
 layout_mode = 2
 size_flags_horizontal = 3
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+focus_next = NodePath(".")
+focus_previous = NodePath(".")
+action_mode = 0
+shortcut_feedback = false
+texture_normal = ExtResource("17_naxyt")
+texture_pressed = ExtResource("18_75yep")
+texture_hover = ExtResource("18_75yep")
+texture_disabled = ExtResource("19_75yep")
+texture_focused = ExtResource("19_75yep")
+ignore_texture_size = true
+stretch_mode = 0
+flip_h = true
+script = ExtResource("16_dt3i8")
+input_action = "ui_left"
 
 [node name="ElementContainer" type="PanelContainer" parent="HBoxContainer" unique_id=111414720]
 unique_name_in_owner = true
@@ -102,8 +115,24 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_qafcl")
 
-[node name="NavRight" type="Button" parent="HBoxContainer" unique_id=889635537]
+[node name="NavRight" type="TextureButton" parent="HBoxContainer" unique_id=317214068]
 unique_name_in_owner = true
-show_behind_parent = true
 layout_mode = 2
 size_flags_horizontal = 3
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+focus_next = NodePath(".")
+focus_previous = NodePath(".")
+action_mode = 0
+shortcut_feedback = false
+texture_normal = ExtResource("17_naxyt")
+texture_pressed = ExtResource("18_75yep")
+texture_hover = ExtResource("18_75yep")
+texture_disabled = ExtResource("19_75yep")
+texture_focused = ExtResource("19_75yep")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("16_dt3i8")
+input_action = "ui_right"
