@@ -9,25 +9,25 @@ uniform float inner_radius = 0.0;
 uniform float outer_radius = 1.0;
 
 vec2 scale(vec2 uv, vec2 center, vec2 amount) {
-    uv -= center;
-    uv *= amount;
-    uv += center;
-    return uv;
+	uv -= center;
+	uv *= amount;
+	uv += center;
+	return uv;
 }
 
 vec2 rotate(vec2 uv, vec2 center, float angle){
-    uv -= center;
+	uv -= center;
 
-    float s = sin(angle);
-    float c = cos(angle);
+	float s = sin(angle);
+	float c = cos(angle);
 
-    uv = vec2(
-        uv.x * c - uv.y * s,
-        uv.x * s + uv.y * c
-    );
+	uv = vec2(
+		uv.x * c - uv.y * s,
+		uv.x * s + uv.y * c
+	);
 
-    uv += center;
-    return uv;
+	uv += center;
+	return uv;
 }
 
 void fragment() {
