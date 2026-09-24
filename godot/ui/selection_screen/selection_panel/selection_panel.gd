@@ -20,7 +20,7 @@ signal just_selected
 var disabled : bool = false : set = set_disabled
 var highlighted : bool = false : set = set_highlighted
 var highlight_lock : bool = false
-var show_info_delay : float = 0.2
+var show_info_delay : float = 0.25
 var raise_height : float = 30
 var raise_duration : float = 0.2
 

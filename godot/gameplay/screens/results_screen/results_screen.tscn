@@ -4,7 +4,7 @@
 [ext_resource type="LabelSettings" uid="uid://d32epvrdmgpnq" path="res://ui/label_settings/header_1.tres" id="2_wauw3"]
 [ext_resource type="Material" uid="uid://uah8cbjhuu7l" path="res://shaders/materials/noise_border_2.tres" id="3_map34"]
 [ext_resource type="Theme" uid="uid://clr5tu8ev7u57" path="res://theme/interface_theme.tres" id="3_wauw3"]
-[ext_resource type="FontFile" uid="uid://galv8moamnrk" path="res://assets/fonts/Elsie/Elsie-Black.ttf" id="4_wauw3"]
+[ext_resource type="FontFile" uid="uid://y7a2omvdjken" path="res://assets/fonts/Madimi_One/MadimiOne-Regular.ttf" id="4_dwuet"]
 [ext_resource type="Script" uid="uid://dcvy1n3iig2bx" path="res://general/control/text_reveal.gd" id="5_dwuet"]
 [ext_resource type="Texture2D" uid="uid://7cl8yjm5pfc5" path="res://assets/textures/portraits/noir_portrait1.png" id="6_5mcmp"]
 [ext_resource type="AudioStream" uid="uid://cyprrp5a0w1v6" path="res://assets/audio/sfx/text_voices/underwater_1b.wav" id="6_7ninl"]
@@ -133,8 +133,8 @@ unique_name_in_owner = true
 custom_maximum_size = Vector2(900, 600)
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_fonts/normal_font = ExtResource("4_wauw3")
-theme_override_font_sizes/normal_font_size = 71
+theme_override_fonts/normal_font = ExtResource("4_dwuet")
+theme_override_font_sizes/normal_font_size = 67
 theme_override_styles/focus = SubResource("StyleBoxEmpty_afkid")
 bbcode_enabled = true
 text = "Big long sentence to test the boundaries of the text box. Plus another for safety - you can't be too careful now."

@@ -33,6 +33,7 @@ func fade_out(skip_to_end:= false) -> void:
 		animation_player.seek(1000, true)
 	await get_tree().create_timer(animation_player.current_animation_length, false).timeout
 
+
 # SETTERS ----------------------------------------------------------------------
 func set_portrait_texture(val) -> void:
 	portrait_texture = val
@@ -56,4 +57,4 @@ func tween_darkness(alpha : float) -> void:
 	if darken_tween: darken_tween.kill()
 	darken_tween = create_tween()
 	darken_tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
-	darken_tween.tween_property(panel_darken, "modulate:a", alpha, 0.5)
+	darken_tween.tween_property(panel_darken, "modulate:a", alpha, 0.2)
