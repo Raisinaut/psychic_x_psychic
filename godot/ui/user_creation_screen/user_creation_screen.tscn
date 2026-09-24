@@ -16,6 +16,11 @@
 [ext_resource type="Texture2D" uid="uid://cpm5bsnwe83jm" path="res://assets/textures/portraits/noir_portrait10.png" id="9_246fx"]
 [ext_resource type="Texture2D" uid="uid://h1dx3tj8y2qc" path="res://assets/textures/portraits/noir_portrait11.png" id="10_xqnb3"]
 [ext_resource type="Texture2D" uid="uid://4c01iuwv8vvx" path="res://assets/textures/portraits/noir_portrait12.png" id="11_pi5jg"]
+[ext_resource type="AudioStream" uid="uid://bxrqbrktn8slw" path="res://assets/audio/sfx/ui_feedback/generic/click_4.wav" id="17_246fx"]
+[ext_resource type="AudioStream" uid="uid://cvjy688pwlqg4" path="res://assets/audio/sfx/ui_feedback/retro_button.wav" id="17_lpx2w"]
+[ext_resource type="AudioStream" uid="uid://21u2aobmedge" path="res://assets/audio/sfx/ui_feedback/flutter.wav" id="17_t2ij2"]
+[ext_resource type="Script" uid="uid://qpghhn7u8nwn" path="res://general/audio/VariableStreamPlayer.gd" id="18_7rc43"]
+[ext_resource type="AudioStream" uid="uid://cdvv3lmy8t0hh" path="res://assets/audio/sfx/ui_feedback/generic/switch_1.wav" id="21_xqnb3"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yrk3s"]
 
@@ -109,7 +114,6 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(500, 500)
 layout_mode = 2
 textures = Array[Texture]([ExtResource("3_uclxs"), ExtResource("4_qhujn"), ExtResource("5_687fb"), ExtResource("6_lpx2w"), ExtResource("7_7rc43"), ExtResource("8_t2ij2"), ExtResource("9_246fx"), ExtResource("10_xqnb3"), ExtResource("11_pi5jg")])
-absorb_nav_inputs = true
 
 [node name="LowerElements" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1717433995]
 unique_name_in_owner = true
@@ -181,3 +185,38 @@ theme_override_constants/margin_right = 450
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
+
+[node name="ConfirmShimmerSFX" type="AudioStreamPlayer" parent="." unique_id=1835115930]
+unique_name_in_owner = true
+stream = ExtResource("17_t2ij2")
+volume_db = -2.0
+pitch_scale = 1.14
+bus = &"SFX"
+script = ExtResource("18_7rc43")
+base_pitch = 1.1400000000000001
+metadata/_custom_type_script = "uid://qpghhn7u8nwn"
+
+[node name="CycleSFX" type="AudioStreamPlayer" parent="." unique_id=178755565]
+unique_name_in_owner = true
+stream = ExtResource("17_lpx2w")
+volume_db = -14.0
+pitch_scale = 1.8219476
+bus = &"SFX"
+script = ExtResource("18_7rc43")
+pitch_variance = 0.03
+base_pitch = 1.8
+metadata/_custom_type_script = "uid://qpghhn7u8nwn"
+
+[node name="ButtonPressSFX" type="AudioStreamPlayer" parent="." unique_id=1515204832]
+unique_name_in_owner = true
+stream = ExtResource("17_246fx")
+volume_db = 10.0
+pitch_scale = 2.0
+bus = &"SFX"
+
+[node name="ButtonHoverSFX" type="AudioStreamPlayer" parent="." unique_id=1409910587]
+unique_name_in_owner = true
+stream = ExtResource("21_xqnb3")
+volume_db = 4.0
+pitch_scale = 2.0
+bus = &"SFX"

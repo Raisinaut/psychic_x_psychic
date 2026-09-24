@@ -13,7 +13,9 @@
 [ext_resource type="Resource" uid="uid://r23e1y6k8qt5" path="res://resources/cards/zener_star.tres" id="12_3a74c"]
 [ext_resource type="Resource" uid="uid://bwhrtpb7wjw6l" path="res://resources/cards/zener_plus.tres" id="12_sfvc4"]
 [ext_resource type="Resource" uid="uid://dsbxntiexqwdf" path="res://resources/cards/zener_square.tres" id="13_swuu1"]
+[ext_resource type="AudioStream" uid="uid://22fc0he2lay3" path="res://assets/audio/sfx/card_sounds/message_popup.wav" id="15_c4cts"]
 [ext_resource type="Resource" uid="uid://bn57xs5h0omvl" path="res://resources/cards/zener_waves.tres" id="15_ptk3l"]
+[ext_resource type="Script" uid="uid://qpghhn7u8nwn" path="res://general/audio/VariableStreamPlayer.gd" id="16_hnb7s"]
 
 [node name="VersusScreen" type="Control" unique_id=2052495618]
 layout_mode = 3
@@ -50,3 +52,14 @@ unique_name_in_owner = true
 
 [node name="MessageDisplay" parent="UI" unique_id=1671877501 instance=ExtResource("4_l3jmu")]
 unique_name_in_owner = true
+
+[node name="TurnSwitchSFX" type="AudioStreamPlayer" parent="." unique_id=234404240]
+unique_name_in_owner = true
+stream = ExtResource("15_c4cts")
+volume_db = -3.0
+pitch_scale = 0.77236325
+bus = &"SFX"
+script = ExtResource("16_hnb7s")
+pitch_variance = 0.05
+base_pitch = 0.72
+metadata/_custom_type_script = "uid://qpghhn7u8nwn"

@@ -6,6 +6,8 @@ signal game_just_ended
 @onready var interface: = %Interface
 @onready var message_display: = %MessageDisplay
 
+@onready var turn_switch_sfx: VariableStreamPlayer = %TurnSwitchSFX
+
 @export var opponent_scene : PackedScene
 @export var opponent_data : OpponentData
 @export var camera : Camera2D
@@ -139,6 +141,8 @@ func set_is_user_turn(val) -> void:
 	if game_has_ended:
 		push_warning("Did not change turn becuase game is concluded")
 		return
+	
+	turn_switch_sfx.play_random()
 	
 	is_user_turn = val
 	interface.highlight_user = is_user_turn

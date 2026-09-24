@@ -3,12 +3,14 @@ class_name Carousel
 extends PanelContainer
 
 signal all_elements_ready
+signal nav_button_just_pressed
 
 @export var element_scene : PackedScene = null
 @export var textures : Array[Texture] = []
+@export var navigation_sfx : AudioStream = null: set = set_navigation_sfx
 @export var item_separation: float = 500
 @export var navigation_deadzone: float = 500 : set = set_navigation_deadzone
-@export var navigation_duration: float = 0.35 # seconds
+@export var navigation_duration: float = 0.40 # seconds
 @export var absorb_nav_inputs: bool = true
 @export_group("Curves", "curve_")
 @export var curve_scale : Curve
@@ -33,8 +35,8 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 	populate_elements()
-	nav_left.pressed.connect(decrement_current_idx)
-	nav_right.pressed.connect(increment_current_idx)
+	nav_left.pressed.connect(nav_button_pressed.bind(-1))
+	nav_right.pressed.connect(nav_button_pressed.bind(+1))
 
 
 # POPULATION -------------------------------------------------------------------
@@ -51,18 +53,10 @@ func create_element(texture: Texture):
 
 # NAVIGATION -------------------------------------------------------------------
 func set_current_index(idx: int) -> void:
-	if inside_nav_interval():
-		return
 	idx = wrapi(idx, 0, textures.size())
 	current_index = idx
 	update_all_elements()
 	reset_nav_interval()
-
-func increment_current_idx() -> void:
-	current_index += 1
-
-func decrement_current_idx() -> void:
-	current_index -= 1
 
 func get_current_element() -> CarouselElement:
 	return element_container.get_child(current_index)
@@ -135,12 +129,22 @@ func set_allow_navigation(state: bool) -> void:
 	nav_left.disabled = not allow_navigation
 	nav_right.disabled = not allow_navigation
 
+func set_navigation_sfx(stream: AudioStream) -> void:
+	navigation_sfx = stream
+	%NavSFX.stream = navigation_sfx
+
 
 # SIGNALS ----------------------------------------------------------------------
 func _on_element_ready(element: CarouselElement) -> void:
 	update_element(element, false)
 	if element.get_index() == textures.size() - 1:
 		all_elements_ready.emit()
+
+func nav_button_pressed(index_change: int) -> void:
+	if inside_nav_interval():
+		return
+	nav_button_just_pressed.emit()
+	current_index += index_change
 
 
 # TIMERS -----------------------------------------------------------------------

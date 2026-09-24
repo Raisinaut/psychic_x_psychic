@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://scddryykvxca"
-path="res://.godot/imported/hover_effect.wav-5714b5eac689f75f557e1feac6410269.sample"
+path="res://.godot/imported/hover_effect.wav-f6304792224b1eafb6c864e85923db8d.sample"
 
 [deps]
 
-source_file="res://assets/audio/sfx/hover_effect.wav"
-dest_files=["res://.godot/imported/hover_effect.wav-5714b5eac689f75f557e1feac6410269.sample"]
+source_file="res://assets/audio/sfx/card_sounds/hover_effect.wav"
+dest_files=["res://.godot/imported/hover_effect.wav-f6304792224b1eafb6c864e85923db8d.sample"]
 
 [params]
 

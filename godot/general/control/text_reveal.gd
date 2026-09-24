@@ -3,6 +3,7 @@ extends RichTextLabel
 
 signal revealed_more
 signal fully_visible
+signal started_reveal
 
 enum RevealChunks {
 	LETTER,
@@ -10,13 +11,21 @@ enum RevealChunks {
 }
 
 enum RevealModes {
-	FLUID,
-	STATIC
+	FLUID, ## Characters visibility is based on reveal progress
+	STATIC ## all characters are technically visible and are instead revealed with bbcode
 }
 
 @export var reveal_pause := 0.025
 @export var reveal_chunk :=  RevealChunks.LETTER
 @export var reveal_mode :=  RevealModes.FLUID
+
+@export_group("SFX", "reveal_sfx_")
+@export_custom(PROPERTY_HINT_NODE_TYPE,
+	"AudioStreamPlayer,AudioStreamPlayer2D,AudioStreamPlayer3D") \
+	var reveal_sfx_loop: Node
+@export_custom(PROPERTY_HINT_NODE_TYPE,
+	"AudioStreamPlayer,AudioStreamPlayer2D,AudioStreamPlayer3D") \
+	var reveal_sfx_oneshot: Node
 
 var reveal_progress : int = 0
 var original_text: String = ""
@@ -33,13 +42,23 @@ var character_pauses : Dictionary[String, float] = {
 func _ready():
 	bbcode_enabled = true
 	insert_newlines(" ")
-	revealed_more.connect(reveal_more)
 	visible_characters = 0
+	connect_sfx_signals()
 
 func update_text(_text : String) -> void:
 	text = _text
 	original_text = text
 	insert_newlines(" ")
+
+func connect_sfx_signals() -> void:
+	if reveal_sfx_loop:
+		started_reveal.connect(reveal_sfx_loop.play)
+		fully_visible.connect(reveal_sfx_loop.stop)
+	if reveal_sfx_oneshot:
+		if reveal_sfx_oneshot.has_method("play_random"):
+			revealed_more.connect(reveal_sfx_oneshot.play_random)
+		else:
+			revealed_more.connect(reveal_sfx_oneshot.play)
 
 
 # REVEAL METHODS ---------------------------------------------------------------
@@ -53,9 +72,8 @@ func _next_word_idx() -> int:
 	return reveal_progress + word.length()
 
 func reveal_more():
-	if is_fully_visible():
-		fully_visible.emit()
-		return
+	if reveal_progress == 0:
+		started_reveal.emit()
 	
 	# Get reveal index
 	match reveal_chunk:
@@ -74,13 +92,19 @@ func reveal_more():
 			text = text.insert(reveal_progress, "[color=ffffff00]")
 			text = text.insert(-1, "[/style]")
 	
+	if is_fully_visible():
+		fully_visible.emit()
+		revealed_more.emit()
+	else:
+		pause_reveal().timeout.connect(reveal_more)
+
+func pause_reveal() -> SceneTreeTimer:
 	# Pause between reveals
 	var pause_duration : float = reveal_pause
 	var final_character = original_text[reveal_progress - 1]
 	if character_pauses.has(final_character):
 		pause_duration += character_pauses[final_character]
-	await get_tree().create_timer(pause_duration, false).timeout
-	revealed_more.emit()
+	return get_tree().create_timer(pause_duration, false)
 
 func reveal_all():
 	if not is_fully_visible():

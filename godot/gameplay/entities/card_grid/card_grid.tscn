@@ -2,8 +2,9 @@
 
 [ext_resource type="Script" uid="uid://dnr6f71t03qd5" path="res://gameplay/entities/card_grid/card_grid.gd" id="1_p3vks"]
 [ext_resource type="PackedScene" uid="uid://jxj7xnxi08mm" path="res://gameplay/entities/card/card.tscn" id="2_h4w2n"]
-[ext_resource type="AudioStream" uid="uid://bqvanso8584qv" path="res://assets/audio/sfx/match_effect.wav" id="6_rm4ay"]
+[ext_resource type="AudioStream" uid="uid://bqvanso8584qv" path="res://assets/audio/sfx/card_sounds/match_correct.wav" id="6_rm4ay"]
 [ext_resource type="Script" uid="uid://qpghhn7u8nwn" path="res://general/audio/VariableStreamPlayer.gd" id="6_ucrs4"]
+[ext_resource type="AudioStream" uid="uid://5ww2wryw6ojj" path="res://assets/audio/sfx/card_sounds/match_incorrect.wav" id="8_ex1v6"]
 [ext_resource type="Script" uid="uid://b2187jctll4mi" path="res://resources/_classes/card_data.gd" id="25_7eeo5"]
 [ext_resource type="Resource" uid="uid://b5gvw6uqjxfpe" path="res://resources/cards/0_fool.tres" id="26_bsrv0"]
 [ext_resource type="Resource" uid="uid://dwoti70apphj8" path="res://resources/cards/2_high_priestess.tres" id="27_bsrv0"]
@@ -26,8 +27,22 @@ data_variants = Array[ExtResource("25_7eeo5")]([ExtResource("26_bsrv0"), ExtReso
 unique_name_in_owner = true
 y_sort_enabled = true
 
-[node name="MatchSFX" type="AudioStreamPlayer" parent="." unique_id=1225074943]
+[node name="CorrectSFX" type="AudioStreamPlayer" parent="." unique_id=1225074943]
 unique_name_in_owner = true
 stream = ExtResource("6_rm4ay")
+pitch_scale = 1.0001713
+bus = &"SFX"
 script = ExtResource("6_ucrs4")
+pitch_variance = 0.01
+metadata/_custom_type_script = "uid://qpghhn7u8nwn"
+
+[node name="IncorrectSFX" type="AudioStreamPlayer" parent="." unique_id=2042522444]
+unique_name_in_owner = true
+stream = ExtResource("8_ex1v6")
+volume_db = -11.0
+pitch_scale = 0.4252123
+bus = &"SFX"
+script = ExtResource("6_ucrs4")
+pitch_variance = 0.03
+base_pitch = 0.4
 metadata/_custom_type_script = "uid://qpghhn7u8nwn"

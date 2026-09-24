@@ -7,8 +7,10 @@
 [ext_resource type="LabelSettings" uid="uid://dh2dyltco23pa" path="res://ui/label_settings/body_1.tres" id="3_jh4xq"]
 [ext_resource type="LabelSettings" uid="uid://cqu6xu4855ud4" path="res://ui/label_settings/body_3.tres" id="5_vlglx"]
 [ext_resource type="PackedScene" uid="uid://clwi6xerpkdr3" path="res://gameplay/entities/card/panel_glow.tscn" id="7_1cxyf"]
-[ext_resource type="AudioStream" uid="uid://cq3djmr64kkn3" path="res://assets/audio/sfx/chimes/chime_boop.wav" id="8_ea80f"]
+[ext_resource type="AudioStream" uid="uid://cq3djmr64kkn3" path="res://assets/audio/sfx/ui_feedback/chime_boop.wav" id="8_ea80f"]
 [ext_resource type="Script" uid="uid://qpghhn7u8nwn" path="res://general/audio/VariableStreamPlayer.gd" id="9_k3du3"]
+[ext_resource type="AudioStream" uid="uid://bo6omy51ck2nm" path="res://assets/audio/sfx/ui_feedback/shimmer.wav" id="10_k3du3"]
+[ext_resource type="AudioStream" uid="uid://bxrqbrktn8slw" path="res://assets/audio/sfx/ui_feedback/generic/click_4.wav" id="11_2mwg5"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_37yhw"]
 
@@ -108,11 +110,26 @@ one_shot = true
 [node name="HoverSFX" type="AudioStreamPlayer" parent="." unique_id=1510261603]
 unique_name_in_owner = true
 stream = ExtResource("8_ea80f")
-volume_db = 4.0
-pitch_scale = 1.1922784
-max_polyphony = 4
+volume_db = 8.0
+pitch_scale = 1.1832099
+max_polyphony = 2
 bus = &"SFX"
 script = ExtResource("9_k3du3")
 pitch_variance = 0.01
 base_pitch = 1.19
 metadata/_custom_type_script = "uid://qpghhn7u8nwn"
+
+[node name="SelectSFX" type="AudioStreamPlayer" parent="." unique_id=1788465924]
+unique_name_in_owner = true
+stream = ExtResource("10_k3du3")
+volume_db = -14.0
+bus = &"SFX"
+script = ExtResource("9_k3du3")
+metadata/_custom_type_script = "uid://qpghhn7u8nwn"
+
+[node name="ButtonPressSFX" type="AudioStreamPlayer" parent="." unique_id=850702913]
+unique_name_in_owner = true
+stream = ExtResource("11_2mwg5")
+volume_db = 10.0
+pitch_scale = 2.0
+bus = &"SFX"

@@ -29,7 +29,6 @@ func _ready() -> void:
 
 # INPUT HANDLING ---------------------------------------------------------------
 func _process(_delta: float) -> void:
-	button_pressed = true
 	poll_pressed_state()
 
 func _input(event: InputEvent) -> void:

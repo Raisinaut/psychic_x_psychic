@@ -2,7 +2,7 @@
 class_name VariableStreamPlayer
 extends AudioStreamPlayer
 
-@export var test_randomize : bool = false : set = set_test_randomize
+@export_tool_button("Test") var test_action = test
 @export var audio_files : Array[AudioStream] = []
 @export_range(0.00, 0.10, 0.01) var pitch_variance = 0.0
 @export var base_pitch = 1.0
@@ -26,11 +26,8 @@ func randomize_stream():
 func choose_random_pitch():
 	pitch_scale = base_pitch + rng.randf_range(-pitch_variance, pitch_variance)
 
-func set_test_randomize(state : bool):
+func test():
 	if not Engine.is_editor_hint():
 		return
-	test_randomize = state
-	if test_randomize:
-		test_randomize = false 
-		randomize_stream()
-		play()
+	randomize_stream()
+	play()

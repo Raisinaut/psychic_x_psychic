@@ -18,7 +18,9 @@ signal card_flipped(card : Card)
 @export_range(0, 1, 1, "or_greater") var variant_cap : int = 0
 
 @onready var cards: Node2D = %Cards
-@onready var match_sfx: VariableStreamPlayer = %MatchSFX
+@onready var correct_sfx: VariableStreamPlayer = %CorrectSFX
+@onready var incorrect_sfx: VariableStreamPlayer = %IncorrectSFX
+
 @onready var original_size : Vector2 = size
 @onready var original_position : Vector2 = global_position
 
@@ -141,12 +143,11 @@ func attempt_match(card1 : Card, card2 : Card) -> void:
 	match_started.emit(correct)
 	if correct:
 		await get_tree().create_timer(correct_pause_duation, false).timeout
-		#correct_match()
-		match_sfx.play_random()
+		correct_sfx.play_random()
 		await correct_match()
 	else:
 		await get_tree().create_timer(incorrect_pause_duration, false).timeout
-		#incorrect_match()
+		incorrect_sfx.play_random()
 		await incorrect_match()
 	match_finished.emit(correct)
 	set_all_cards_interaction_disabled(false)

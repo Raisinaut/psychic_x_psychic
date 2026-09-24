@@ -7,6 +7,9 @@
 [ext_resource type="FontFile" uid="uid://galv8moamnrk" path="res://assets/fonts/Elsie/Elsie-Black.ttf" id="4_wauw3"]
 [ext_resource type="Script" uid="uid://dcvy1n3iig2bx" path="res://general/control/text_reveal.gd" id="5_dwuet"]
 [ext_resource type="Texture2D" uid="uid://7cl8yjm5pfc5" path="res://assets/textures/portraits/noir_portrait1.png" id="6_5mcmp"]
+[ext_resource type="AudioStream" uid="uid://cyprrp5a0w1v6" path="res://assets/audio/sfx/text_voices/underwater_1b.wav" id="6_7ninl"]
+[ext_resource type="AudioStream" uid="uid://bxrqbrktn8slw" path="res://assets/audio/sfx/ui_feedback/generic/click_4.wav" id="8_map34"]
+[ext_resource type="AudioStream" uid="uid://cdvv3lmy8t0hh" path="res://assets/audio/sfx/ui_feedback/generic/switch_1.wav" id="9_bj6sl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bvnae"]
 bg_color = Color(0, 0, 0, 0)
@@ -125,7 +128,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_2lncs")
 
-[node name="MessageLabel" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ContentContainer/MessageContainer" unique_id=1986786932]
+[node name="MessageLabel" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ContentContainer/MessageContainer" unique_id=1986786932 node_paths=PackedStringArray("reveal_sfx_loop")]
 unique_name_in_owner = true
 custom_maximum_size = Vector2(900, 600)
 layout_mode = 2
@@ -140,6 +143,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("5_dwuet")
 reveal_mode = 1
+reveal_sfx_loop = NodePath("../../../../../../../VoiceSFX")
 
 [node name="ButtonContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ContentContainer" unique_id=395093401]
 unique_name_in_owner = true
@@ -180,3 +184,24 @@ layout_mode = 2
 texture = ExtResource("6_5mcmp")
 expand_mode = 1
 stretch_mode = 5
+
+[node name="ButtonPressSFX" type="AudioStreamPlayer" parent="." unique_id=306113442]
+unique_name_in_owner = true
+stream = ExtResource("8_map34")
+volume_db = 10.0
+pitch_scale = 2.0
+bus = &"SFX"
+
+[node name="ButtonHoverSFX" type="AudioStreamPlayer" parent="." unique_id=1938766613]
+unique_name_in_owner = true
+stream = ExtResource("9_bj6sl")
+volume_db = 4.0
+pitch_scale = 2.0
+bus = &"SFX"
+
+[node name="VoiceSFX" type="AudioStreamPlayer" parent="." unique_id=2001553845]
+editor_description = "Starts and stops with text reveal.
+Signals are connected via the editor."
+stream = ExtResource("6_7ninl")
+volume_db = -6.0
+bus = &"SFX"

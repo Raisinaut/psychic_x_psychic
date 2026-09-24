@@ -9,20 +9,32 @@ signal confirmed
 @onready var lower_elements: VBoxContainer = %LowerElements
 @onready var input_blocker: Control = %InputBlocker
 
+# SFX
+@onready var cycle_sfx: VariableStreamPlayer = %CycleSFX
+@onready var confirm_shimmer_sfx: VariableStreamPlayer = %ConfirmShimmerSFX
+@onready var button_press_sfx: AudioStreamPlayer = %ButtonPressSFX
+@onready var button_hover_sfx: AudioStreamPlayer = %ButtonHoverSFX
+
 
 func _ready() -> void:
+	connect_button_feedback()
 	name_edit.text = UserData.username
 	confirm_button.pressed.connect(_on_confirm_button_pressed)
 	portrait_carousel.all_elements_ready.connect(_on_portrait_carousel_all_elements_ready)
+	portrait_carousel.nav_button_just_pressed.connect(_on_portrait_carousel_nav_button_just_pressed)
 	fade_in()
 
 func _on_confirm_button_pressed() -> void:
+	confirm_shimmer_sfx.play_random()
 	confirmed.emit()
 	UserData.username = name_edit.text
 	UserData.portrait = portrait_carousel.get_current_element().texture
 
 func _on_portrait_carousel_all_elements_ready() -> void:
 	portrait_carousel.go_to_element_with_texture(UserData.portrait)
+
+func _on_portrait_carousel_nav_button_just_pressed() -> void:
+	cycle_sfx.play_random()
 
 func fade_out() -> void:
 	input_blocker.visible = true
@@ -47,3 +59,19 @@ func reset_fade() -> void:
 	title.modulate.a = 0
 	portrait_carousel.modulate.a = 0
 	lower_elements.modulate.a = 0
+
+
+# AUDIO FEEDBACK ---------------------------------------------------------------
+func connect_button_feedback(node: Node = self, current_depth : int = 0) -> void:
+	for i in node.get_children():
+		if i is Button:
+			i.pressed.connect(play_button_press_sfx)
+			i.mouse_entered.connect(play_button_hover_sfx)
+		else:
+			connect_button_feedback(i, current_depth + 1)
+
+func play_button_press_sfx() -> void:
+	button_press_sfx.play()
+
+func play_button_hover_sfx() -> void:
+	button_hover_sfx.play()

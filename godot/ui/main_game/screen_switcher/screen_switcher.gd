@@ -39,6 +39,7 @@ func open_and_set_current(screen_scene : PackedScene) -> Control:
 
 # OPEN SCREENS -----------------------------------------------------------------
 func open_creation_screen() -> void:
+	GameManager.can_pause = false # not pausable
 	var screen = open_and_set_current(creation_screen)
 	await screen.ready
 	screen.confirmed.connect(_on_creation_screen_confirmed)

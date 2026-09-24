@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://n4i23kprxjs4"
-path="res://.godot/imported/flip-05.wav-078f0ea98256439367d59bec95485805.sample"
+path="res://.godot/imported/flip-05.wav-73ffc943a393e0aaa654d2f5bfddc89e.sample"
 
 [deps]
 
-source_file="res://assets/audio/sfx/flip/flip-05.wav"
-dest_files=["res://.godot/imported/flip-05.wav-078f0ea98256439367d59bec95485805.sample"]
+source_file="res://assets/audio/sfx/card_sounds/flip/flip-05.wav"
+dest_files=["res://.godot/imported/flip-05.wav-73ffc943a393e0aaa654d2f5bfddc89e.sample"]
 
 [params]
 

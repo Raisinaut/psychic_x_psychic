@@ -17,6 +17,9 @@ signal new_opponent_selected
 @onready var new_opponent_button: Button = %NewOpponentButton
 @onready var main_menu_button: Button = %MainMenuButton
 
+@onready var button_press_sfx: AudioStreamPlayer = %ButtonPressSFX
+@onready var button_hover_sfx: AudioStreamPlayer = %ButtonHoverSFX
+
 enum ContentModes {
 	DISABLED,
 	MESSAGE,
@@ -30,6 +33,7 @@ func _ready() -> void:
 	rematch_button.pressed.connect(rematch_selected.emit)
 	main_menu_button.pressed.connect(main_menu_selected.emit)
 	new_opponent_button.pressed.connect(new_opponent_selected.emit)
+	connect_button_feedback(self)
 
 func show_message() -> void:
 	content_mode = ContentModes.MESSAGE
@@ -125,3 +129,19 @@ func fade_out() -> void:
 	content_mode = ContentModes.DISABLED
 	await fade_out_element(self).finished
 	reset_fade()
+
+
+# AUDIO FEEDBACK ---------------------------------------------------------------
+func connect_button_feedback(node: Node, current_depth : int = 0) -> void:
+	for i in node.get_children():
+		if i is Button:
+			i.pressed.connect(play_button_press_sfx)
+			i.mouse_entered.connect(play_button_hover_sfx)
+		else:
+			connect_button_feedback(i, current_depth + 1)
+
+func play_button_press_sfx() -> void:
+	button_press_sfx.play()
+
+func play_button_hover_sfx() -> void:
+	button_hover_sfx.play()

@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://bqvanso8584qv"
-path="res://.godot/imported/match_effect.wav-cc6d1b0009e60ffd7033577649a0381e.sample"
+path="res://.godot/imported/match_correct.wav-0be7234d2f823a2b9c3d0aee59d8820a.sample"
 
 [deps]
 
-source_file="res://assets/audio/sfx/match_effect.wav"
-dest_files=["res://.godot/imported/match_effect.wav-cc6d1b0009e60ffd7033577649a0381e.sample"]
+source_file="res://assets/audio/sfx/card_sounds/match_correct.wav"
+dest_files=["res://.godot/imported/match_correct.wav-0be7234d2f823a2b9c3d0aee59d8820a.sample"]
 
 [params]
 

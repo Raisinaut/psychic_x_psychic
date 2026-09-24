@@ -14,6 +14,8 @@ signal just_selected
 
 @onready var info_delay_timer: Timer = %InfoDelayTimer
 @onready var hover_sfx: VariableStreamPlayer = %HoverSFX
+@onready var select_sfx: AudioStreamPlayer = %SelectSFX
+@onready var button_press_sfx: AudioStreamPlayer = %ButtonPressSFX
 
 var disabled : bool = false : set = set_disabled
 var highlighted : bool = false : set = set_highlighted
@@ -47,6 +49,8 @@ func sync_with_data(data : OpponentData) -> void:
 	info_label.text = data.get_description_with_stats()
 
 func select() -> void:
+	button_press_sfx.play()
+	select_sfx.play()
 	just_selected.emit()
 	highlight_lock = true
 	button.disabled = true
