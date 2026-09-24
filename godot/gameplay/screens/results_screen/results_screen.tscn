@@ -128,11 +128,16 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_2lncs")
 
-[node name="MessageLabel" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ContentContainer/MessageContainer" unique_id=1986786932 node_paths=PackedStringArray("reveal_sfx_loop")]
-unique_name_in_owner = true
-custom_maximum_size = Vector2(900, 600)
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ContentContainer/MessageContainer" unique_id=1133496687]
 layout_mode = 2
-size_flags_horizontal = 4
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = 50
+
+[node name="MessageLabel" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ContentContainer/MessageContainer/MarginContainer" unique_id=1986786932 node_paths=PackedStringArray("reveal_sfx_loop")]
+unique_name_in_owner = true
+layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("4_dwuet")
 theme_override_font_sizes/normal_font_size = 67
 theme_override_styles/focus = SubResource("StyleBoxEmpty_afkid")
@@ -143,7 +148,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("5_dwuet")
 reveal_mode = 1
-reveal_sfx_loop = NodePath("../../../../../../../VoiceSFX")
+reveal_sfx_loop = NodePath("../../../../../../../../VoiceSFX")
 
 [node name="ButtonContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ContentContainer" unique_id=395093401]
 unique_name_in_owner = true
