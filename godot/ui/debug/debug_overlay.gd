@@ -17,7 +17,7 @@ func _ready() -> void:
 
 
 # INPUTS -----------------------------------------------------------------------
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_overlay"):
 		toggle_visiblity()
 
