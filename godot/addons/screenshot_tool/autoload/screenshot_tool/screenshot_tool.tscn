@@ -145,7 +145,6 @@ initial_position = 1
 size = Vector2i(1600, 1000)
 transient_to_focused = true
 force_native = true
-content_scale_factor = 2.0
 access = 2
 root_subfolder = "../"
 filters = PackedStringArray("*.png")

@@ -23,6 +23,9 @@ func _init() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
 func _ready() -> void:
+	perform_setup()
+
+func perform_setup() -> void:
 	add_screenshot_action()
 	close_dialog()
 	setup_dialog()
@@ -33,12 +36,14 @@ func _ready() -> void:
 	save_dialog_line_edit.text_submitted.connect(_on_line_edit_text_submitted)
 
 func _physics_process(_delta: float) -> void:
-	if not OS.is_debug_build():
+	if is_disabled():
 		return
 	if not is_processing_screenshot():
 		await update_shot_buffer()
 
 func _input(event: InputEvent) -> void:
+	if is_disabled():
+		return
 	if event.is_action_pressed(action_name) and not event.is_echo():
 		# Close
 		if is_processing_screenshot():
@@ -59,6 +64,9 @@ func add_screenshot_action():
 	if not InputMap.has_action(action_name):
 		InputMap.add_action(action_name)
 	InputMap.action_add_event(action_name, action_input)
+
+func is_disabled() -> bool:
+	return not OS.is_debug_build()
 
 
 # PREVIEW ----------------------------------------------------------------------
