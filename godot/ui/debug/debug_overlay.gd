@@ -10,6 +10,7 @@ func _ready() -> void:
 	music_control.slider_changed.connect(_on_music_control_slider_changed)
 	music_control.button_toggled.connect(_on_music_control_button_toggled)
 	music_control.set_slider_value(MusicManager.get_volume_linear())
+	music_control.set_button_pressed(MusicManager.muted)
 	GameManager.can_pause_changed.connect(_on_game_manager_can_pause_changed)
 	GameManager.can_pause = GameManager.can_pause
 
