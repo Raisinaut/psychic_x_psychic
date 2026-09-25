@@ -84,7 +84,7 @@ func set_button_toggle_mode(state: bool) -> void:
 	%Button.toggle_mode = button_toggle_mode
 
 func set_button_pressed(state: bool) -> void:
-	button.set_pressed_no_signal(state)
+	button.button_pressed = state
 
 func set_button_texture_normal(texture: Texture) -> void:
 	button_texture_normal = texture

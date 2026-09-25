@@ -67,7 +67,8 @@ func set_expanded(state: bool) -> void:
 
 func set_dimmed(state: bool) -> void:
 	dimmed = state
-	tween_alpha(get_dimmed_alpha())
+	if expanded:
+		tween_alpha(get_dimmed_alpha())
 
 
 # UTILITY ----------------------------------------------------------------------
