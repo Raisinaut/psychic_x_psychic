@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dxnlo803tu3fn" path="res://assets/textures/icons/volume_icon_on.png" id="5_sg4vn"]
 
 [node name="DebugOverlay" type="CanvasLayer" unique_id=66341293]
+process_mode = 3
 layer = 1000
 script = ExtResource("1_e32we")
 
