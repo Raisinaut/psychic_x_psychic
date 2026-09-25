@@ -4,6 +4,7 @@ extends CanvasLayer
 @onready var reset_button: ButtonSlider = %ResetButton
 @onready var music_control: ButtonSlider = %MusicControl
 
+
 func _ready() -> void:
 	reset_button.button_pressed.connect(_on_reset_button_pressed)
 	pause_button.button_pressed.connect(_on_pause_button_pressed)
@@ -14,6 +15,23 @@ func _ready() -> void:
 	GameManager.can_pause_changed.connect(_on_game_manager_can_pause_changed)
 	GameManager.can_pause = GameManager.can_pause
 
+
+# INPUTS -----------------------------------------------------------------------
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("toggle_overlay"):
+		toggle_visiblity()
+
+func toggle_visiblity() -> void:
+	visible = not visible
+
+func parse_pause_event() -> void:
+	var pause_event = InputEventAction.new()
+	pause_event.action = "pause"
+	pause_event.pressed = true
+	Input.parse_input_event(pause_event)
+
+
+# SIGNALS ----------------------------------------------------------------------
 func _on_game_manager_can_pause_changed(state: bool) -> void:
 	pause_button.visible = state
 
@@ -28,9 +46,3 @@ func _on_reset_button_pressed() -> void:
 
 func _on_pause_button_pressed() -> void:
 	parse_pause_event()
-
-func parse_pause_event() -> void:
-	var pause_event = InputEventAction.new()
-	pause_event.action = "pause"
-	pause_event.pressed = true
-	Input.parse_input_event(pause_event)
